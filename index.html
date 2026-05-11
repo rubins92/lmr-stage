@@ -479,6 +479,8 @@ body::before{
 .section.has-grid > .container { position: relative; z-index: 1; }
 .section { padding: 120px 0; position: relative; }
 .section.tight { padding: 80px 0; }
+/* Skip rendering work for off-screen sections — browser computes layout/paint only when near viewport */
+.section { content-visibility: auto; contain-intrinsic-size: 1px 800px; }
 
 /* ============================================
    TYPE
@@ -3397,8 +3399,10 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 /* ============================================
    REVEAL ON SCROLL
    ============================================ */
-.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease-fizz), transform 0.7s var(--ease-fizz); }
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.7s var(--ease-fizz), transform 0.7s var(--ease-fizz); will-change: opacity, transform; }
 .reveal.in { opacity: 1; transform: translateY(0); }
+/* once revealed and animation done, drop the transform AND will-change so the browser can discard the compositor layer */
+.reveal.done { transform: none; transition: none; will-change: auto; }
 
 /* ============================================
    RESPONSIVE
@@ -3496,7 +3500,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 
 <!-- ============================================ NAV (v2 design) ============================================ -->
 <div class="nav-wrap" id="nav" data-comment-anchor="nav"><div class="nav-inner">
-  <div class="nav-logo"><img src="assets/logo-lumir-photo.png" alt="Lumir Photo" /></div>
+  <div class="nav-logo"><img src="assets/logo-lumir-photo.png" alt="Lumir Photo" width="585" height="72" decoding="async" /></div>
   <div class="nav-right">
     <div class="nav-links">
       <a href="#pricing" class="nav-link nav-link-pricing">Стоимость</a>
@@ -4308,7 +4312,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" class="footer-logo" aria-label="Lumir Photo"><img src="assets/logo-lumir-photo.png" alt="Lumir Photo" /></a>
+        <a href="/" class="footer-logo" aria-label="Lumir Photo"><img src="assets/logo-lumir-photo.png" alt="Lumir Photo" width="585" height="72" loading="lazy" decoding="async" /></a>
         <p>Автовёрстка индивидуальных школьных альбомов.<br>Люмир распознает лица, выберит лучшие фото и соберёт индивидуальные альбомы для каждого ребенка.</p>
       </div>
       <div class="footer-col">
@@ -4384,14 +4388,22 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
         if (e.isIntersecting) {
-          e.target.classList.add('in');
-          io.unobserve(e.target);
+          const el = e.target;
+          el.classList.add('in');
+          io.unobserve(el);
+          // After the transition finishes, drop the transform so the compositor layer is discarded
+          el.addEventListener('transitionend', function onEnd(ev) {
+            if (ev.propertyName === 'transform') {
+              el.classList.add('done');
+              el.removeEventListener('transitionend', onEnd);
+            }
+          });
         }
       });
     }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach((el) => io.observe(el));
   } else {
-    reveals.forEach((el) => el.classList.add('in'));
+    reveals.forEach((el) => { el.classList.add('in'); el.classList.add('done'); });
   }
 
   // ── Animated bars ───────────────────────────────
