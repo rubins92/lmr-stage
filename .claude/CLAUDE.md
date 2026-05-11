@@ -49,3 +49,47 @@ npx serve .
 ## Если что-то непонятно
 
 Спроси пользователя. Не угадывай brand voice или техническое решение — лучше уточнить.
+
+---
+
+## Для maintainer'а (Сергей) — promotion в прод
+
+Этот раздел применим ТОЛЬКО когда сессия запущена локально у Сергея в `_PROJECTS/_LANDING/staging/` (не у коллег — у них нет `production/` рядом).
+
+**GitHub repo:** https://github.com/rubins92/lumir-landing-stage
+**Local layout:** `_PROJECTS/_LANDING/staging/` (этот репо) ↔ `_PROJECTS/_LANDING/production/` (deploy-папка)
+
+### Триггер «задеплой лендинг» / «deploy the landing»
+
+```bash
+# 1. Подтянуть последние правки коллег
+cd "/Users/sergei/Projects/SMM Content/_PROJECTS/_LANDING/staging" && git pull
+
+# 2. Промоушен staging → production (HTML + ассеты, без .git/.claude/README)
+cd "/Users/sergei/Projects/SMM Content/_PROJECTS/_LANDING"
+rm production/*.html production/*.png production/*.svg production/*.mp4 2>/dev/null || true
+cp staging/*.html staging/*.png staging/*.svg staging/*.mp4 production/ 2>/dev/null
+
+# 3. Включить аналитику в production (mandatory — staging держим false, prod true)
+sed -i '' 's/window\.ANALYTICS_ENABLED = false/window.ANALYTICS_ENABLED = true/' production/index.html
+
+# 4. Deploy в GitLab (автодеплой на lumir.photo за секунды)
+./deploy.sh "promote staging snapshot $(date +%Y-%m-%d)"
+```
+
+Полная процедура и rollback — `_PROJECTS/_LANDING/DEPLOY.md`.
+
+### Откат плохого коммита в staging
+
+```bash
+cd "/Users/sergei/Projects/SMM Content/_PROJECTS/_LANDING/staging"
+git log --oneline -10
+git revert <sha>
+git push
+```
+
+Или через GitHub UI: открыть коммит → кнопка Revert.
+
+### Приглашение коллег
+
+GitHub → https://github.com/rubins92/lumir-landing-stage/settings/access → Add people → **Write** permission.
