@@ -44,7 +44,7 @@ npx serve .
 - **Не меняй структуру папок.** Все ассеты в корне.
 - **Не пушь файлы >20 МБ.** GitHub их не примет, deploy сломается.
 - **Не удаляй секции** без явной команды от пользователя.
-- **Не трогай аналитику** — `<script>` теги OpenPanel в `<head>` уже настроены.
+- **Не трогай аналитику** — `<script>` теги OpenPanel в `<head>` уже настроены. В staging они выключены через `window.ANALYTICS_ENABLED = false` около строки 7 — оставлять как есть. Procedure включения перед прод-деплоем — `_PROJECTS/_LANDING/DEPLOY.md` (раздел «Analytics kill-switch»), enforcement — в `_PROJECTS/_LANDING/deploy.sh`.
 
 ## Если что-то непонятно
 

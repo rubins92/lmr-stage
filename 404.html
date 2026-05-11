@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>404 — страница не найдена · Lumir Photo</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Golos+Text:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg-cream:#F9F7F5;
+  --text-1:#2C2825;
+  --text-2:#504A44;
+  --text-3:#857E76;
+  --accent:#7B72C8;
+  --accent-hover:#6C63B5;
+  --border:rgba(44,40,37,0.08);
+  --headline-grad:linear-gradient(135deg, #652DEC 0%, #9B5ED0 35%, #C86898 65%, #D87891 100%);
+  --display:'Montserrat', system-ui, -apple-system, sans-serif;
+  --body:'Golos Text', system-ui, -apple-system, sans-serif;
+  --ease-fizz:cubic-bezier(0.37, 1, 0.74, 1);
+}
+*, *::before, *::after { box-sizing:border-box; margin:0; padding:0; }
+html, body { min-height:100dvh; }
+body{
+  font-family:var(--body);
+  background:var(--bg-cream);
+  color:var(--text-1);
+  font-size:17px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:48px 24px;
+}
+body::before{
+  content:'';
+  position:fixed;
+  inset:0;
+  opacity:.018;
+  pointer-events:none;
+  z-index:9999;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat:repeat;
+  background-size:256px;
+}
+.not-found{
+  width:100%;
+  max-width:560px;
+  text-align:center;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:24px;
+}
+.not-found .logo{
+  display:inline-block;
+  margin-bottom:16px;
+}
+.not-found .logo img{
+  height:32px;
+  width:auto;
+  display:block;
+}
+.not-found h1{
+  font-family:var(--display);
+  font-weight:800;
+  font-size:clamp(40px, 7vw, 64px);
+  line-height:1.05;
+  letter-spacing:-0.02em;
+  color:var(--text-1);
+}
+.not-found h1 .grad{
+  background:var(--headline-grad);
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+}
+.not-found p{
+  font-size:18px;
+  color:var(--text-2);
+  max-width:38ch;
+}
+.not-found .ctas{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:16px;
+  margin-top:8px;
+}
+.btn-primary{
+  display:inline-block;
+  background:var(--accent);
+  color:#fff;
+  font-family:var(--display);
+  font-weight:700;
+  font-size:14px;
+  letter-spacing:0.025em;
+  text-transform:uppercase;
+  text-decoration:none;
+  padding:18px 44px;
+  border-radius:999px;
+  box-shadow:0 1px 0 rgba(44,40,37,0.04), 0 4px 12px rgba(123,114,200,0.32), 0 12px 24px rgba(123,114,200,0.18);
+  transition:background 0.15s, transform 0.125s var(--ease-fizz);
+}
+.btn-primary:hover{background:var(--accent-hover);}
+.btn-primary:active{transform:scale(0.98);}
+.btn-ghost{
+  display:inline-block;
+  color:var(--text-2);
+  font-family:var(--body);
+  font-size:15px;
+  text-decoration:none;
+  border-bottom:1px solid var(--border);
+  padding-bottom:2px;
+  transition:color 0.15s, border-color 0.15s;
+}
+.btn-ghost:hover{color:var(--accent); border-color:var(--accent);}
+</style>
+</head>
+<body>
+<main class="not-found">
+  <a href="/" class="logo"><img src="assets/logo-lumir-photo.png" alt="Lumir Photo" /></a>
+  <h1>Страница <span class="grad">не найдена</span></h1>
+  <p>Может, найдём то, что нужно?</p>
+  <div class="ctas">
+    <a href="/" class="btn-primary">На главную</a>
+    <a href="https://t.me/lumirphoto_bot" class="btn-ghost">Поддержка → Telegram-бот</a>
+  </div>
+</main>
+</body>
+</html>

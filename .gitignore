@@ -1,0 +1,21 @@
+# Local artifacts — not part of the deployed site
+.claude/launch.json
+.claude/scheduled_tasks.lock
+.playwright-mcp/
+
+# Design canvas notes (kept locally, not in repo)
+_design-canvas-CLAUDE.md
+_design-canvas-learnings.md
+_session-checkins/
+
+# Variant sketches (kept locally for reference)
+_close-button-variants.html
+_menu-variants.html
+
+# Image-gen working folder (raw exports, not deployed)
+image-gen/
+
+# OS / editor
+.DS_Store
+*.swp
+*~
