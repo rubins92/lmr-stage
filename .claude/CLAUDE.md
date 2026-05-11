@@ -56,7 +56,7 @@ npx serve .
 
 Этот раздел применим ТОЛЬКО когда сессия запущена локально у Сергея в `_PROJECTS/_LANDING/staging/` (не у коллег — у них нет `production/` рядом).
 
-**GitHub repo:** https://github.com/rubins92/lumir-landing-stage
+**GitHub repo:** https://github.com/rubins92/lmr-stage
 **Local layout:** `_PROJECTS/_LANDING/staging/` (этот репо) ↔ `_PROJECTS/_LANDING/production/` (deploy-папка)
 
 ### Триггер «задеплой лендинг» / «deploy the landing»
@@ -92,4 +92,4 @@ git push
 
 ### Приглашение коллег
 
-GitHub → https://github.com/rubins92/lumir-landing-stage/settings/access → Add people → **Write** permission.
+GitHub → https://github.com/rubins92/lmr-stage/settings/access → Add people → **Write** permission.

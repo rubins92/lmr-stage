@@ -1,4 +1,4 @@
-# lumir-landing-stage
+# lmr-stage — Lumir Landing Staging
 
 Совместный стейджинг лендинга **lumir.photo**. Редактируем здесь через Claude Code, апрувленные правки Сергей переносит в прод вручную.
 
@@ -17,8 +17,8 @@
 ### 1. Клонируешь
 
 ```bash
-git clone https://github.com/rubins92/lumir-landing-stage.git
-cd lumir-landing-stage
+git clone https://github.com/rubins92/lmr-stage.git
+cd lmr-stage
 ```
 
 ### 2. Запускаешь Claude Code и поднимаешь превью
