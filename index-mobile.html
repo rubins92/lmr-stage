@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<title>Lumir Landing v3 — mobile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --frame-w: 390px;
+    --frame-h: 844px;
+    --bg: #2C2825;
+    --frame-bg: #1a1715;
+  }
+  html, body { margin: 0; padding: 0; background: var(--bg); min-height: 100dvh; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; color: #B8B2AA; }
+  .stage {
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 20px 60px;
+    gap: 20px;
+    box-sizing: border-box;
+  }
+  .label {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #857E76;
+    font-weight: 600;
+  }
+  .phone {
+    width: var(--frame-w);
+    height: var(--frame-h);
+    max-width: 100%;
+    background: var(--frame-bg);
+    border-radius: 0;
+    padding: 12px;
+    box-sizing: border-box;
+    box-shadow:
+      0 1px 0 rgba(255, 255, 255, 0.04) inset,
+      0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 30px 60px rgba(0, 0, 0, 0.5),
+      0 60px 120px rgba(0, 0, 0, 0.4);
+    position: relative;
+  }
+  .phone::before {
+    content: "";
+    position: absolute;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 110px;
+    height: 26px;
+    background: #000;
+    border-radius: 999px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .screen {
+    width: 100%;
+    height: 100%;
+    border-radius: 0;
+    overflow: hidden;
+    background: #F9F7F5;
+    position: relative;
+  }
+  .screen iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    display: block;
+  }
+  /* On narrow viewports — collapse the frame */
+  @media (max-width: 460px) {
+    .stage { padding: 0; gap: 0; }
+    .label { display: none; }
+    .phone { width: 100%; height: 100dvh; max-width: 100%; border-radius: 0; padding: 0; box-shadow: none; }
+    .phone::before { display: none; }
+    .screen { border-radius: 0; }
+  }
+</style>
+</head>
+<body>
+  <div class="stage">
+    <div class="label">Lumir landing v3 — mobile preview · 390 × 844</div>
+    <div class="phone">
+      <div class="screen">
+        <iframe
+          src="Lumir Landing v3.html"
+          title="Lumir Landing v3 mobile"
+          loading="eager"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
