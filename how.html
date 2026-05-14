@@ -27,7 +27,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
 <noscript><div><img src="https://mc.yandex.ru/watch/108151104" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
 
-<title>Автоверстка индивидуальных школьных альбомов — LUMIR PHOTO</title>
+    <title>Как это работает — Lumir Photo</title>
 <meta name="description" content="Lumir распознаёт лица, выбирает лучшие кадры и собирает индивидуальные альбомы для каждого ребёнка автоматически." />
 <meta name="keywords" content="школьные альбомы, автоверстка, фотоальбомы, выпускные альбомы, фотограф, школьная съёмка, Lumir, фотокласс, макеты альбомов, распознавание лиц" />
 <meta name="author" content="Lumir" />
@@ -2551,39 +2551,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   display: flex;
   flex-direction: column;
   gap: 28px;
-  overflow: hidden;
-}
-.flow-list.collapsed .flow-row:nth-child(n+2) {
-  display: none;
-}
-.flow-list.collapsed .flow-row:nth-child(1) {
-  pointer-events: none;
-  mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
-}
-.flow-expand {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 28px auto 0;
-  padding: 0;
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--accent);
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.flow-expand:hover { opacity: 0.7; }
-.flow-expand svg {
-  width: 18px;
-  height: 18px;
-  transition: transform 0.3s ease;
-}
-.flow-expand.expanded svg {
-  transform: rotate(180deg);
 }
 .flow-row {
   display: grid;
@@ -2752,38 +2719,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
    S7 — AI QUALITY (combined)
    ============================================ */
 .ai-section { background: transparent; }
-.ai-section .ai-body.collapsed .ai-strip {
-  pointer-events: none;
-  mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-  -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
-}
-.ai-section .ai-body.collapsed .ai-cases {
-  display: none;
-}
-.ai-expand {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  margin: 28px auto 0;
-  padding: 0;
-  font-family: var(--display);
-  font-weight: 600;
-  font-size: 15px;
-  color: var(--accent);
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: opacity 0.2s;
-}
-.ai-expand:hover { opacity: 0.7; }
-.ai-expand svg {
-  width: 18px;
-  height: 18px;
-  transition: transform 0.3s ease;
-}
-.ai-expand.expanded svg {
-  transform: rotate(180deg);
-}
 .ai-strip {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
@@ -2993,93 +2928,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 /* ============================================
    S9 — SPEED METRIC
    ============================================ */
-.speed-popup {
-  position: fixed;
-  inset: 0;
-  z-index: 99999;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.35s ease;
-  isolation: isolate;
-}
-.speed-popup.open {
-  opacity: 1;
-  pointer-events: auto;
-}
-.speed-popup-backdrop {
-  position: absolute;
-  inset: 0;
-  background: transparent;
-  z-index: 0;
-}
-.speed-popup-card {
-  position: relative;
-  background: rgba(255,255,255,0.3);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255,255,255,0.35);
-  border-radius: 14px;
-  padding: 40px 48px 36px;
-  max-width: 820px;
-  width: 90vw;
-  max-height: 90vh;
-  overflow: hidden;
-  box-shadow: 0 16px 60px rgba(0,0,0,0.2);
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  transform: translateY(24px);
-  transition: transform 0.35s ease;
-}
-.speed-popup.open .speed-popup-card {
-  transform: translateY(0);
-}
-.speed-popup-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  width: 36px;
-  height: 36px;
-  background: rgba(0,0,0,0.06);
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-3);
-  transition: background 0.2s, color 0.2s;
-}
-.speed-popup-close:hover {
-  background: rgba(0,0,0,0.12);
-  color: var(--text-1);
-}
-.speed-popup-close svg { width: 18px; height: 18px; }
-.speed-popup-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-  width: 100%;
-}
-.speed-popup-body .speed-bars-wrap {
-  padding: 28px 24px;
-  border-radius: 18px;
-}
-.speed-popup-body .speed-stat-big {
-  font-size: clamp(48px, 8vw, 80px) !important;
-}
-.speed-popup-body .h2 {
-  font-size: clamp(24px, 3vw, 32px);
-}
-@media (max-width: 700px) {
-  .speed-popup-body { grid-template-columns: 1fr; gap: 24px; }
-  .speed-popup-card { padding: 32px 24px 28px; border-radius: 12px; }
-}
 .speed-section { background: transparent; }
 .speed-grid {
   display: grid;
@@ -3932,9 +3780,9 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   .student-grid { grid-template-columns: 1fr; gap: 32px; }
   .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
 }
-@media (max-width: 1180px) { .nav-link-faq { display: none; } }
-@media (max-width: 1080px) { .nav-link-how { display: none; } }
-@media (max-width: 980px) { .nav-link-premium { display: none; } }
+@media (max-width: 1080px) { .nav-link-faq { display: none; } }
+@media (max-width: 980px) { .nav-link-how { display: none; } }
+@media (max-width: 880px) { .nav-link-features { display: none; } }
 @media (max-width: 820px) { .nav-link-pricing { display: none; } }
 @media (max-width: 768px) {
   html { scroll-padding-top: 80px; }
@@ -4133,10 +3981,10 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   <div class="nav-logo"><img src="assets/logo-lumir-photo.png" alt="Lumir Photo" width="585" height="72" decoding="async" /></div>
   <div class="nav-right">
     <div class="nav-links">
-      <a href="#pricing" class="nav-link nav-link-pricing">Стоимость</a>
-      <a href="#premium" class="nav-link nav-link-premium">Премиум</a>
+      <a href="index.html#pricing" class="nav-link nav-link-pricing">Стоимость</a>
+      <a href="index.html#features" class="nav-link nav-link-features">Возможности</a>
       <a href="#how" class="nav-link nav-link-how">Как работает</a>
-      <a href="#faq" class="nav-link nav-link-faq">FAQ</a>
+      <a href="faq.html" class="nav-link nav-link-faq">FAQ</a>
     </div>
     <a href="https://fotoklass.lumir.photo/projects" class="nav-login">Войти</a>
     <button class="nav-burger" id="nav-burger" type="button" aria-label="Меню" aria-expanded="false">
@@ -4146,353 +3994,14 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 </div></div>
 
 <div class="nav-overlay" id="nav-overlay" aria-hidden="true">
-  <a href="#pricing" class="nav-overlay-link">Стоимость</a>
-  <a href="#premium" class="nav-overlay-link">Премиум</a>
+  <a href="index.html#pricing" class="nav-overlay-link">Стоимость</a>
+  <a href="index.html#features" class="nav-overlay-link">Возможности</a>
   <a href="#how" class="nav-overlay-link">Как работает</a>
-  <a href="#faq" class="nav-overlay-link">FAQ</a>
+  <a href="faq.html" class="nav-overlay-link">FAQ</a>
   <a href="https://fotoklass.lumir.photo/projects" class="nav-overlay-link cta-style">Войти</a>
 </div>
 
-<!-- ============================================ S1 — HERO ============================================ -->
-<header class="hero container" data-screen-label="01 Hero">
-  <h1 style="font-size: clamp(40px, 7vw, 72px); line-height: 1.1"><span class="grad">Автовёрстка школьных альбомов</span></h1>
-  <a href="#pricing" class="hero-offer" style="text-decoration: none; color: inherit;">
-    <span class="hero-offer-icon">🎁</span>
-    <span>Первым 500 фотографам — <strong>10 000 ₽ на баланс</strong></span>
-  </a>
-
-  <div class="hero-grid-wrap">
-  <div class="hero-video-wrap" id="hero-video-wrap" data-comment-anchor="hero-video">
-    <video class="hero-video" id="hero-video" preload="metadata" playsinline controls>
-      <source src="placeholder-4x3.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-video-placeholder" aria-hidden="true">
-      <span class="hero-video-placeholder-tag"><span class="pulse"></span>Демо · заглушка</span>
-      <div class="hero-video-placeholder-text">
-        <h3 class="hero-video-placeholder-title">От папки фотографий до <em>готового альбома</em></h3>
-        <p class="hero-video-placeholder-sub">Покажем весь поток Lumir: распознавание лиц, распределение по разворотам, AI-вёрстку, выгрузку в типографию</p>
-        <div class="hero-video-placeholder-meta">
-          <span class="chip">02:14</span>
-          <span class="chip">RU</span>
-          <span class="chip">HD</span>
-        </div>
-      </div>
-      <div class="hero-video-placeholder-mock">
-        <div class="hero-video-placeholder-spread s1">
-          <div class="page"><div class="photo p1"></div><div class="strip"><i></i><i></i><i></i><i></i></div></div>
-          <div class="page"><div class="photo p2"></div><div class="caption"></div></div>
-        </div>
-        <div class="hero-video-placeholder-spread s2">
-          <div class="page"><div class="photo p3"></div><div class="strip"><i></i><i></i><i></i><i></i></div></div>
-          <div class="page"><div class="photo p4"></div><div class="caption"></div></div>
-        </div>
-        <div class="hero-video-placeholder-spread s3">
-          <div class="page"><div class="photo p5"></div><div class="strip"><i></i><i></i><i></i><i></i></div></div>
-          <div class="page"><div class="photo p6"></div><div class="caption"></div></div>
-        </div>
-      </div>
-      <div class="hero-video-placeholder-brand"><span class="lumir-mark"></span>lumir.photo</div>
-    </div>
-    <button class="hero-video-play" type="button" id="hero-video-play" aria-label="Воспроизвести демо">
-      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#fff"/></svg>
-    </button>
-    <div class="hero-video-meta" id="hero-video-meta">
-      <span class="dot"></span>
-      <span>Демо · 1 минута</span>
-    </div>
-  </div>
-  <p class="hero-sub" style="max-width: 680px; font-weight: 400; margin: 32px auto 0; text-align: center;">Lumir распознаёт лица, выбирает лучшие кадры и собирает индивидуальные альбомы для каждого ребёнка</p>
-  <div style="text-align: center; margin-top: 24px; margin-bottom: 16px;">
-    <a href="https://fotoklass.lumir.photo/projects" class="btn btn-primary">ПОПРОБОВАТЬ</a>
-  </div>
-  </div>
-</header>
-
-<!-- ============================================ S3 — INDIVIDUAL ALBUMS METRIC ============================================ -->
-<section class="section metric-section" style="padding-top: 40px;" data-screen-label="03 Individual">
-  <div class="container">
-
-    <div class="metric-text-block reveal">
-      <h2 class="h2"><span class="metric-h-accent">25 лиц</span> на съёмке — <span class="metric-h-accent"><span style="color: rgb(45, 42, 39);">25 <span style="color: rgb(123, 114, 199);">индивидуальных</span> альбомов</span></span></h2>
-      <p class="metric-subline">Lumir распознаёт каждого ученика и собирает альбом из его фото. Один ребёнок — один индивидуальный альбом <span class="metric-auto-pill">Автоматически</span></p>
-      <div style="margin-top: 20px;">
-        <a href="https://t.me/lumirphoto_bot" class="btn btn-ghost">ЗАДАТЬ ВОПРОС</a>
-      </div>
-    </div>
-
-    <div class="metric-visual reveal">
-      <div class="info-grid-bg"></div>
-      <div class="info-canvas">
-        <div class="info-col">
-          <div class="info-faces" aria-hidden="true">
-            <div class="info-face"></div><div class="info-face"></div><div class="info-face"></div><div class="info-face"></div><div class="info-face"></div>
-            <div class="info-face"></div><div class="info-face"></div><div class="info-face"></div><div class="info-face"></div><div class="info-face"></div>
-            <div class="info-face"></div><div class="info-face"></div><div class="info-face"></div><div class="info-face"></div><div class="info-face"></div>
-            <div class="info-face"></div><div class="info-face"></div><div class="info-face"></div><div class="info-face"></div><div class="info-face"></div>
-            <div class="info-face"></div><div class="info-face"></div><div class="info-face"></div><div class="info-face"></div><div class="info-face"></div>
-          </div>
-          <div class="info-col-label">25 учеников на съёмке</div>
-        </div>
-
-        <div class="info-arrow">
-          <div class="info-arrow-pipe">
-            <svg viewBox="0 0 160 44" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-              <path d="M4 22 H132" stroke="#7B72C8" stroke-width="2" stroke-linecap="round" stroke-dasharray="6 6"/>
-              <path d="M126 10 L150 22 L126 34" stroke="#7B72C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-            </svg>
-          </div>
-          <div class="info-arrow-badge">Lumir</div>
-        </div>
-
-        <div class="info-col">
-          <div class="info-albums" aria-hidden="true" data-comment-anchor="5a3df7e6e6-div">
-            <div class="info-album-pile" aria-hidden="true">
-              <span></span><span></span><span></span><span></span><span></span><span></span>
-            </div>
-            <div class="info-album a1">
-              <div class="info-album-page">
-                <div class="info-album-photo"></div>
-                <div class="info-album-line"></div>
-                <div class="info-album-line short"></div>
-              </div>
-              <div class="info-album-page">
-                <div class="info-album-photo"></div>
-                <div class="info-album-line tiny"></div>
-              </div>
-            </div>
-            <div class="info-album a2">
-              <div class="info-album-page">
-                <div class="info-album-photo"></div>
-                <div class="info-album-line"></div>
-                <div class="info-album-line short"></div>
-              </div>
-              <div class="info-album-page">
-                <div class="info-album-photo"></div>
-                <div class="info-album-line tiny"></div>
-              </div>
-            </div>
-            <div class="info-album a3">
-              <div class="info-album-page">
-                <div class="info-album-photo"></div>
-                <div class="info-album-line"></div>
-                <div class="info-album-line short"></div>
-              </div>
-              <div class="info-album-page">
-                <div class="info-album-photo"></div>
-                <div class="info-album-line tiny"></div>
-              </div>
-              <div class="info-album-badge">×25</div>
-            </div>
-          </div>
-          <div class="info-col-label">25 индивидуальных альбомов</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="metric-captions reveal">
-      <span class="metric-caption">AI распознает каждого ученика</span>
-      <span class="metric-caption">Собирает альбом из его фото</span>
-      <span class="metric-caption">Вы решаете что можно менять</span>
-    </div>
-
-    <div class="metric-tagline-wrap reveal" data-mt-wrap>
-      <p class="metric-tagline" data-mt="ribbon">+10 классов в сезон. Меньше рутины. Выше доход</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================ S2 — TEMPLATES + LABS + PRIVACY ============================================ -->
-<section class="section tpl-section" id="features" data-screen-label="02 Templates">
-  <div class="container">
-
-    <div class="tpl-grid">
-      <!-- Placeholder: book spreads / PSD template mockup -->
-      <div class="tpl-spread tpl-spread-placeholder reveal" data-comment-anchor="eda2c7e620-div">
-        <div class="tpl-spread-tag">Мокап · развороты PSD-дизайнов</div>
-        <div class="tpl-ph-stack">
-          <div class="tpl-ph tpl-ph-3"></div>
-          <div class="tpl-ph tpl-ph-2"></div>
-          <div class="tpl-ph tpl-ph-1">
-            <div class="tpl-ph-label">Иллюстрация</div>
-            <div class="tpl-ph-sub">Развороты фотоальбомов<br/>на разных PSD-дизайнах</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Text + privacy + labs -->
-      <div class="tpl-content reveal">
-        <h2 class="h2" style="font-size: 50px">Ваши дизайны<br/>Ваша типография</h2>
-        <div class="tpl-perk reveal" data-comment-anchor="d2cdcc189e-p">
-          <div class="tpl-perk-flag">Бесплатно</div>
-          <p class="tpl-perk-h">Адаптируем ваши дизайны</p>
-          <p class="tpl-perk-sub">Первым 500 фотографам — бесплатно. Обычная цена — 2 900 ₽ за папку</p>
-        </div>
-        <div class="tpl-perk reveal">
-          <div class="tpl-perk-flag" style="background: var(--accent); color: #fff;">−50%</div>
-          <p class="tpl-perk-h">Печать первого класса</p>
-          <p class="tpl-perk-sub">Скидка 50% на печать в партнёрских типографиях — первым 500 фотографам</p>
-        </div>
-
-        <div class="tpl-privacy">
-          <div class="tpl-privacy-ic" aria-hidden="true">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-          </div>
-          <div>
-            <h3 style="font-size: 17px; font-weight: 700;">Ваши дизайны — приватны</h3>
-            <p>Дизайны видны и доступны только вам</p>
-          </div>
-        </div>
-
-        <div class="tpl-labs">
-          <h3>Поддерживаем любую типографию</h3>
-          <div class="tpl-labs-row">
-            <div class="tpl-lab"><span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5l2.5 2.5L9.5 4"/></svg></span>Фотодом</div>
-            <div class="tpl-lab"><span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5l2.5 2.5L9.5 4"/></svg></span>Фабрика фотокниги</div>
-            <div class="tpl-lab"><span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5l2.5 2.5L9.5 4"/></svg></span>Булгакбук </div>
-            <div class="tpl-lab" data-comment-anchor="af8b9d3e5b-div"><span class="check"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 6.5l2.5 2.5L9.5 4"/></svg></span>Фотосфера</div>
-            <a href="https://t.me/lumirphoto_bot" class="tpl-lab add"><span class="plus">+</span>Добавим вашу</a>
-          </div>
-          <p class="body-sm" style="margin-top: 14px;">Работаете с другой? Напишите — добавим!</p>
-        </div>
-
-        <a href="https://t.me/lumirphoto_bot" class="btn btn-primary" style="margin-top: 32px; display: inline-flex; align-items: center; gap: 8px;">Забрать скидку −50% на печать</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================ S7 — AI QUALITY ============================================ -->
-<section class="section ai-section" data-screen-label="07 AI">
-  <div class="container">
-    <div class="reveal" style="text-align: center;">
-      <h2 class="h2" style="max-width: 22ch; margin-left: auto; margin-right: auto;">AI собирает макеты, как опытный дизайнер</h2>
-      <p class="lede" style="margin-top: 18px; max-width: 56ch; margin-left: auto; margin-right: auto;">Учитывает дубли, группирует по сюжету, выбирает лучший кадр</p>
-    </div>
-
-    <div class="ai-body collapsed">
-    <!-- Strip of 5 -->
-    <div class="ai-strip reveal">
-      <div class="ai-chip">
-        <div class="ai-chip-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.3 9 8.5 12 2"/></svg></div>
-        <div class="ai-chip-l">Подбирает лучший кадр<br>из 8 похожих</div>
-      </div>
-      <div class="ai-chip">
-        <div class="ai-chip-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18M3 12h18M3 18h12"/></svg></div>
-        <div class="ai-chip-l">Убирает дубли<br>автоматически</div>
-      </div>
-      <div class="ai-chip">
-        <div class="ai-chip-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <div class="ai-chip-l">Берёт лучший<br>групповой кадр</div>
-      </div>
-      <div class="ai-chip">
-        <div class="ai-chip-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg></div>
-        <div class="ai-chip-l">Группирует фото<br>по сюжету</div>
-      </div>
-      <div class="ai-chip">
-        <div class="ai-chip-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 1l4 4-4 4M3 11V9a4 4 0 0 1 4-4h14M7 23l-4-4 4-4M21 13v2a4 4 0 0 1-4 4H3"/></svg></div>
-        <div class="ai-chip-l">Распределяет<br>по альбомам автоматически</div>
-      </div>
-    </div>
-
-    <!-- Detailed cases -->
-    <div class="ai-cases reveal">
-      <div class="ai-case">
-        <div class="ai-case-head">
-          <span class="ai-case-badge">8 → 1</span>
-          <div class="ai-case-h">Из серии похожих — один лучший</div>
-        </div>
-        <p>Из 8 кадров одного ребёнка — Lumir выбирает один: фокус, открытые глаза и т.д</p>
-        <div class="ai-demo">
-          <div class="ai-demo-grid eight">
-            <div class="ai-tile dim"></div><div class="ai-tile dim"></div>
-            <div class="ai-tile"></div><div class="ai-tile dim"></div>
-            <div class="ai-tile dim"></div><div class="ai-tile dim"></div>
-            <div class="ai-tile dim"></div><div class="ai-tile dim"></div>
-          </div>
-          <span class="ai-arrow">→</span>
-          <div class="ai-demo-grid one">
-            <div class="ai-tile win"></div>
-          </div>
-        </div>
-      </div>
-
-      <div class="ai-case">
-        <div class="ai-case-head">
-          <span class="ai-case-badge">−50%</span>
-          <div class="ai-case-h">Дубли — отбракованы</div>
-        </div>
-        <p>Lumir видит похожие кадры и не вставляет дважды. На развороте — разнообразие</p>
-        <div class="ai-demo">
-          <div class="ai-demo-grid three">
-            <div class="ai-tile warm"></div><div class="ai-tile warm dim"></div><div class="ai-tile warm"></div>
-            <div class="ai-tile warm dim"></div><div class="ai-tile warm"></div><div class="ai-tile warm dim"></div>
-          </div>
-          <span class="ai-arrow">→</span>
-          <div class="ai-demo-grid three-clean">
-            <div class="ai-tile warm"></div>
-            <div class="ai-tile warm"></div>
-            <div class="ai-tile warm"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-    </div>
-    <button class="ai-expand" type="button"><span>Подробнее</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-  </div>
-</section>
-
-<!-- ============================================ S10 — STUDENT + ORGANIZER ============================================ -->
-<section class="section student-section" data-screen-label="10 Student">
-  <div class="container">
-
-    <div class="student-grid">
-      <div class="student-text reveal">
-        <h2 class="h2">Класс собирает себя сам 🙌</h2>
-        <p class="lede" style="margin-top: 18px;">Ссылка организатору → имена заполнены → ученики утверждают альбомы с телефона</p>
-        <ul class="student-captions">
-          <li class="step-reveal">Организатор заполняет имена за 10 минут</li>
-          <li class="step-reveal">Ученик утверждает альбом с телефона</li>
-          <li class="step-reveal">Координатор видит статусы, торопит отстающих</li>
-        </ul>
-      </div>
-
-      <div class="student-mock reveal">
-        <div class="org-panel">
-          <div class="org-panel-h">11А · Класс</div>
-          <div class="org-row"><span class="name">Каримова А.</span><span class="org-status done"> · утвердил</span></div>
-          <div class="org-row"><span class="name">Петров И.</span><span class="org-status done"> · утвердил</span></div>
-          <div class="org-row"><span class="name">Соколова М.</span><span class="org-status making"> · создан</span></div>
-          <div class="org-row"><span class="name">Новиков О.</span><span class="org-status making"> · создан</span></div>
-          <div class="org-row"><span class="name">Дмитриева С.</span><span class="org-status done"> · утвердил</span></div>
-          <div class="org-row"><span class="name">Воронин Т.</span><span class="org-status making"> · создан</span></div>
-          <div class="org-row"><span class="name">Лебедев Я.</span><span class="org-status skip"> · не вошёл</span></div>
-          <div class="org-row"><span class="name">Орлова К.</span><span class="org-status done"> · утвердил</span></div>
-        </div>
-
-        <div class="phone">
-          <div class="phone-screen">
-            <div class="phone-h">Мой альбом</div>
-            <div class="phone-name">Анна Каримова, 11А</div>
-            <div class="phone-album-stage">
-              <div class="phone-album-cover"></div>
-              <div class="phone-meta-row">
-                <span class="lbl">Разворотов</span>
-                <span class="ct">12</span>
-              </div>
-              <div class="phone-meta-row">
-                <span class="lbl">Фото</span>
-                <span class="ct">48</span>
-              </div>
-            </div>
-            <div class="phone-cta">Утвердить макет</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================ S6 — HOW IT WORKS (snake video) ============================================ -->
+<main class="container" style="padding-top: 100px;">
 <section class="section flow-section has-grid" id="how" data-screen-label="06 How">
   <div class="grid-pattern"></div>
   <div class="container">
@@ -4500,14 +4009,13 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
       <h2 class="h2">Как это работает</h2>
     </div>
 
-    <div class="flow-list collapsed">
+    <div class="flow-list">
       <!-- Step 1 -->
       <div class="flow-row reveal">
         <div class="flow-text">
           <div class="flow-num">Шаг 01</div>
-          <h3>Загрузите дизайны</h3>
-          <p style="font-size: 14px; opacity: 0.5; margin-bottom: 8px;">*если есть</p>
-          <p>Или воспользуйтесь библиотекой дизайнов Lumir</p>
+          <h3>Загрузите дизайны (если есть)</h3>
+          <p>Или возьмите штатные</p>
         </div>
         <button class="flow-video-card" type="button" data-video-modal="step-1" aria-label="Смотреть видео шага 1">
           <div class="flow-video-cover c1"></div>
@@ -4558,388 +4066,9 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
         </button>
       </div>
     </div>
-    <button class="flow-expand" type="button"><span>Все шаги</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
   </div>
 </section>
-
-<!-- Speed section removed — now a popup, see end of body -->
-
-<!-- ============================================ S4 — PRICING (production reuse) ============================================ -->
-<section class="pricing-section" id="pricing" data-screen-label="04 Pricing" data-comment-anchor="3b12ef72d3-section">
-  <div class="pricing-glow-a"></div>
-  <div class="pricing-glow-b"></div>
-
-  <!-- Variant: V3 (current) -->
-  <div class="pricing-variant pricing-variant--v3">
-    <div class="pricing-wrap reveal">
-      <div class="pricing-eyebrow">Фикс прайс</div>
-      <h2 class="pricing-headline">
-        <span class="pricing-amount">980<span class="pricing-amount-rub">₽</span></span>
-        <span class="pricing-tail">за весь класс</span>
-      </h2>
-      <p class="pricing-tagline">Один проект — один класс. Не считаем альбомы и развороты</p>
-    </div>
-  </div>
-
-  <!-- Variant: V2 (Receipt card from Landing v2) -->
-  <div class="pricing-variant pricing-variant--v2">
-    <div class="pv-v2-wrap reveal">
-      <div class="pv-v2-eyebrow">Фикс прайс</div>
-      <div class="pv-v2-card">
-        <div class="pv-v2-row">
-          <div class="pv-v2-pricecol">
-            <div class="pv-v2-kicker">Обычная стоимость</div>
-            <div class="pv-v2-amount">980<span class="pv-v2-amount-rub">₽</span></div>
-            <div class="pv-v2-priceTail">за весь класс</div>
-          </div>
-          <div class="pv-v2-metacol">
-            <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Объём проекта</div><div class="pv-v2-metavalue">1 класс целиком</div></div>
-            <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Альбомов в проекте</div><div class="pv-v2-metavalue pv-v2-metavalue--accent">Без лимита</div></div>
-            <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Разворотов в альбоме</div><div class="pv-v2-metavalue pv-v2-metavalue--accent">Без лимита</div></div>
-            <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Экспорт в печать</div><div class="pv-v2-metavalue">Включён</div></div>
-            <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Адаптация PSD</div><div class="pv-v2-metavalue pv-v2-metavalue--accent">Бесплатно</div></div>
-          </div>
-        </div>
-        <div class="pv-v2-foot" style="flex-direction: column; align-items: center; gap: 10px;">
-          <div class="pv-v2-promo">
-            <span class="pv-v2-promo-old">980 ₽</span>
-            <a href="https://t.me/lumirphoto_bot" class="pv-v2-promo-badge" style="text-decoration: none; color: #fff;">10 000 ₽ на баланс</a>
-          </div>
-          <p class="pv-v2-footnote">Первым 500 фотографам — хватит на 10 классов</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================ S5 — LUMIR PREMIUM ============================================ -->
-<section class="section premium-section" id="premium" data-screen-label="05 Premium">
-  <div class="container">
-    <div class="premium-head reveal">
-      <h2 class="h2">Lumir Premium на год</h2>
-      <p class="lede" style="margin-top: 18px; max-width: 56ch; margin-left: auto; margin-right: auto;">Первым 500 фотографам — особый пакет на год после регистрации</p>
-      <div class="premium-counter">
-        <span class="premium-pulse"></span>
-        <span>Осталось <span data-slots-remaining>367</span> мест из 500</span>
-      </div>
-    </div>
-
-    <div class="premium-grid reveal">
-      <div class="premium-card">
-        <div class="premium-card-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 6v2m0 8v2"/></svg>
-        </div>
-        <div class="premium-card-amount">10 000 ₽</div>
-        <h4>На баланс</h4>
-        <p>Зачислим по первому запросу в поддержку. Хватит на 10 классов</p>
-      </div>
-
-      <div class="premium-card">
-        <div class="premium-card-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
-        </div>
-        <div class="premium-card-badge">−50%</div>
-        <h4>На печать первого класса</h4>
-        <p>В партнёрских типографиях. Уточните в поддержке</p>
-      </div>
-
-      <div class="premium-card">
-        <div class="premium-card-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/><path d="M14 14l3 3M14 17l3-3"/></svg>
-        </div>
-        <h4>Адаптация PSD бесплатно</h4>
-        <p>Заведём ваши дизайны в кабинет Lumir. Обычная цена — 2 900 ₽ за папку</p>
-      </div>
-
-      <div class="premium-card">
-        <div class="premium-card-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
-        </div>
-        <h4>Онбординг-созвон</h4>
-        <p>Покажем весь процесс за 30 минут</p>
-      </div>
-
-      <div class="premium-card">
-        <div class="premium-card-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-        <h4>Все новые фичи</h4>
-        <p>Доступ к новым возможностям по мере выхода. На год</p>
-      </div>
-
-      <div class="premium-card">
-        <div class="premium-card-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 7l-3 5h4l-3 5"/></svg>
-        </div>
-        <h4>Прямой канал в продукт</h4>
-        <p>Приоритизируем ваши предложения в разработке</p>
-      </div>
-    </div>
-
-    <div class="premium-cta reveal" style="text-align: center; margin-top: 48px;">
-      <a href="https://fotoklass.lumir.photo/projects" class="btn btn-primary">Забрать Lumir Premium</a>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================ S12 — CTA BANNER ============================================ -->
-<section class="cta-section" data-screen-label="12 CTA">
-  <div class="container">
-    <div class="cta-banner reveal">
-      <div class="cta-amount">Дарим 10 000 ₽ на счёт</div>
-      <h2>Соберите первый класс уже сегодня</h2>
-      <p class="cta-sub">10 000 ₽ на баланс и 50% на печать класса у партнеров первым 500 фотографам</p>
-      <div class="cta-banner-ctas">
-        <a href="https://fotoklass.lumir.photo/projects" class="btn btn-on-dark">Попробовать</a>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================ S13 — FAQ ============================================ -->
-<section class="section faq-section" id="faq" data-screen-label="13 FAQ">
-  <div class="container">
-    <div class="faq-head reveal">
-      <h2 class="h2">FAQ</h2>
-    </div>
-
-    <div class="faq-list reveal collapsed">
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Сколько стоит?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              <p>Один класс — 980 ₽, и не важно, сколько там альбомов, учеников и разворотов. Зарегистрироваться, собрать альбомы и согласовать с заказчиком — бесплатно. Платите только когда всё нравится и нужно скачать файлы на печать</p>
-              <p>Первым 500 фотографам — особые условия на старте:</p>
-              <ul>
-                <li><strong>10 000 ₽ на баланс</strong> — хватит на десять классов</li>
-                <li><strong>Скидка 50% на первый заказ печати</strong> в партнёрских типографиях (уточните в поддержке)</li>
-                <li><strong>Адаптация ваших PSD/InDesign — бесплатно</strong> (обычно 2 900 ₽ за папку). Загрузите дизайны — перенесём их в Lumir, и вы продолжите работать с привычными макетами через сервис</li>
-                <li><strong>Онбординг-созвон с командой.</strong> 30 минут — и первый класс готов к печати</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          С какими типографиями работает Lumir Photo?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              Работаем со всеми. Подключаем по мере того, как вы их просите. Уже работают Фотодом, Булгакбук и Фабрика фотокниги. Напишите свою — быстро добавим.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Можно ли загрузить свои дизайны?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              Да, загружайте PSD (или другой формат) — Lumir соберёт макеты в ваших дизайнах. Ваш дизайн виден только вам и в общую библиотеку не попадает — никаких «стоков из ваших файлов». Если с файлом что-то не так — поможем. Первым пользователям три папки дизайнов адаптируем бесплатно (обычно 2 900 ₽ за папку).
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Сколько и как долго хранятся файлы?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              До 20 ГБ фото на один класс — обычно съёмка это 500–2500 jpeg-кадров, как раз под такие объёмы рассчитано. Файлы храним без пересжатия, в исходном качестве. Оригиналы фото — полгода, макеты утверждённых альбомов — год. Если вдруг места не хватит — пишите, обсудим.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Где и как хранятся данные?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              В дата-центре в Москве. Резервное питание, запасные каналы, репликация данных. С законом о ПДн всё в порядке — зарегистрированы в Роскомнадзоре как оператор персональных данных.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Кто увидит фото учеников?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              Только те, кому вы дадите ссылку. Она длинная, не индексируется поисковиками и работает как ключ доступа к съёмке.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Можно ли что-то поменять после того, как макеты собрались?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              Да. Движок собирает черновой макет автоматически — дальше вы правите точечно: фото, порядок разворотов, раскладки, тексты. Любое фото меняется в один клик прямо в редакторе. Финальное слово всегда за человеком.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Можно ли защитить фото от скачивания?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              Да. На все фото идут водяные знаки, ученики видят только превью и скачать оригинал не могут. По умолчанию скачивание им закрыто. Если хотите — в настройках разрешите скачивание: например, только тех фото, что вошли в утверждённый альбом.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Можно ли запретить ученикам менять определенные развороты при утверждении?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              Да, любой разворот блокируется на уровне мастер-настроек — он становится одинаковым у всех 30 альбомов класса, и ученики не смогут его поменять при утверждении. Удобно для виньетки, обложки и общих кадров. Индивидуальные развороты с портретами при этом остаются редактируемыми у каждого своими.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Работает ли сервис с садом/младшими (через родителей) и с 9–11 классами (через учеников)?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              Да, к возрасту не привязаны. Вы сами решаете, кто заходит в редактор и утверждает альбом: родители (обычно сад и 4 класс) или ученики напрямую (9–11). У организатора (мама-активистка, староста класса или ваш менеджер) — отдельная роль: своя ссылка, статусы всех альбомов, возможность торопить отстающих и утверждать за молчунов. Так фотографу не приходится разруливать чат с 30 родителями — этим занимается организатор.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Кто заполняет имена в виньетке?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              Отдаёте отдельную ссылку организатору — она подписывает учеников прямо в интерфейсе, без таблиц и Excel. Либо ученики при входе указывают своё имя сами, если организатор ещё не подписал.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Поддерживаете RAW (CR3/NEF/ARW)?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              Пока нет. Грузите JPG после первичной отбраковки — со светокоррекцией или без. Это формат, в котором фотографы обычно отдают съёмку заказчику на отбор. Если у вас другой воркфлоу — напишите, обсудим.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Распознавание лиц — это биометрия? Безопасно для родителей?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              Распознавание работает только внутри вашего проекта — чтобы сгруппировать фото по ученикам и собрать индивидуальный альбом каждому. Третьим лицам биометрию не передаём, во внешние сервисы не отправляем, за пределами вашей съёмки не используем. Серверы — в Москве, зарегистрированы в Роскомнадзоре как оператор ПДн.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item">
-        <button class="faq-q" type="button" aria-expanded="false">
-          Как быстро отвечает поддержка?
-          <span class="faq-toggle" aria-hidden="true">+</span>
-        </button>
-        <div class="faq-a">
-          <div>
-            <div class="faq-a-content">
-              Пишите в телеграм — обычно отвечаем в течение пары часов, а в рабочее время чаще всего сразу.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <button class="faq-expand" type="button"><span>Читать все</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
-
-  </div>
-</section>
-
-<!-- ============================================ S11 — TRUST STRIP (near footer) ============================================ -->
-<section class="trust-section" data-screen-label="11 Trust">
-  <div class="container">
-    <div class="trust-grid reveal">
-      <div class="trust-card">
-        <div class="trust-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 10h20M6 14h4"/></svg>
-        </div>
-        <div class="lbl">Серверы в РФ</div>
-        <div class="sub">Дата-центр в Москве</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L3 7v6c0 5 3.5 9 9 11 5.5-2 9-6 9-11V7l-9-5z"/><path d="M9 12l2 2 4-4"/></svg>
-        </div>
-        <div class="lbl">152-ФЗ</div>
-        <div class="sub">Соответствие требованиям</div>
-      </div>
-      <div class="trust-card">
-        <div class="trust-ic">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-        </div>
-        <div class="lbl">Реестр Роскомнадзора</div>
-        <div class="sub">Оператор ПД</div>
-      </div>
-    </div>
-  </div>
-</section>
+</main>
 
 <!-- ============================================ S14 — DEMO + FOOTER ============================================ -->
 <section class="demo-section" data-screen-label="14 Demo">
@@ -4955,13 +4084,14 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="/" class="footer-logo" aria-label="Lumir Photo"><img src="assets/logo-lumir-photo.png" alt="Lumir Photo" width="585" height="72" loading="lazy" decoding="async" /></a>
+        <a href="index.html" class="footer-logo" aria-label="Lumir Photo"><img src="assets/logo-lumir-photo.png" alt="Lumir Photo" width="585" height="72" loading="lazy" decoding="async" /></a>
         <p>Автоверстка школьных альбомов<br>Больше съёмок, меньше рутины ✨</p>
       </div>
       <div class="footer-col">
         <h4>Продукт</h4>
-        <a href="#pricing">Стоимость</a>
-        <a href="#how">Как работает</a>
+        <a href="index.html#pricing">Стоимость</a>
+        <a href="index.html#features">Возможности</a>
+        <a href="index.html#how">Как работает</a>
         <a href="https://fotoklass.lumir.photo/projects">Попробовать</a>
       </div>
       <div class="footer-col">
@@ -4986,45 +4116,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     </div>
   </div>
 </footer>
-
-<!-- Speed popup (triggered when FAQ scrolls into view) -->
-<div class="speed-popup" id="speedPopup" aria-hidden="true">
-  <div class="speed-popup-backdrop"></div>
-  <div class="speed-popup-card">
-    <button class="speed-popup-close" type="button" aria-label="Закрыть">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
-    </button>
-    <div class="speed-popup-body">
-      <div class="speed-bars-wrap">
-        <div class="speed-row">
-          <span class="speed-row-l">Без Lumir</span>
-          <div class="speed-bar"><div class="speed-bar-fill" data-target="100"></div></div>
-        </div>
-        <div class="speed-row win">
-          <span class="speed-row-l">С Lumir</span>
-          <div class="speed-bar"><div class="speed-bar-fill" data-target="20"></div></div>
-        </div>
-        <div class="speed-captions">
-          <div class="speed-caption">Весь класс — за день вместо недель</div>
-          <div class="speed-caption">Автоматизируем и делегируем рутину</div>
-        </div>
-        <div class="speed-callout">
-          <span class="speed-callout-num">+10</span>
-          <span class="speed-callout-txt"><strong>классов в сезон</strong> — в освободившееся время</span>
-        </div>
-      </div>
-      <div class="speed-text-side">
-        <h2 class="h2">неделя → 2 часа</h2>
-        <p class="speed-subline">Освободившееся время = ещё несколько классов в сезон</p>
-        <div class="speed-stat-side" style="text-align: left; margin: 24px 0 0;">
-          <div class="speed-stat-big">−80%</div>
-          <div class="speed-stat-l">Вместо недели — одно утро</div>
-        </div>
-      </div>
-    </div>
-    <a href="https://fotoklass.lumir.photo/projects" class="btn btn-primary" style="margin-top: 28px; display: inline-flex; align-self: center;">Попробовать</a>
-  </div>
-</div>
 
 <!-- ============================================ MODAL VIDEO PLAYER ============================================ -->
 <div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Видео">
@@ -5132,37 +4223,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     });
   }
 
-  // ── Speed popup (triggered on FAQ scroll) ───────
-  const speedPopup = document.getElementById('speedPopup');
-  if (speedPopup) {
-    let speedPopupShown = false;
-    const faqSection = document.querySelector('.faq-section');
-    const closePopup = () => {
-      speedPopup.classList.remove('open');
-      speedPopup.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    };
-    const openPopup = () => {
-      speedPopup.classList.add('open');
-      speedPopup.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      speedPopupShown = true;
-      const fills = speedPopup.querySelectorAll('.speed-bar-fill');
-      fills.forEach(f => { f.style.width = f.dataset.target + '%'; });
-    };
-    if (faqSection && 'IntersectionObserver' in window) {
-      const popupIO = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && !speedPopupShown) openPopup();
-      }, { threshold: 0.15 });
-      popupIO.observe(faqSection);
-    }
-    speedPopup.querySelector('.speed-popup-close').addEventListener('click', closePopup);
-    speedPopup.querySelector('.speed-popup-backdrop').addEventListener('click', closePopup);
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && speedPopup.classList.contains('open')) closePopup();
-    });
-  }
-
   // ── FAQ accordion (single-open) ─────────────────
   const faqItems = document.querySelectorAll('.faq-item');
   faqItems.forEach((item) => {
@@ -5199,32 +4259,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
       faqList.classList.toggle('collapsed');
       faqExpandBtn.classList.toggle('expanded');
       faqLabel.textContent = isCollapsed ? 'Свернуть' : 'Читать все';
-    });
-  }
-
-  // ── AI expand / collapse ───────────────────────
-  const aiExpandBtn = document.querySelector('.ai-expand');
-  const aiBody = document.querySelector('.ai-body');
-  if (aiExpandBtn && aiBody) {
-    const aiLabel = aiExpandBtn.querySelector('span');
-    aiExpandBtn.addEventListener('click', () => {
-      const isCollapsed = aiBody.classList.contains('collapsed');
-      aiBody.classList.toggle('collapsed');
-      aiExpandBtn.classList.toggle('expanded');
-      aiLabel.textContent = isCollapsed ? 'Свернуть' : 'Подробнее';
-    });
-  }
-
-  // ── Flow expand / collapse ─────────────────────
-  const flowExpandBtn = document.querySelector('.flow-expand');
-  const flowList = document.querySelector('.flow-list');
-  if (flowExpandBtn && flowList) {
-    const flowLabel = flowExpandBtn.querySelector('span');
-    flowExpandBtn.addEventListener('click', () => {
-      const isCollapsed = flowList.classList.contains('collapsed');
-      flowList.classList.toggle('collapsed');
-      flowExpandBtn.classList.toggle('expanded');
-      flowLabel.textContent = isCollapsed ? 'Свернуть' : 'Все шаги';
     });
   }
 
@@ -5568,7 +4602,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   });
 })();
 </script>
-
 
 </body>
 </html>
