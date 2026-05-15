@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Автовёрстка индивидуальных школьных альбомов — LUMIR PHOTO</title>
+<meta name="description" content="Lumir распознаёт лица, выбирает лучшие кадры и собирает индивидуальные альбомы для каждого ребёнка автоматически." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0b;
+  --bg-card:#111113;
+  --bg-hover:#18181b;
+  --border:rgba(255,255,255,.06);
+  --border-hover:rgba(255,255,255,.12);
+  --text-1:rgba(255,255,255,.92);
+  --text-2:rgba(255,255,255,.56);
+  --text-3:rgba(255,255,255,.32);
+  --accent:#8b7ff5;
+  --accent-dim:rgba(139,127,245,.12);
+  --accent-glow:rgba(139,127,245,.08);
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text-1);
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{border:0;background:transparent;cursor:pointer;font:inherit;color:inherit}
+img{display:block;max-width:100%}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+
+/* ── NAV ─────────────────────────────────── */
+nav{
+  position:sticky;top:0;z-index:100;
+  padding:16px 40px;
+  background:rgba(10,10,11,.8);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.nav-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  max-width:1400px;margin:0 auto;gap:48px;
+}
+.nav-logo{
+  display:flex;align-items:center;flex-shrink:0;
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:18px;font-weight:800;
+  letter-spacing:.06em;
+  color:rgba(255,255,255,.92);
+}
+.nav-right{display:flex;align-items:center;gap:24px;flex-shrink:0}
+.nav-links{display:flex;gap:28px;font-size:15px;font-weight:500;color:var(--text-2)}
+.nav-links a{transition:color .15s;white-space:nowrap}
+.nav-links a:hover{color:var(--text-1)}
+.nav-login{
+  font-size:13px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+  background:var(--accent);color:#fff;
+  border:none;border-radius:40px;padding:11px 24px;
+  text-decoration:none;white-space:nowrap;flex-shrink:0;
+  transition:background .15s;
+}
+.nav-login:hover{background:#6C63B5}
+/* Mobile burger */
+.nav-burger{display:none}
+.nav-overlay{display:none}
+@media(max-width:768px){
+  nav{padding:12px 16px}
+  .nav-links{display:none}
+  .nav-logo{font-size:15px}
+  .nav-login{padding:9px 18px;font-size:11px}
+  .nav-burger{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    gap:5px;width:40px;height:40px;background:transparent;border:none;
+    cursor:pointer;padding:0;flex-shrink:0;position:relative;z-index:110;
+  }
+  .nav-burger span{
+    display:block;width:22px;height:2px;background:var(--text-1);
+    border-radius:2px;transition:transform .3s ease,opacity .2s;
+  }
+  nav.menu-open .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+  nav.menu-open .nav-burger span:nth-child(2){opacity:0}
+  nav.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+  nav.menu-open .nav-login{display:none}
+  .nav-overlay{
+    display:flex;position:fixed;
+    top:64px;left:0;right:0;bottom:0;
+    background:rgba(10,10,11,.96);
+    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+    z-index:95;flex-direction:column;align-items:stretch;justify-content:center;
+    gap:12px;padding:0 28px;
+    opacity:0;pointer-events:none;transition:opacity .3s ease;
+  }
+  .nav-overlay.open{opacity:1;pointer-events:auto}
+  .nav-overlay-link{
+    font-weight:600;font-size:18px;color:var(--text-1);
+    text-decoration:none;text-align:center;
+    background:rgba(255,255,255,.04);border:1px solid var(--border);
+    border-radius:999px;padding:18px 28px;
+    transition:background .15s,border-color .15s;
+  }
+  .nav-overlay-link:active{background:var(--accent);border-color:var(--accent)}
+  .nav-overlay-link.cta-style{
+    background:var(--accent);color:#fff;border-color:var(--accent);
+    text-transform:uppercase;letter-spacing:.04em;font-size:14px;font-weight:700;
+    margin-top:8px;
+  }
+}
+
+/* ── HERO ────────────────────────────────── */
+.hero{
+  padding:120px 0 100px;
+  text-align:center;
+  position:relative;
+}
+.hero::before{
+  content:'';position:absolute;
+  top:-200px;left:50%;transform:translateX(-50%);
+  width:800px;height:600px;
+  background:radial-gradient(ellipse,rgba(139,127,245,.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:13px;font-weight:500;color:var(--accent);
+  background:var(--accent-dim);
+  border:1px solid rgba(139,127,245,.15);
+  border-radius:100px;padding:6px 16px;
+  margin-bottom:32px;
+}
+.hero-badge .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:#10b981;
+  box-shadow:0 0 0 0 rgba(16,185,129,.5);
+  animation:premium-pulse 2s infinite;
+}
+h1{
+  font-size:clamp(40px,6vw,64px);
+  font-weight:700;
+  line-height:1.08;
+  letter-spacing:-.035em;
+  color:var(--text-1);
+  max-width:20ch;
+  margin:0 auto 24px;
+}
+h1 em{
+  font-style:normal;
+  background:linear-gradient(135deg,#8b7ff5 0%,#d87891 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{
+  font-size:clamp(16px,1.5vw,18px);
+  color:var(--text-2);
+  max-width:48ch;
+  margin:0 auto 48px;
+  line-height:1.6;
+}
+/* ── HERO VIDEO ──────────────────────────── */
+.hero-video-wrap{
+  position:relative;
+  width:100%;max-width:820px;
+  margin:0 auto 40px;
+  border-radius:14px;
+  overflow:hidden;
+  background:#000;
+  aspect-ratio:4/3;
+  border:1px solid var(--border);
+  box-shadow:0 8px 40px rgba(139,127,245,.08),0 2px 8px rgba(0,0,0,.4);
+}
+.hero-video{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  display:block;object-fit:cover;
+  background:#000;
+}
+.hero-video-placeholder{
+  position:absolute;inset:0;z-index:1;
+  overflow:hidden;
+  background:
+    radial-gradient(ellipse at 18% -10%,rgba(139,127,245,.45) 0%,transparent 55%),
+    radial-gradient(ellipse at 110% 110%,rgba(216,120,145,.3) 0%,transparent 55%),
+    linear-gradient(135deg,#0d0b14 0%,#151220 50%,#0d0b14 100%);
+  display:grid;grid-template-columns:1.05fr 1fr;
+  align-items:center;
+  transition:opacity .3s;
+}
+.hero-video-placeholder::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.35) 100%);
+  pointer-events:none;
+}
+.hero-video-placeholder-tag{
+  position:absolute;z-index:3;top:22px;left:22px;
+  display:inline-flex;align-items:center;gap:8px;
+  font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;padding:7px 14px;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.hero-video-placeholder-tag .pulse{
+  width:7px;height:7px;border-radius:50%;
+  background:#D87891;
+  box-shadow:0 0 0 4px rgba(216,120,145,.22);
+}
+.hero-video-placeholder-text{
+  position:relative;z-index:2;
+  padding:56px;
+  display:flex;flex-direction:column;gap:18px;
+}
+.hero-video-placeholder-title{
+  font-weight:700;font-size:clamp(22px,3.5vw,34px);
+  line-height:1.12;letter-spacing:-.02em;
+  color:#fff;max-width:16ch;text-wrap:balance;
+}
+.hero-video-placeholder-title em{
+  font-style:normal;
+  background:linear-gradient(135deg,#c8b6ff,#f5b6cb);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-video-placeholder-sub{
+  font-size:15px;line-height:1.5;
+  color:rgba(255,255,255,.55);max-width:34ch;
+}
+.hero-video-placeholder-meta{
+  display:flex;gap:8px;align-items:center;margin-top:6px;
+  font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+}
+.hero-video-placeholder-meta .chip{
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:999px;padding:5px 11px;
+}
+.hero-video-placeholder-mock{
+  position:relative;height:100%;
+  display:flex;align-items:center;justify-content:center;
+  padding:0 32px;
+}
+.hero-video-placeholder-spread{
+  position:absolute;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:6px;
+  box-shadow:0 32px 64px -12px rgba(0,0,0,.55),0 14px 28px rgba(0,0,0,.32);
+  width:58%;aspect-ratio:1.32/1;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:8px;padding:12px;
+}
+.hero-video-placeholder-spread .page{
+  display:flex;flex-direction:column;gap:6px;min-width:0;
+}
+.hero-video-placeholder-spread .photo{
+  flex:1;border-radius:3px;min-height:0;
+}
+.hero-video-placeholder-spread .strip{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:4px;
+}
+.hero-video-placeholder-spread .strip i{
+  display:block;aspect-ratio:1;border-radius:2px;background:rgba(255,255,255,.08);
+}
+.hero-video-placeholder-spread .caption{
+  height:6px;background:rgba(255,255,255,.08);border-radius:1px;width:60%;
+}
+.hero-video-placeholder-spread.s1{transform:translate(-26%,-16%) rotate(-9deg);width:50%;opacity:.78;filter:blur(.4px)}
+.hero-video-placeholder-spread.s2{transform:translate(-2%,4%) rotate(2deg);z-index:2}
+.hero-video-placeholder-spread.s3{transform:translate(26%,22%) rotate(8deg);width:50%;opacity:.86;filter:blur(.4px)}
+.hero-video-placeholder-spread .photo.p1{background:linear-gradient(135deg,#8b7ff5,#c86898)}
+.hero-video-placeholder-spread .photo.p2{background:linear-gradient(135deg,#d87891,#f2b98d)}
+.hero-video-placeholder-spread .photo.p3{background:linear-gradient(135deg,#6b8fd8,#9b5ed0)}
+.hero-video-placeholder-spread .photo.p4{background:linear-gradient(135deg,#4a5ba8,#7b72c8)}
+.hero-video-placeholder-spread .photo.p5{background:linear-gradient(135deg,#c86898,#ffa37a)}
+.hero-video-placeholder-spread .photo.p6{background:linear-gradient(135deg,#5c8fae,#7b72c8)}
+.hero-video-placeholder-brand{
+  position:absolute;z-index:3;right:22px;bottom:22px;
+  font-weight:700;font-size:13px;letter-spacing:.04em;
+  color:rgba(255,255,255,.5);
+  display:flex;align-items:center;gap:8px;
+}
+.hero-video-placeholder-brand .lumir-mark{
+  width:18px;height:18px;border-radius:5px;
+  background:linear-gradient(135deg,#8b7ff5,#d87891);
+}
+.hero-video-meta-bar{
+  position:absolute;z-index:2;left:24px;bottom:24px;
+  display:flex;align-items:center;gap:10px;
+  background:rgba(0,0,0,.45);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-radius:999px;padding:8px 16px 8px 12px;
+  font-weight:600;font-size:13px;color:#fff;letter-spacing:.02em;
+}
+.hero-video-meta-bar .dot{width:6px;height:6px;border-radius:999px;background:#5BC97A}
+.hero-video-play{
+  position:absolute;z-index:2;
+  left:50%;top:50%;transform:translate(-50%,-50%);
+  width:72px;height:72px;border-radius:50%;
+  background:var(--accent);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 28px rgba(139,127,245,.4),0 0 0 8px rgba(139,127,245,.12);
+  transition:transform .2s,box-shadow .2s;
+}
+.hero-video-play:hover{
+  transform:translate(-50%,-50%) scale(1.06);
+  box-shadow:0 12px 36px rgba(139,127,245,.5),0 0 0 14px rgba(139,127,245,.15);
+}
+.hero-video-play svg{width:28px;height:28px;margin-left:3px}
+.hero-video-wrap.playing .hero-video-play,
+.hero-video-wrap.playing .hero-video-placeholder{opacity:0;pointer-events:none}
+
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.btn-primary{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-size:14px;font-weight:700;letter-spacing:.025em;text-transform:uppercase;
+  color:#fff;
+  background:var(--accent);
+  padding:18px 36px;
+  border-radius:999px;
+  box-shadow:0 4px 12px rgba(139,127,245,.32),0 12px 24px rgba(139,127,245,.18);
+  transition:background .15s,transform .1s;
+}
+.btn-primary:hover{background:#6C63B5}
+.btn-primary:active{transform:scale(.98)}
+.btn-ghost{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-size:14px;font-weight:700;letter-spacing:.025em;text-transform:uppercase;
+  color:var(--text-1);
+  padding:18px 36px;
+  border-radius:999px;
+  border:1px solid var(--border-hover);
+  transition:color .15s,border-color .15s;
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+/* ── FEATURES GRID ───────────────────────── */
+.features{padding:80px 0;border-top:1px solid var(--border)}
+.features-head{text-align:center;margin-bottom:56px}
+.features-head h2{
+  font-size:clamp(28px,4vw,40px);
+  font-weight:700;letter-spacing:-.03em;
+  margin-bottom:12px;
+}
+.features-head p{font-size:16px;color:var(--text-2);max-width:48ch;margin:0 auto}
+.grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1px;
+  background:var(--border);
+  border:1px solid var(--border);
+  border-radius:16px;
+  overflow:hidden;
+}
+.card{
+  background:var(--bg-card);
+  padding:32px 28px;
+  display:flex;flex-direction:column;gap:12px;
+  transition:background .2s;
+}
+.card:hover{background:var(--bg-hover)}
+.card-icon{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--accent-dim);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent);margin-bottom:4px;
+}
+.card-icon svg{width:18px;height:18px}
+.card h3{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.card p{font-size:14px;line-height:1.55;color:var(--text-2)}
+
+/* ── INFOGRAPHIC ─────────────────────────── */
+.info-row{
+  display:grid;grid-template-columns:1fr auto 1fr;
+  gap:40px;align-items:center;
+  padding:64px 0;
+  border-top:1px solid var(--border);
+}
+.info-label{
+  font-size:12px;font-weight:600;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--text-3);
+  text-align:center;margin-top:16px;
+}
+.faces-grid{
+  display:grid;grid-template-columns:repeat(5,1fr);
+  gap:6px;max-width:200px;margin:0 auto;
+}
+.face{
+  aspect-ratio:1;border-radius:50%;
+  background:linear-gradient(135deg,rgba(139,127,245,.4),rgba(216,120,145,.3));
+  border:1px solid rgba(255,255,255,.08);
+  position:relative;overflow:hidden;
+}
+.face::before{
+  content:'';position:absolute;
+  left:50%;top:22%;transform:translateX(-50%);
+  width:38%;height:38%;border-radius:50%;
+  background:rgba(255,255,255,.5);
+}
+.face::after{
+  content:'';position:absolute;
+  left:50%;bottom:10%;transform:translateX(-50%);
+  width:60%;height:34%;
+  border-radius:50% 50% 0 0;
+  background:rgba(255,255,255,.4);
+}
+.face:nth-child(3n+1){background:linear-gradient(135deg,#8b7ff5 0%,#c86898 100%)}
+.face:nth-child(3n+2){background:linear-gradient(135deg,#d87891 0%,#f2b98d 100%)}
+.face:nth-child(3n){background:linear-gradient(135deg,#6b8fd8 0%,#9b5ed0 100%)}
+.arrow-col{display:flex;flex-direction:column;align-items:center;gap:8px}
+.arrow-line{
+  width:120px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--accent),transparent);
+  position:relative;
+}
+.arrow-line::after{
+  content:'';position:absolute;right:-4px;top:-4px;
+  width:0;height:0;
+  border-left:8px solid var(--accent);
+  border-top:5px solid transparent;
+  border-bottom:5px solid transparent;
+}
+.arrow-badge{
+  font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);background:var(--accent-dim);
+  border:1px solid rgba(139,127,245,.2);
+  border-radius:100px;padding:5px 14px;
+}
+.albums-stack{position:relative;width:180px;height:140px;margin:0 auto}
+.album-card{
+  position:absolute;width:65%;
+  aspect-ratio:4/3;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:8px;
+  overflow:hidden;
+}
+.album-card .inner{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;height:100%;
+}
+.album-page{padding:6px;display:flex;flex-direction:column;gap:3px}
+.album-page+.album-page{border-left:1px solid var(--border)}
+.album-photo{flex:1;border-radius:3px;background:rgba(139,127,245,.15);min-height:0}
+.album-line{height:2px;border-radius:1px;background:rgba(255,255,255,.06)}
+.album-line.short{width:60%}
+.a1{left:0;top:0;transform:rotate(-5deg);z-index:1}
+.a1 .album-photo{background:linear-gradient(135deg,#8b7ff5,#c86898)}
+.a2{left:15%;top:18%;transform:rotate(2deg);z-index:2}
+.a2 .album-photo{background:linear-gradient(135deg,#d87891,#f2b98d)}
+.a3{left:30%;top:36%;transform:rotate(7deg);z-index:3}
+.a3 .album-photo{background:linear-gradient(135deg,#6b8fd8,#9b5ed0)}
+.album-count{
+  position:absolute;right:-6px;top:-10px;z-index:10;
+  font-size:11px;font-weight:700;
+  color:#fff;background:var(--accent);
+  padding:4px 10px;border-radius:100px;
+}
+
+/* ── PRICING ─────────────────────────────── */
+.pricing{
+  padding:80px 0;
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+.pv-v2-wrap{
+  max-width:900px;margin:0 auto;position:relative;z-index:2;
+  text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px;
+}
+.pv-v2-eyebrow{
+  font-size:14px;font-weight:600;color:var(--accent);
+  letter-spacing:.14em;text-transform:uppercase;
+}
+.pv-v2-card{
+  position:relative;
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:52px 56px 42px;
+  width:100%;max-width:740px;
+  box-shadow:0 2px 4px rgba(0,0,0,.2),0 8px 16px rgba(0,0,0,.15),0 28px 56px rgba(0,0,0,.2);
+  transition:box-shadow .3s;
+}
+.pv-v2-card:hover{
+  box-shadow:0 4px 8px rgba(0,0,0,.2),0 16px 32px rgba(0,0,0,.2),0 36px 64px rgba(139,127,245,.12);
+}
+.pv-v2-card::before{
+  content:'';position:absolute;
+  left:20px;right:20px;top:0;height:2px;
+  background:linear-gradient(135deg,#8b7ff5 0%,#d87891 100%);
+  border-radius:0 0 2px 2px;opacity:.85;
+}
+.pv-v2-row{
+  display:flex;align-items:flex-end;gap:40px;justify-content:space-between;
+}
+.pv-v2-pricecol{
+  display:flex;flex-direction:column;align-items:flex-start;gap:5px;flex-shrink:0;
+}
+.pv-v2-kicker{
+  font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--text-3);
+}
+.pv-v2-amount{
+  font-weight:800;font-size:clamp(80px,11vw,134px);line-height:.9;letter-spacing:-.03em;
+  background:linear-gradient(135deg,#8b7ff5 0%,#d87891 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.pv-v2-amount-rub{font-size:.5em;font-weight:700;margin-left:.04em;letter-spacing:-.02em}
+.pv-v2-priceTail{font-weight:500;color:var(--text-2);font-size:18px;margin-top:2px;letter-spacing:-.01em}
+.pv-v2-metacol{
+  flex:1;display:flex;flex-direction:column;
+  border-top:1px dashed rgba(255,255,255,.12);
+  margin-bottom:14px;min-width:250px;
+}
+.pv-v2-metarow{
+  display:flex;align-items:baseline;justify-content:space-between;
+  padding:12px 0;border-bottom:1px dashed rgba(255,255,255,.08);gap:14px;
+}
+.pv-v2-metarow:last-child{border-bottom:0}
+.pv-v2-metalabel{font-size:14px;color:var(--text-2)}
+.pv-v2-metavalue{font-size:13px;font-weight:600;color:var(--text-1);letter-spacing:-.005em;white-space:nowrap}
+.pv-v2-metavalue--accent{color:var(--accent)}
+.pv-v2-foot{
+  margin-top:26px;padding-top:17px;
+  border-top:1px dashed rgba(255,255,255,.12);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.pv-v2-promo{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:8px}
+.pv-v2-promo-old{font-weight:700;font-size:22px;color:var(--text-3);text-decoration:line-through}
+.pv-v2-promo-badge{
+  font-weight:700;font-size:18px;color:#fff;
+  background:var(--accent);padding:8px 20px;border-radius:100px;
+  text-decoration:none;
+}
+.pv-v2-footnote{font-size:14px;color:var(--text-2);line-height:1.5;margin:0;text-align:center}
+
+/* ── PREMIUM ─────────────────────────────── */
+.premium{padding:80px 0;border-top:1px solid var(--border)}
+.premium-head{text-align:center;margin-bottom:48px;max-width:960px;margin-left:auto;margin-right:auto}
+.premium-head h2{
+  font-size:clamp(28px,4vw,40px);font-weight:700;
+  letter-spacing:-.03em;margin-bottom:12px;
+}
+.premium-head p{font-size:16px;color:var(--text-2);max-width:48ch;margin:0 auto}
+.premium-counter{
+  display:inline-flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(139,127,245,.15);
+  border-radius:999px;padding:12px 20px;
+  font-weight:600;font-size:14px;color:var(--text-1);
+  margin-top:24px;
+}
+.premium-pulse{
+  width:10px;height:10px;border-radius:999px;
+  background:#10b981;
+  box-shadow:0 0 0 0 rgba(16,185,129,.5);
+  animation:premium-pulse 2s infinite;
+}
+@keyframes premium-pulse{
+  0%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}
+  100%{box-shadow:0 0 0 14px rgba(16,185,129,0)}
+}
+.premium-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:20px;max-width:960px;margin:0 auto;
+}
+.premium-card{
+  background:var(--bg-card);
+  border:1px solid var(--border);
+  border-radius:20px;padding:32px;
+  display:flex;flex-direction:column;gap:10px;
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+}
+.premium-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 32px rgba(139,127,245,.12);
+  border-color:rgba(139,127,245,.25);
+}
+.premium-card:first-child{
+  background:rgba(139,127,245,.06);
+  border:2px solid rgba(139,127,245,.2);
+  box-shadow:0 4px 24px rgba(139,127,245,.1);
+}
+.premium-card:first-child .premium-card-ic{background:var(--accent)}
+.premium-card:first-child .premium-card-ic svg{stroke:#fff}
+.premium-card-ic{
+  width:48px;height:48px;border-radius:14px;
+  background:var(--accent-dim);
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:4px;
+}
+.premium-card-ic svg{width:24px;height:24px}
+.premium-card-amount,.premium-card-badge{
+  font-weight:800;font-size:28px;letter-spacing:-.02em;color:var(--accent);
+}
+.premium-card h4{font-weight:700;font-size:17px;color:var(--text-1);letter-spacing:-.005em}
+.premium-card p{font-size:14px;line-height:1.5;color:var(--text-2)}
+
+/* ── STICKY COUNTER BAR ─────────────────── */
+.sticky-counter{
+  position:fixed;bottom:0;left:0;right:0;z-index:90;
+  background:rgba(10,10,11,.85);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid var(--border);
+  padding:14px 24px;
+  display:flex;align-items:center;justify-content:center;gap:20px;
+  transform:translateY(100%);
+  transition:transform .4s ease;
+}
+.sticky-counter.visible{transform:translateY(0)}
+.sticky-counter-text{
+  display:flex;align-items:center;gap:10px;
+  font-size:14px;font-weight:600;color:var(--text-1);
+}
+.sticky-counter-text .premium-pulse{width:8px;height:8px}
+
+/* ── FOOTER ──────────────────────────────── */
+footer{
+  background:#08080a;
+  color:rgba(255,255,255,.5);
+  padding:64px 0 40px;
+  border-top:1px solid var(--border);
+}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr;
+  gap:40px;margin-bottom:56px;
+}
+.footer-brand{text-align:left}
+.footer-brand .footer-logo{display:inline-block;margin-bottom:18px}
+.footer-brand .footer-logo{
+  font-family:'Inter',system-ui,sans-serif;
+  font-size:18px;font-weight:800;
+  letter-spacing:.06em;
+  color:rgba(255,255,255,.92);
+}
+.footer-brand p{font-size:14px;line-height:1.55;color:rgba(255,255,255,.4);max-width:42ch}
+.footer-col{text-align:left}
+.footer-col h4{
+  font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-bottom:16px;
+}
+.footer-col a:not(.footer-social){
+  display:block;font-size:14px;color:rgba(255,255,255,.5);
+  margin-bottom:10px;transition:color .15s;
+}
+.footer-col a:hover{color:#fff}
+.footer-socials{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:14px}
+.footer-social{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:999px;
+  background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);
+  transition:background .15s,color .15s;
+}
+.footer-social:hover{background:var(--accent);color:#fff}
+.footer-social svg{width:18px;height:18px;display:block}
+.footer-col .footer-social{display:inline-flex;width:36px;height:36px;padding:0;margin:0}
+.footer-bot{
+  display:flex;justify-content:center;align-items:center;
+  padding-top:32px;border-top:1px solid rgba(255,255,255,.06);
+  font-size:12px;color:rgba(255,255,255,.25);flex-wrap:wrap;gap:16px;
+}
+@media(max-width:768px){
+  .footer-grid{grid-template-columns:1fr;gap:28px}
+  .footer-bot{flex-direction:column;align-items:flex-start;gap:8px}
+}
+
+/* ── RESPONSIVE ──────────────────────────── */
+@media(max-width:768px){
+  .grid{grid-template-columns:1fr}
+  .nav-links{display:none}
+  .hero{padding:80px 0 64px}
+  .info-row{grid-template-columns:1fr;gap:24px}
+  .arrow-line{transform:rotate(90deg);width:60px}
+  .hero-video-placeholder{grid-template-columns:1fr}
+  .hero-video-placeholder::after{display:none}
+  .hero-video-placeholder-text,.hero-video-placeholder-mock,
+  .hero-video-placeholder-brand,.hero-video-placeholder-tag,
+  .hero-video-meta-bar{display:none!important}
+  .pv-v2-card{padding:28px 22px 20px;border-radius:18px}
+  .pv-v2-card::before{left:12px;right:12px}
+  .pv-v2-row{flex-direction:column;align-items:stretch;gap:14px}
+  .pv-v2-pricecol{align-items:flex-start;gap:2px}
+  .pv-v2-kicker{font-size:11px}
+  .pv-v2-amount{font-size:clamp(76px,18vw,108px)}
+  .pv-v2-priceTail{font-size:16px;margin-top:0}
+  .pv-v2-metacol{min-width:0;margin-bottom:0}
+  .pv-v2-foot{gap:14px;margin-top:14px;padding-top:14px}
+  .pv-v2-footnote{font-size:12.5px;line-height:1.45}
+  .pv-v2-promo{gap:8px}
+  .pv-v2-promo-old{font-size:18px}
+  .pv-v2-promo-badge{font-size:15px;padding:6px 14px}
+  .premium-grid{grid-template-columns:1fr}
+  .premium-card{padding:24px;border-radius:16px}
+  .hero-ctas{flex-direction:column;align-items:center}
+  .btn-primary,.btn-ghost{width:100%;max-width:280px;justify-content:center}
+  .sticky-counter{padding:12px 16px;gap:12px}
+  .sticky-counter .btn-primary{padding:12px 20px;font-size:12px}
+}
+@media(prefers-reduced-motion:reduce){*{transition-duration:.01ms!important;animation-duration:.01ms!important}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-inner">
+    <div class="nav-logo">LUMIR PHOTO</div>
+    <div class="nav-right">
+      <div class="nav-links">
+        <a href="#pricing">Стоимость</a>
+        <a href="#how">Как работает</a>
+        <a href="#premium">Premium</a>
+      </div>
+      <a href="https://fotoklass.lumir.photo/projects" class="nav-login">Войти</a>
+      <button class="nav-burger" id="nav-burger" type="button" aria-label="Меню" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true">
+  <a href="#pricing" class="nav-overlay-link">Стоимость</a>
+  <a href="#how" class="nav-overlay-link">Как работает</a>
+  <a href="#faq" class="nav-overlay-link">FAQ</a>
+  <a href="https://fotoklass.lumir.photo/projects" class="nav-overlay-link cta-style">Войти</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-badge"><span class="dot"></span>Первым 500 — 10 000 ₽ на баланс</div>
+    <h1><em>Автовёрстка</em> индивидуальных школьных альбомов</h1>
+    <div class="hero-video-wrap" id="hero-video-wrap">
+      <video class="hero-video" id="hero-video" preload="metadata" playsinline controls>
+        <source src="placeholder-4x3.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-video-placeholder" aria-hidden="true">
+        <span class="hero-video-placeholder-tag"><span class="pulse"></span>Демо · заглушка</span>
+        <div class="hero-video-placeholder-text">
+          <h3 class="hero-video-placeholder-title">От папки фотографий до <em>готового альбома</em></h3>
+          <p class="hero-video-placeholder-sub">Покажем весь поток Lumir: распознавание лиц, распределение по разворотам, AI-вёрстку, выгрузку в типографию</p>
+          <div class="hero-video-placeholder-meta">
+            <span class="chip">02:14</span>
+            <span class="chip">RU</span>
+            <span class="chip">HD</span>
+          </div>
+        </div>
+        <div class="hero-video-placeholder-mock">
+          <div class="hero-video-placeholder-spread s1">
+            <div class="page"><div class="photo p1"></div><div class="strip"><i></i><i></i><i></i><i></i></div></div>
+            <div class="page"><div class="photo p2"></div><div class="caption"></div></div>
+          </div>
+          <div class="hero-video-placeholder-spread s2">
+            <div class="page"><div class="photo p3"></div><div class="strip"><i></i><i></i><i></i><i></i></div></div>
+            <div class="page"><div class="photo p4"></div><div class="caption"></div></div>
+          </div>
+          <div class="hero-video-placeholder-spread s3">
+            <div class="page"><div class="photo p5"></div><div class="strip"><i></i><i></i><i></i><i></i></div></div>
+            <div class="page"><div class="photo p6"></div><div class="caption"></div></div>
+          </div>
+        </div>
+        <div class="hero-video-placeholder-brand"><span class="lumir-mark"></span>lumir.photo</div>
+      </div>
+      <button class="hero-video-play" type="button" id="hero-video-play" aria-label="Воспроизвести демо">
+        <svg viewBox="0 0 24 24" fill="#fff" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
+      </button>
+      <div class="hero-video-meta-bar"><span class="dot"></span><span>Демо · 1 минута</span></div>
+    </div>
+
+    <p class="hero-sub" style="margin-top:32px;margin-bottom:24px">Lumir распознаёт лица, выбирает лучшие кадры и собирает индивидуальные альбомы для каждого ребёнка</p>
+    <div class="hero-ctas">
+      <a href="https://fotoklass.lumir.photo/projects" class="btn-primary">Попробовать</a>
+      <a href="https://t.me/lumirphoto_bot" class="btn-ghost">Задать вопрос</a>
+    </div>
+  </div>
+</section>
+
+<!-- INFOGRAPHIC -->
+<section>
+  <div class="wrap">
+    <div class="info-row">
+      <div>
+        <div class="faces-grid">
+          <div class="face"></div><div class="face"></div><div class="face"></div><div class="face"></div><div class="face"></div>
+          <div class="face"></div><div class="face"></div><div class="face"></div><div class="face"></div><div class="face"></div>
+          <div class="face"></div><div class="face"></div><div class="face"></div><div class="face"></div><div class="face"></div>
+          <div class="face"></div><div class="face"></div><div class="face"></div><div class="face"></div><div class="face"></div>
+          <div class="face"></div><div class="face"></div><div class="face"></div><div class="face"></div><div class="face"></div>
+        </div>
+        <div class="info-label">25 учеников</div>
+      </div>
+      <div class="arrow-col">
+        <div class="arrow-line"></div>
+        <div class="arrow-badge">Lumir AI</div>
+      </div>
+      <div>
+        <div class="albums-stack">
+          <div class="album-card a1"><div class="inner"><div class="album-page"><div class="album-photo"></div><div class="album-line"></div><div class="album-line short"></div></div><div class="album-page"><div class="album-photo"></div><div class="album-line"></div></div></div></div>
+          <div class="album-card a2"><div class="inner"><div class="album-page"><div class="album-photo"></div><div class="album-line"></div><div class="album-line short"></div></div><div class="album-page"><div class="album-photo"></div><div class="album-line"></div></div></div></div>
+          <div class="album-card a3"><div class="inner"><div class="album-page"><div class="album-photo"></div><div class="album-line"></div><div class="album-line short"></div></div><div class="album-page"><div class="album-photo"></div><div class="album-line"></div></div></div><span class="album-count">×25</span></div>
+        </div>
+        <div class="info-label">25 индивидуальных альбомов</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="features" id="how">
+  <div class="wrap">
+    <div class="features-head">
+      <h2>Всё что нужно</h2>
+      <p>От загрузки фото до готовых макетов в типографию</p>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Распознавание лиц</h3>
+        <p>AI определяет каждого ученика и группирует фото автоматически</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.3 9 8.5 12 2"/></svg></div>
+        <h3>Лучший кадр из серии</h3>
+        <p>Из 8 похожих — выбирает один с фокусом и открытыми глазами</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></div>
+        <h3>Ваши PSD-дизайны</h3>
+        <p>Загрузите свои макеты — Lumir соберёт альбомы в вашем стиле</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+        <h3>Водяные знаки</h3>
+        <p>Фото защищены. Ученики видят превью, оригиналы не скачать</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+        <h3>Утверждение с телефона</h3>
+        <p>Ученик открывает ссылку, листает альбом, утверждает — готово</p>
+      </div>
+      <div class="card">
+        <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div>
+        <h3>Любая типография</h3>
+        <p>Фотодом, Булгакбук, Фабрика фотокниги — или добавим вашу</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="wrap">
+    <div class="pv-v2-wrap">
+      <div class="pv-v2-eyebrow">Фикс прайс</div>
+      <div class="pv-v2-card">
+        <div class="pv-v2-row">
+          <div class="pv-v2-pricecol">
+            <div class="pv-v2-kicker">Обычная стоимость</div>
+            <div class="pv-v2-amount">980<span class="pv-v2-amount-rub">₽</span></div>
+            <div class="pv-v2-priceTail">за весь класс</div>
+          </div>
+          <div class="pv-v2-metacol">
+            <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Объём проекта</div><div class="pv-v2-metavalue">1 класс целиком</div></div>
+            <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Альбомов в проекте</div><div class="pv-v2-metavalue pv-v2-metavalue--accent">Без лимита</div></div>
+            <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Разворотов в альбоме</div><div class="pv-v2-metavalue pv-v2-metavalue--accent">Без лимита</div></div>
+            <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Экспорт в печать</div><div class="pv-v2-metavalue">Включён</div></div>
+            <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Адаптация PSD</div><div class="pv-v2-metavalue pv-v2-metavalue--accent">Бесплатно</div></div>
+          </div>
+        </div>
+        <div class="pv-v2-foot">
+          <div class="pv-v2-promo">
+            <span class="pv-v2-promo-old">980 ₽</span>
+            <a href="https://t.me/lumirphoto_bot" class="pv-v2-promo-badge">10 000 ₽ на баланс</a>
+          </div>
+          <p class="pv-v2-footnote">Первым 500 фотографам — хватит на 10 классов</p>
+        </div>
+      </div>
+      <a href="https://fotoklass.lumir.photo/projects" class="btn-primary" style="margin-top:8px">Попробовать</a>
+    </div>
+  </div>
+</section>
+
+<!-- PREMIUM -->
+<section class="premium" id="premium">
+  <div class="wrap">
+    <div class="premium-head">
+      <h2>Lumir Premium на год</h2>
+      <p>Первым 500 фотографам — особый пакет на год после регистрации</p>
+      <div class="premium-counter">
+        <span class="premium-pulse"></span>
+        <span>Осталось <span data-slots-remaining>367</span> мест из 500</span>
+      </div>
+    </div>
+    <div class="premium-grid">
+      <div class="premium-card">
+        <div class="premium-card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 6v2m0 8v2"/></svg>
+        </div>
+        <div class="premium-card-amount">10 000 ₽</div>
+        <h4>На баланс</h4>
+        <p>Зачислим по первому запросу в поддержку. Хватит на 10 классов</p>
+      </div>
+      <div class="premium-card">
+        <div class="premium-card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+        </div>
+        <div class="premium-card-badge">−50%</div>
+        <h4>На печать первого класса</h4>
+        <p>В партнёрских типографиях. Уточните в поддержке</p>
+      </div>
+      <div class="premium-card">
+        <div class="premium-card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/><path d="M14 14l3 3M14 17l3-3"/></svg>
+        </div>
+        <h4>Адаптация PSD бесплатно</h4>
+        <p>Заведём ваши дизайны в кабинет Lumir. Обычная цена — 2 900 ₽ за папку</p>
+      </div>
+      <div class="premium-card">
+        <div class="premium-card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+        </div>
+        <h4>Онбординг-созвон</h4>
+        <p>Покажем весь процесс за 30 минут</p>
+      </div>
+      <div class="premium-card">
+        <div class="premium-card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <h4>Все новые фичи</h4>
+        <p>Доступ к новым возможностям по мере выхода. На год</p>
+      </div>
+      <div class="premium-card">
+        <div class="premium-card-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 7l-3 5h4l-3 5"/></svg>
+        </div>
+        <h4>Прямой канал в продукт</h4>
+        <p>Приоритизируем ваши предложения в разработке</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:48px">
+      <a href="https://fotoklass.lumir.photo/projects" class="btn-primary">Попробовать</a>
+    </div>
+  </div>
+</section>
+
+<!-- STICKY COUNTER BAR -->
+<div class="sticky-counter" id="sticky-counter">
+  <div class="sticky-counter-text">
+    <span class="premium-pulse"></span>
+    <span>Осталось <span data-slots-remaining>367</span> мест из 500</span>
+  </div>
+  <a href="https://fotoklass.lumir.photo/projects" class="btn-primary" style="padding:12px 24px;font-size:13px">Попробовать</a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="/" class="footer-logo" aria-label="Lumir Photo">LUMIR PHOTO</a>
+        <p>Автоверстка школьных альбомов</p>
+      </div>
+      <div class="footer-col">
+        <h4>Продукт</h4>
+        <a href="#pricing">Стоимость</a>
+        <a href="#how">Как работает</a>
+        <a href="https://fotoklass.lumir.photo/projects">Попробовать</a>
+      </div>
+      <div class="footer-col">
+        <h4>Связь</h4>
+        <div class="footer-socials">
+          <a href="https://t.me/lumir_photo" class="footer-social" aria-label="Telegram-канал">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 4.2c-.3-.3-.7-.3-1.1-.2L3.3 10.7c-.4.2-.7.6-.7 1.1 0 .5.3.9.8 1l4 1.2 1.6 5.2c.1.3.4.6.7.7.1 0 .2 0 .3 0 .3 0 .6-.1.8-.4l2.3-2.6 4.4 3.2c.2.1.4.2.6.2.1 0 .2 0 .3 0 .4-.1.7-.4.8-.8l3-13.6c.1-.4 0-.8-.3-1zM10 14.5l-.6 3.6-1.3-4.2 8.7-6.1L10 14.5z"/></svg>
+          </a>
+          <a href="https://vk.ru/lumir.photo" class="footer-social" aria-label="ВКонтакте">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 6.8c.2-.6 0-1-.8-1h-2.7c-.7 0-1 .4-1.2.8 0 0-1.4 3.4-3.4 5.6-.6.6-.9.8-1.3.8-.2 0-.5-.2-.5-.8V6.8c0-.7-.2-1-.8-1H6.7c-.4 0-.7.3-.7.6 0 .7 1 .8 1.1 2.7v4.1c0 .9-.2 1.1-.5 1.1-.9 0-3.2-3.4-4.5-7.3-.3-.8-.5-1.1-1.2-1.1H-2c-.8 0-.9.4-.9.8 0 .7.9 4.4 4.4 9.2 2.4 3.3 5.7 5.1 8.7 5.1 1.8 0 2.1-.4 2.1-1.1v-2.5c0-.8.2-1 .7-1 .4 0 1.2.2 2.9 1.9 2 2 2.3 2.9 3.4 2.9h2.7c.8 0 1.1-.4.9-1.1-.2-.7-1.1-1.8-2.3-3-.6-.8-1.6-1.6-1.9-2-.4-.5-.3-.7 0-1.2 0 0 3.4-4.8 3.8-6.4z"/></svg>
+          </a>
+          <a href="mailto:info@lumir.photo" class="footer-social" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2z"/><path d="M22 8l-10 6L2 8"/></svg>
+          </a>
+        </div>
+        <a href="https://t.me/lumirphoto_bot">Поддержка</a>
+      </div>
+    </div>
+    <div class="footer-bot">
+      <span>&copy; 2026 Lumir Photo</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Sticky counter bar — show after scrolling past hero
+var stickyBar=document.getElementById('sticky-counter');
+if(stickyBar){
+  var heroSection=document.querySelector('.hero');
+  var showSticky=function(){
+    var heroBottom=heroSection?heroSection.getBoundingClientRect().bottom:0;
+    stickyBar.classList.toggle('visible',heroBottom<0);
+  };
+  window.addEventListener('scroll',showSticky,{passive:true});
+  showSticky();
+}
+
+// Burger menu
+var burger=document.getElementById('nav-burger');
+var overlay=document.getElementById('nav-overlay');
+var navEl=document.getElementById('nav');
+if(burger&&overlay&&navEl){
+  var closeMenu=function(){
+    overlay.classList.remove('open');navEl.classList.remove('menu-open');
+    burger.setAttribute('aria-expanded','false');overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+  };
+  burger.addEventListener('click',function(){
+    var open=!overlay.classList.contains('open');
+    overlay.classList.toggle('open',open);navEl.classList.toggle('menu-open',open);
+    burger.setAttribute('aria-expanded',String(open));overlay.setAttribute('aria-hidden',String(!open));
+    document.body.style.overflow=open?'hidden':'';
+  });
+  overlay.querySelectorAll('.nav-overlay-link').forEach(function(a){a.addEventListener('click',closeMenu)});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('open'))closeMenu()});
+}
+
+// Hero video
+var hw=document.getElementById('hero-video-wrap');
+var hv=document.getElementById('hero-video');
+var hp=document.getElementById('hero-video-play');
+if(hw&&hv&&hp){
+  hp.addEventListener('click',function(){
+    hw.classList.add('playing');
+    var p=hv.play();if(p&&p.catch)p.catch(function(){});
+  });
+  hv.addEventListener('play',function(){hw.classList.add('playing')});
+  hv.addEventListener('pause',function(){if(hv.currentTime===0||hv.ended)hw.classList.remove('playing')});
+  hv.addEventListener('ended',function(){hw.classList.remove('playing')});
+}
+</script>
+</body>
+</html>

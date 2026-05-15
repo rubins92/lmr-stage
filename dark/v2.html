@@ -1,0 +1,1125 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Автовёрстка индивидуальных школьных альбомов — LUMIR PHOTO</title>
+<meta name="description" content="Lumir распознаёт лица, выбирает лучшие кадры и собирает индивидуальные альбомы для каждого ребёнка автоматически." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#0a0a0b;
+  --bg-card:#111113;
+  --bg-hover:#18181b;
+  --border:rgba(255,255,255,.06);
+  --border-hover:rgba(255,255,255,.12);
+  --text-1:rgba(255,255,255,.92);
+  --text-2:rgba(255,255,255,.56);
+  --text-3:rgba(255,255,255,.32);
+  --accent:#8b7ff5;
+  --accent-dim:rgba(139,127,245,.12);
+  --accent-glow:rgba(139,127,245,.08);
+  --font:'Inter',system-ui,-apple-system,sans-serif;
+}
+html,body{
+  height:100%;overflow:hidden;
+}
+body{
+  font-family:var(--font);
+  background:var(--bg);
+  color:var(--text-1);
+  font-size:15px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+button{border:0;background:transparent;cursor:pointer;font:inherit;color:inherit}
+
+/* ── LEFT SIDE NAV ──────────────────────── */
+.side-nav{
+  position:fixed;left:0;top:0;bottom:0;z-index:100;
+  width:60px;
+  display:flex;flex-direction:column;
+  padding:20px 0;
+  background:rgba(10,10,11,.6);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-right:1px solid var(--border);
+  transition:width .35s cubic-bezier(.4,0,.2,1);
+  overflow:hidden;
+  cursor:pointer;
+}
+.side-nav.open{width:200px}
+.side-nav-header{
+  display:flex;align-items:center;gap:10px;
+  padding:0 14px 0 14px;margin-bottom:36px;
+  min-height:28px;
+}
+.side-nav-toggle{
+  width:32px;height:32px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  border-radius:8px;cursor:pointer;
+  color:var(--text-2);transition:color .2s,background .2s;
+}
+.side-nav-toggle:hover{color:var(--text-1);background:rgba(255,255,255,.06)}
+.side-nav-toggle svg{width:18px;height:18px;display:block}
+.side-nav-logo{
+  font-family:var(--font);font-weight:800;font-size:15px;
+  letter-spacing:.06em;color:var(--text-1);
+  white-space:nowrap;opacity:0;
+  transition:opacity .2s;pointer-events:none;
+}
+.side-nav.open .side-nav-logo{opacity:.9;pointer-events:auto}
+.side-nav-logo:hover{opacity:1}
+.side-nav-dots{
+  display:flex;flex-direction:column;gap:4px;
+  margin-bottom:auto;padding:0 10px;
+}
+.side-nav-dot{
+  display:flex;align-items:center;gap:12px;
+  background:none;border:none;cursor:pointer;
+  padding:10px 12px;border-radius:8px;
+  font-size:14px;font-weight:500;color:var(--text-3);
+  transition:color .2s,background .2s;
+  text-align:left;white-space:nowrap;
+}
+.side-nav-dot-label{
+  opacity:0;transition:opacity .2s;
+}
+.side-nav.open .side-nav-dot-label{opacity:1}
+.side-nav-dot::before{
+  content:'';width:6px;height:6px;border-radius:50%;flex-shrink:0;
+  background:rgba(255,255,255,.15);
+  transition:background .25s,box-shadow .25s,transform .25s;
+}
+.side-nav-dot.active{color:var(--text-1);background:rgba(255,255,255,.04)}
+.side-nav-dot.active::before{
+  background:var(--accent);
+  box-shadow:0 0 0 4px rgba(139,127,245,.2);
+  transform:scale(1.2);
+}
+.side-nav-dot:hover{color:var(--text-2);background:rgba(255,255,255,.03)}
+.side-nav-bottom{padding:0 10px}
+.side-nav-cta{
+  font-size:13px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+  background:var(--accent);color:#fff;
+  border:none;border-radius:40px;padding:12px 20px;
+  text-decoration:none;text-align:center;
+  transition:background .15s;
+  white-space:nowrap;
+  display:none;
+}
+.side-nav.open .side-nav-cta{display:block}
+.side-nav-cta:hover{background:#6C63B5}
+.side-nav-cta-icon{
+  display:flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:50%;
+  background:var(--accent);color:#fff;
+  text-decoration:none;margin:0 auto;
+  transition:background .15s,transform .15s;
+}
+.side-nav.open .side-nav-cta-icon{display:none}
+.side-nav-cta-icon:hover{background:#6C63B5;transform:scale(1.08)}
+.side-nav-cta-icon svg{width:20px;height:20px;display:block}
+
+/* ── HORIZONTAL SCROLL CONTAINER ────────── */
+.scroll-wrapper{
+  position:relative;
+  margin-left:60px;
+  transition:margin-left .35s cubic-bezier(.4,0,.2,1);
+}
+body.nav-open .scroll-wrapper{margin-left:200px}
+.scroll-track{
+  position:sticky;top:0;
+  height:100vh;
+  overflow:hidden;
+}
+.scroll-slides{
+  display:flex;
+  height:100vh;
+  will-change:transform;
+  transition:none;
+}
+.slide{
+  flex:0 0 100%;
+  width:calc(100vw - 60px);
+  height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  overflow:hidden;
+  padding:40px 60px;
+}
+
+/* ── SLIDE TRANSITIONS ──────────────────── */
+.slide-inner{
+  width:100%;max-width:1080px;
+  opacity:0;
+  transform:translateX(60px);
+  transition:opacity .6s ease,transform .6s ease;
+}
+.slide.active .slide-inner{
+  opacity:1;transform:translateX(0);
+}
+.slide.exiting .slide-inner{
+  opacity:0;transform:translateX(-60px);
+}
+
+/* ── SHARED COMPONENTS ──────────────────── */
+.btn-primary{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-size:14px;font-weight:700;letter-spacing:.025em;text-transform:uppercase;
+  color:#fff;background:var(--accent);
+  padding:18px 36px;border-radius:999px;
+  box-shadow:0 4px 12px rgba(139,127,245,.32),0 12px 24px rgba(139,127,245,.18);
+  transition:background .15s,transform .1s;
+}
+.btn-primary:hover{background:#6C63B5}
+.btn-primary:active{transform:scale(.98)}
+.btn-ghost{
+  display:inline-flex;align-items:center;justify-content:center;gap:6px;
+  font-size:14px;font-weight:700;letter-spacing:.025em;text-transform:uppercase;
+  color:var(--text-1);padding:18px 36px;border-radius:999px;
+  border:1px solid var(--border-hover);
+  transition:color .15s,border-color .15s;
+}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent)}
+
+@keyframes accent-pulse{
+  0%{box-shadow:0 0 0 0 rgba(139,127,245,.5)}
+  100%{box-shadow:0 0 0 12px rgba(139,127,245,0)}
+}
+@keyframes premium-pulse{
+  0%{box-shadow:0 0 0 0 rgba(16,185,129,.5)}
+  100%{box-shadow:0 0 0 14px rgba(16,185,129,0)}
+}
+
+/* ── SLIDE 1: HERO ──────────────────────── */
+.slide--hero{
+  text-align:center;
+  flex-direction:column;
+}
+.slide--hero::before{
+  content:'';position:absolute;
+  top:-200px;left:50%;transform:translateX(-50%);
+  width:800px;height:600px;
+  background:radial-gradient(ellipse,rgba(139,127,245,.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:500;color:var(--accent);
+  background:var(--accent-dim);
+  border:1px solid rgba(139,127,245,.15);
+  border-radius:100px;padding:6px 16px;
+  margin-bottom:32px;
+}
+.hero-badge .dot{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--accent);
+  box-shadow:0 0 0 0 rgba(139,127,245,.5);
+  animation:accent-pulse 2s infinite;
+}
+.slide--hero h1{
+  font-size:clamp(40px,5.5vw,64px);
+  font-weight:700;line-height:1.08;letter-spacing:-.035em;
+  color:var(--text-1);max-width:20ch;margin:0 auto 24px;
+}
+.slide--hero h1 em{
+  font-style:normal;
+  background:linear-gradient(135deg,#8b7ff5 0%,#d87891 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-sub{
+  font-size:clamp(16px,1.5vw,18px);color:var(--text-2);
+  max-width:48ch;margin:0 auto 32px;line-height:1.6;
+}
+.hero-ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ── SLIDE 2: VIDEO ─────────────────────── */
+.slide--video{padding:40px 60px}
+.hero-video-wrap{
+  position:relative;width:100%;max-width:920px;margin:0 auto;
+  border-radius:14px;overflow:hidden;background:#000;
+  aspect-ratio:16/9;
+  border:1px solid var(--border);
+  box-shadow:0 8px 40px rgba(139,127,245,.08),0 2px 8px rgba(0,0,0,.4);
+}
+.hero-video{
+  position:absolute;inset:0;width:100%;height:100%;
+  display:block;object-fit:cover;background:#000;
+}
+.hero-video-placeholder{
+  position:absolute;inset:0;z-index:1;overflow:hidden;
+  background:
+    radial-gradient(ellipse at 18% -10%,rgba(139,127,245,.45) 0%,transparent 55%),
+    radial-gradient(ellipse at 110% 110%,rgba(216,120,145,.3) 0%,transparent 55%),
+    linear-gradient(135deg,#0d0b14 0%,#151220 50%,#0d0b14 100%);
+  display:grid;grid-template-columns:1.05fr 1fr;align-items:center;
+  transition:opacity .3s;
+}
+.hero-video-placeholder::after{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.35) 100%);
+  pointer-events:none;
+}
+.hero-video-placeholder-tag{
+  position:absolute;z-index:3;top:22px;left:22px;
+  display:inline-flex;align-items:center;gap:8px;
+  font-weight:600;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+  color:rgba(255,255,255,.88);
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);
+  border-radius:999px;padding:7px 14px;
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+}
+.hero-video-placeholder-tag .pulse{
+  width:7px;height:7px;border-radius:50%;background:#D87891;
+  box-shadow:0 0 0 4px rgba(216,120,145,.22);
+}
+.hero-video-placeholder-text{
+  position:relative;z-index:2;padding:56px;
+  display:flex;flex-direction:column;gap:18px;
+}
+.hero-video-placeholder-title{
+  font-weight:700;font-size:clamp(22px,3vw,34px);
+  line-height:1.12;letter-spacing:-.02em;
+  color:#fff;max-width:16ch;text-wrap:balance;
+}
+.hero-video-placeholder-title em{
+  font-style:normal;
+  background:linear-gradient(135deg,#c8b6ff,#f5b6cb);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-video-placeholder-sub{font-size:15px;line-height:1.5;color:rgba(255,255,255,.55);max-width:34ch}
+.hero-video-placeholder-meta{
+  display:flex;gap:8px;align-items:center;margin-top:6px;
+  font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:rgba(255,255,255,.45);
+}
+.hero-video-placeholder-meta .chip{border:1px solid rgba(255,255,255,.16);border-radius:999px;padding:5px 11px}
+.hero-video-placeholder-mock{
+  position:relative;height:100%;display:flex;align-items:center;justify-content:center;padding:0 32px;
+}
+.hero-video-placeholder-spread{
+  position:absolute;
+  background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);
+  border-radius:6px;
+  box-shadow:0 32px 64px -12px rgba(0,0,0,.55),0 14px 28px rgba(0,0,0,.32);
+  width:58%;aspect-ratio:1.32/1;
+  display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:12px;
+}
+.hero-video-placeholder-spread .page{display:flex;flex-direction:column;gap:6px;min-width:0}
+.hero-video-placeholder-spread .photo{flex:1;border-radius:3px;min-height:0}
+.hero-video-placeholder-spread .strip{display:grid;grid-template-columns:repeat(4,1fr);gap:4px}
+.hero-video-placeholder-spread .strip i{display:block;aspect-ratio:1;border-radius:2px;background:rgba(255,255,255,.08)}
+.hero-video-placeholder-spread .caption{height:6px;background:rgba(255,255,255,.08);border-radius:1px;width:60%}
+.hero-video-placeholder-spread.s1{transform:translate(-26%,-16%) rotate(-9deg);width:50%;opacity:.78;filter:blur(.4px)}
+.hero-video-placeholder-spread.s2{transform:translate(-2%,4%) rotate(2deg);z-index:2}
+.hero-video-placeholder-spread.s3{transform:translate(26%,22%) rotate(8deg);width:50%;opacity:.86;filter:blur(.4px)}
+.hero-video-placeholder-spread .photo.p1{background:linear-gradient(135deg,#8b7ff5,#c86898)}
+.hero-video-placeholder-spread .photo.p2{background:linear-gradient(135deg,#d87891,#f2b98d)}
+.hero-video-placeholder-spread .photo.p3{background:linear-gradient(135deg,#6b8fd8,#9b5ed0)}
+.hero-video-placeholder-spread .photo.p4{background:linear-gradient(135deg,#4a5ba8,#7b72c8)}
+.hero-video-placeholder-spread .photo.p5{background:linear-gradient(135deg,#c86898,#ffa37a)}
+.hero-video-placeholder-spread .photo.p6{background:linear-gradient(135deg,#5c8fae,#7b72c8)}
+.hero-video-placeholder-brand{
+  position:absolute;z-index:3;right:22px;bottom:22px;
+  font-weight:700;font-size:13px;letter-spacing:.04em;
+  color:rgba(255,255,255,.5);display:flex;align-items:center;gap:8px;
+}
+.hero-video-placeholder-brand .lumir-mark{
+  width:18px;height:18px;border-radius:5px;
+  background:linear-gradient(135deg,#8b7ff5,#d87891);
+}
+.hero-video-meta-bar{
+  position:absolute;z-index:2;left:24px;bottom:24px;
+  display:flex;align-items:center;gap:10px;
+  background:rgba(0,0,0,.45);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  border-radius:999px;padding:8px 16px 8px 12px;
+  font-weight:600;font-size:13px;color:#fff;letter-spacing:.02em;
+}
+.hero-video-meta-bar .dot{width:6px;height:6px;border-radius:999px;background:#5BC97A}
+.hero-video-play{
+  position:absolute;z-index:2;left:50%;top:50%;transform:translate(-50%,-50%);
+  width:72px;height:72px;border-radius:50%;
+  background:var(--accent);border:none;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 28px rgba(139,127,245,.4),0 0 0 8px rgba(139,127,245,.12);
+  transition:transform .2s,box-shadow .2s;
+}
+.hero-video-play:hover{
+  transform:translate(-50%,-50%) scale(1.06);
+  box-shadow:0 12px 36px rgba(139,127,245,.5),0 0 0 14px rgba(139,127,245,.15);
+}
+.hero-video-play svg{width:28px;height:28px;margin-left:3px}
+.hero-video-wrap.playing .hero-video-play,
+.hero-video-wrap.playing .hero-video-placeholder{opacity:0;pointer-events:none}
+
+/* ── SLIDE 3: FEATURES ──────────────────── */
+.slide--features{padding:40px 60px}
+.features-head{text-align:center;margin-bottom:48px}
+.features-head h2{
+  font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.03em;margin-bottom:12px;
+}
+.features-head p{font-size:16px;color:var(--text-2);max-width:48ch;margin:0 auto}
+.grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);border-radius:16px;overflow:hidden;
+}
+.card{
+  background:var(--bg-card);padding:28px 24px;
+  display:flex;flex-direction:column;gap:10px;
+  transition:background .2s;
+}
+.card:hover{background:var(--bg-hover)}
+.card-icon{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--accent-dim);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--accent);margin-bottom:4px;
+}
+.card-icon svg{width:18px;height:18px}
+.card h3{font-size:15px;font-weight:600;letter-spacing:-.01em}
+.card p{font-size:14px;line-height:1.55;color:var(--text-2)}
+
+/* ── SLIDE 4: PRICING ───────────────────── */
+.slide--pricing{padding:40px 60px}
+.pricing-inner{text-align:center}
+.pv-v2-wrap{
+  max-width:900px;margin:0 auto;position:relative;z-index:2;
+  text-align:center;display:flex;flex-direction:column;align-items:center;gap:28px;
+}
+.pv-v2-eyebrow{font-size:14px;font-weight:600;color:var(--accent);letter-spacing:.14em;text-transform:uppercase}
+.pv-v2-card{
+  position:relative;background:var(--bg-card);border:1px solid var(--border);
+  border-radius:20px;padding:48px 52px 38px;width:100%;max-width:740px;
+  box-shadow:0 2px 4px rgba(0,0,0,.2),0 8px 16px rgba(0,0,0,.15),0 28px 56px rgba(0,0,0,.2);
+}
+.pv-v2-card::before{
+  content:'';position:absolute;left:20px;right:20px;top:0;height:2px;
+  background:linear-gradient(135deg,#8b7ff5 0%,#d87891 100%);
+  border-radius:0 0 2px 2px;opacity:.85;
+}
+.pv-v2-row{display:flex;align-items:flex-end;gap:40px;justify-content:space-between}
+.pv-v2-pricecol{display:flex;flex-direction:column;align-items:flex-start;gap:5px;flex-shrink:0}
+.pv-v2-kicker{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--text-3)}
+.pv-v2-amount{
+  font-weight:800;font-size:clamp(72px,10vw,120px);line-height:.9;letter-spacing:-.03em;
+  background:linear-gradient(135deg,#8b7ff5 0%,#d87891 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.pv-v2-amount-rub{font-size:.5em;font-weight:700;margin-left:.04em;letter-spacing:-.02em}
+.pv-v2-priceTail{font-weight:500;color:var(--text-2);font-size:18px;margin-top:2px}
+.pv-v2-metacol{
+  flex:1;display:flex;flex-direction:column;
+  border-top:1px dashed rgba(255,255,255,.12);margin-bottom:14px;min-width:220px;
+}
+.pv-v2-metarow{
+  display:flex;align-items:baseline;justify-content:space-between;
+  padding:11px 0;border-bottom:1px dashed rgba(255,255,255,.08);gap:14px;
+}
+.pv-v2-metarow:last-child{border-bottom:0}
+.pv-v2-metalabel{font-size:14px;color:var(--text-2)}
+.pv-v2-metavalue{font-size:13px;font-weight:600;color:var(--text-1);white-space:nowrap}
+.pv-v2-metavalue--accent{color:var(--accent)}
+.pv-v2-foot{
+  margin-top:24px;padding-top:16px;
+  border-top:1px dashed rgba(255,255,255,.12);
+  display:flex;flex-direction:column;align-items:center;gap:10px;
+}
+.pv-v2-promo{display:flex;align-items:center;justify-content:center;gap:12px;margin-bottom:6px}
+.pv-v2-promo-old{font-weight:700;font-size:22px;color:var(--text-3);text-decoration:line-through}
+.pv-v2-promo-badge{
+  font-weight:700;font-size:18px;color:#fff;
+  background:var(--accent);padding:8px 20px;border-radius:100px;text-decoration:none;
+}
+.pv-v2-footnote{font-size:14px;color:var(--text-2);line-height:1.5;margin:0}
+
+/* ── SLIDE 5: PREMIUM ───────────────────── */
+.slide--premium{padding:40px 60px}
+.premium-head{text-align:center;margin-bottom:40px}
+.premium-head h2{font-size:clamp(28px,4vw,40px);font-weight:700;letter-spacing:-.03em;margin-bottom:12px}
+.premium-head p{font-size:16px;color:var(--text-2);max-width:48ch;margin:0 auto}
+.premium-counter{
+  display:inline-flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.04);border:1px solid rgba(139,127,245,.15);
+  border-radius:999px;padding:12px 20px;
+  font-weight:600;font-size:14px;color:var(--text-1);margin-top:24px;
+}
+.premium-pulse{
+  width:10px;height:10px;border-radius:999px;background:#10b981;
+  box-shadow:0 0 0 0 rgba(16,185,129,.5);animation:premium-pulse 2s infinite;
+}
+.premium-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:16px;max-width:960px;margin:0 auto;
+}
+.premium-card{
+  background:var(--bg-card);border:1px solid var(--border);
+  border-radius:16px;padding:28px;
+  display:flex;flex-direction:column;gap:8px;
+  transition:transform .3s,box-shadow .3s,border-color .3s;
+}
+.premium-card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 8px 32px rgba(139,127,245,.12);
+  border-color:rgba(139,127,245,.25);
+}
+.premium-card:first-child{
+  background:rgba(139,127,245,.06);border:2px solid rgba(139,127,245,.2);
+  box-shadow:0 4px 24px rgba(139,127,245,.1);
+}
+.premium-card:first-child .premium-card-ic{background:var(--accent)}
+.premium-card:first-child .premium-card-ic svg{stroke:#fff}
+.premium-card-ic{
+  width:44px;height:44px;border-radius:12px;
+  background:var(--accent-dim);display:flex;align-items:center;justify-content:center;
+  margin-bottom:4px;
+}
+.premium-card-ic svg{width:22px;height:22px}
+.premium-card-amount,.premium-card-badge{font-weight:800;font-size:26px;letter-spacing:-.02em;color:var(--accent)}
+.premium-card h4{font-weight:700;font-size:16px;color:var(--text-1)}
+.premium-card p{font-size:13px;line-height:1.5;color:var(--text-2)}
+
+/* ── SLIDE 6: FOOTER ────────────────────── */
+.slide--footer{padding:40px 60px}
+.slide--footer .slide-inner{
+  max-width:800px;
+  display:flex;flex-direction:column;align-items:center;
+  text-align:center;gap:32px;
+}
+.footer-logo{
+  font-family:var(--font);font-size:22px;font-weight:800;
+  letter-spacing:.06em;color:var(--text-1);
+}
+.footer-tagline{font-size:18px;color:var(--text-2);line-height:1.6;max-width:36ch}
+.footer-links{display:flex;gap:24px;flex-wrap:wrap;justify-content:center}
+.footer-links a{font-size:14px;color:var(--text-2);transition:color .15s}
+.footer-links a:hover{color:var(--text-1)}
+.footer-socials{display:flex;gap:10px}
+.footer-social{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:36px;height:36px;border-radius:999px;
+  background:rgba(255,255,255,.06);color:rgba(255,255,255,.5);
+  transition:background .15s,color .15s;
+}
+.footer-social:hover{background:var(--accent);color:#fff}
+.footer-social svg{width:18px;height:18px;display:block}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.25)}
+
+/* ── SCROLL PROGRESS ────────────────────── */
+.scroll-progress{
+  position:fixed;top:0;left:60px;right:0;height:2px;z-index:99;
+  transition:left .35s cubic-bezier(.4,0,.2,1);
+  background:var(--border);
+}
+.scroll-progress-bar{
+  height:100%;width:0;
+  background:linear-gradient(90deg,#8b7ff5,#d87891);
+  transition:width .15s ease-out;
+}
+
+/* ── STICKY COUNTER ─────────────────────── */
+.sticky-counter{
+  position:fixed;bottom:0;left:60px;right:0;z-index:90;
+  transition:left .35s cubic-bezier(.4,0,.2,1);
+  background:rgba(10,10,11,.85);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-top:1px solid var(--border);
+  padding:12px 24px;
+  display:flex;align-items:center;justify-content:center;gap:16px;
+  transform:translateY(100%);transition:transform .4s ease;
+}
+.sticky-counter.visible{transform:translateY(0)}
+.sticky-counter-text{
+  display:flex;align-items:center;gap:10px;
+  font-size:14px;font-weight:600;color:var(--text-1);
+  white-space:nowrap;
+}
+.sticky-counter-text .premium-pulse{width:8px;height:8px}
+.sticky-counter .btn-primary{padding:10px 22px;font-size:12px;box-shadow:none;flex-shrink:0}
+.sticky-counter-close{
+  flex-shrink:0;
+  width:28px;height:28px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:18px;line-height:1;color:var(--text-3);
+  transition:color .15s,background .15s;
+}
+.sticky-counter-close:hover{color:var(--text-1);background:rgba(255,255,255,.08)}
+.sticky-short{display:none}
+
+/* ── MOBILE NAV BAR ─────────────────────── */
+.mobile-nav{
+  display:none;
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  height:52px;
+  background:rgba(10,10,11,.85);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  align-items:center;
+  padding:0 16px;
+}
+.mobile-nav-logo{
+  font-family:var(--font);font-weight:800;font-size:14px;
+  letter-spacing:.06em;color:var(--text-1);
+}
+.mobile-nav-dots{
+  display:flex;align-items:center;gap:8px;
+  position:absolute;left:50%;transform:translateX(-50%);
+}
+.mobile-nav-dots span{
+  width:8px;height:8px;border-radius:50%;flex-shrink:0;
+  background:rgba(255,255,255,.15);
+  transition:background .25s,transform .25s;
+  padding:0;position:relative;
+}
+.mobile-nav-dots span::before{
+  content:'';position:absolute;
+  top:-10px;left:-10px;right:-10px;bottom:-10px;
+}
+.mobile-nav-dots span.active{
+  background:var(--accent);
+  transform:scale(1.3);
+  box-shadow:0 0 0 3px rgba(139,127,245,.2);
+}
+.mobile-swipe-hint{
+  display:none;
+  position:absolute;bottom:24px;left:50%;transform:translateX(-50%);
+  font-size:12px;color:var(--text-3);
+  animation:hintPulse 2.5s ease-in-out infinite;
+  letter-spacing:.04em;
+}
+@keyframes hintPulse{
+  0%,100%{opacity:.3;transform:translateX(-50%)}
+  50%{opacity:.7;transform:translateX(-40%)}
+}
+@media(max-width:768px){
+  .mobile-swipe-hint{display:block}
+}
+.mobile-nav-cta{
+  margin-left:auto;
+  font-size:12px;font-weight:700;letter-spacing:.03em;text-transform:uppercase;
+  background:var(--accent);color:#fff;
+  border-radius:20px;padding:7px 14px;
+  text-decoration:none;
+}
+
+/* ── MOBILE ─────────────────────────────── */
+@media(max-width:768px){
+  html,body{overscroll-behavior:none}
+  .side-nav{display:none!important}
+  .mobile-nav{display:flex}
+  .scroll-wrapper{margin-left:0}
+  .scroll-progress{left:0;top:52px}
+  .sticky-counter{left:0;padding:10px 16px 12px;flex-direction:column;gap:6px;align-items:stretch;position:relative}
+  .sticky-counter-text{font-size:12px;justify-content:center;width:100%;text-align:center}
+  .sticky-counter-text .premium-pulse{display:none}
+  .sticky-full{display:none}
+  .sticky-short{display:inline}
+  .sticky-counter .btn-primary{width:100%;padding:10px 0;font-size:13px;text-align:center;justify-content:center}
+  .sticky-counter-close{position:absolute;right:8px;top:8px;width:28px;height:28px;font-size:16px}
+  .slide{
+    width:100vw;padding:72px 20px 80px;
+    overflow-y:auto;overflow-x:hidden;
+    -webkit-overflow-scrolling:touch;
+    align-items:flex-start;
+  }
+  .slide-inner{padding-top:20px}
+  .grid{grid-template-columns:1fr}
+  .premium-grid{grid-template-columns:1fr 1fr}
+  .pv-v2-row{flex-direction:column;align-items:stretch;gap:14px}
+  .pv-v2-amount{font-size:clamp(48px,14vw,80px)}
+  .pv-v2-metacol{min-width:0;margin-bottom:0}
+  .pv-v2-card{padding:24px 18px 20px}
+  .hero-video-placeholder{grid-template-columns:1fr}
+  .hero-video-placeholder::after{display:none}
+  .hero-video-placeholder-text,.hero-video-placeholder-mock,
+  .hero-video-placeholder-brand,.hero-video-placeholder-tag,
+  .hero-video-meta-bar{display:none!important}
+  .hero-ctas{flex-direction:column;align-items:center}
+  .btn-primary,.btn-ghost{width:100%;max-width:280px;justify-content:center}
+  .hero-badge{font-size:11px;padding:6px 12px;gap:6px;white-space:nowrap;max-width:calc(100vw - 40px)}
+  .hero-badge .dot{width:6px;height:6px;flex-shrink:0}
+  h1{font-size:clamp(28px,7vw,42px)!important}
+  .hero-sub{font-size:14px}
+  .features-head h2,.premium-head h2{font-size:clamp(24px,6vw,32px)}
+  .pv-v2-eyebrow{font-size:11px}
+  .premium-card{padding:20px 16px}
+  .premium-card h4{font-size:15px}
+  .footer-tagline{font-size:15px}
+}
+@media(max-width:480px){
+  .premium-grid{grid-template-columns:1fr}
+}
+@media(prefers-reduced-motion:reduce){
+  *{transition-duration:.01ms!important;animation-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<!-- SIDE NAV -->
+<nav class="side-nav" id="side-nav">
+  <div class="side-nav-header">
+    <button class="side-nav-toggle" id="nav-toggle" type="button" aria-label="Меню">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <a href="#" class="side-nav-logo">LUMIR PHOTO</a>
+  </div>
+  <div class="side-nav-dots">
+    <button class="side-nav-dot active" data-slide="0" type="button"><span class="side-nav-dot-label">Главная</span></button>
+    <button class="side-nav-dot" data-slide="1" type="button"><span class="side-nav-dot-label">Демо</span></button>
+    <button class="side-nav-dot" data-slide="2" type="button"><span class="side-nav-dot-label">Возможности</span></button>
+    <button class="side-nav-dot" data-slide="3" type="button"><span class="side-nav-dot-label">Стоимость</span></button>
+    <button class="side-nav-dot" data-slide="4" type="button"><span class="side-nav-dot-label">Premium</span></button>
+  </div>
+  <div class="side-nav-bottom">
+    <a href="https://fotoklass.lumir.photo/projects" class="side-nav-cta-icon" aria-label="Войти">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    </a>
+    <a href="https://fotoklass.lumir.photo/projects" class="side-nav-cta">Войти</a>
+  </div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobile-nav">
+  <span class="mobile-nav-logo">LUMIR</span>
+  <div class="mobile-nav-dots" id="mobile-dots">
+    <span class="active"></span><span></span><span></span><span></span><span></span><span></span>
+  </div>
+  <a href="https://fotoklass.lumir.photo/projects" class="mobile-nav-cta">Войти</a>
+</div>
+
+<!-- PROGRESS BAR -->
+<div class="scroll-progress"><div class="scroll-progress-bar" id="progress-bar"></div></div>
+
+<!-- HORIZONTAL SCROLL -->
+<div class="scroll-wrapper" id="scroll-wrapper">
+  <div class="scroll-track">
+    <div class="scroll-slides" id="scroll-slides">
+
+      <!-- SLIDE 1: HERO -->
+      <section class="slide slide--hero active" data-index="0">
+        <div class="slide-inner">
+          <div class="hero-badge"><span class="dot"></span>Первым 500 фотографам — 10 000 ₽ на баланс</div>
+          <h1><em>Автовёрстка</em> индивидуальных школьных альбомов</h1>
+          <p class="hero-sub">Lumir распознаёт лица, выбирает лучшие кадры и собирает индивидуальные альбомы для каждого ребёнка</p>
+          <div class="hero-ctas">
+            <a href="https://fotoklass.lumir.photo/projects" class="btn-primary">Попробовать</a>
+            <a href="https://t.me/lumirphoto_bot" class="btn-ghost">Задать вопрос</a>
+          </div>
+        </div>
+        <div class="mobile-swipe-hint">свайп &rarr;</div>
+      </section>
+
+      <!-- SLIDE 2: VIDEO -->
+      <section class="slide slide--video" data-index="1">
+        <div class="slide-inner">
+          <div class="hero-video-wrap" id="hero-video-wrap">
+            <video class="hero-video" id="hero-video" preload="metadata" playsinline controls>
+              <source src="placeholder-4x3.mp4" type="video/mp4" />
+            </video>
+            <div class="hero-video-placeholder" aria-hidden="true">
+              <span class="hero-video-placeholder-tag"><span class="pulse"></span>Демо · заглушка</span>
+              <div class="hero-video-placeholder-text">
+                <h3 class="hero-video-placeholder-title">От папки фотографий до <em>готового альбома</em></h3>
+                <p class="hero-video-placeholder-sub">Покажем весь поток Lumir: распознавание лиц, распределение по разворотам, AI-вёрстку, выгрузку в типографию</p>
+                <div class="hero-video-placeholder-meta">
+                  <span class="chip">02:14</span><span class="chip">RU</span><span class="chip">HD</span>
+                </div>
+              </div>
+              <div class="hero-video-placeholder-mock">
+                <div class="hero-video-placeholder-spread s1">
+                  <div class="page"><div class="photo p1"></div><div class="strip"><i></i><i></i><i></i><i></i></div></div>
+                  <div class="page"><div class="photo p2"></div><div class="caption"></div></div>
+                </div>
+                <div class="hero-video-placeholder-spread s2">
+                  <div class="page"><div class="photo p3"></div><div class="strip"><i></i><i></i><i></i><i></i></div></div>
+                  <div class="page"><div class="photo p4"></div><div class="caption"></div></div>
+                </div>
+                <div class="hero-video-placeholder-spread s3">
+                  <div class="page"><div class="photo p5"></div><div class="strip"><i></i><i></i><i></i><i></i></div></div>
+                  <div class="page"><div class="photo p6"></div><div class="caption"></div></div>
+                </div>
+              </div>
+              <div class="hero-video-placeholder-brand"><span class="lumir-mark"></span>lumir.photo</div>
+            </div>
+            <button class="hero-video-play" type="button" id="hero-video-play" aria-label="Воспроизвести демо">
+              <svg viewBox="0 0 24 24" fill="#fff" width="32" height="32"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+            <div class="hero-video-meta-bar"><span class="dot"></span><span>Демо · 1 минута</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: FEATURES -->
+      <section class="slide slide--features" data-index="2">
+        <div class="slide-inner">
+          <div class="features-head">
+            <h2>Всё что нужно</h2>
+            <p>От загрузки фото до готовых макетов в типографию</p>
+          </div>
+          <div class="grid">
+            <div class="card">
+              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+              <h3>Распознавание лиц</h3>
+              <p>AI определяет каждого ученика и группирует фото автоматически</p>
+            </div>
+            <div class="card">
+              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15 8.5 22 9.3 17 14 18.5 21 12 17.5 5.5 21 7 14 2 9.3 9 8.5 12 2"/></svg></div>
+              <h3>Лучший кадр из серии</h3>
+              <p>Из 8 похожих — выбирает один с фокусом и открытыми глазами</p>
+            </div>
+            <div class="card">
+              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/></svg></div>
+              <h3>Ваши PSD-дизайны</h3>
+              <p>Загрузите свои макеты — Lumir соберёт альбомы в вашем стиле</p>
+            </div>
+            <div class="card">
+              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg></div>
+              <h3>Водяные знаки</h3>
+              <p>Фото защищены. Ученики видят превью, оригиналы не скачать</p>
+            </div>
+            <div class="card">
+              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg></div>
+              <h3>Утверждение с телефона</h3>
+              <p>Ученик открывает ссылку, листает альбом, утверждает — готово</p>
+            </div>
+            <div class="card">
+              <div class="card-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div>
+              <h3>Любая типография</h3>
+              <p>Фотодом, Булгакбук, Фабрика фотокниги — или добавим вашу</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 4: PRICING -->
+      <section class="slide slide--pricing" data-index="3">
+        <div class="slide-inner">
+          <div class="pricing-inner">
+            <div class="pv-v2-wrap">
+              <div class="pv-v2-eyebrow">Фикс прайс</div>
+              <div class="pv-v2-card">
+                <div class="pv-v2-row">
+                  <div class="pv-v2-pricecol">
+                    <div class="pv-v2-kicker">Обычная стоимость</div>
+                    <div class="pv-v2-amount">980<span class="pv-v2-amount-rub">₽</span></div>
+                    <div class="pv-v2-priceTail">за весь класс</div>
+                  </div>
+                  <div class="pv-v2-metacol">
+                    <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Объём проекта</div><div class="pv-v2-metavalue">1 класс целиком</div></div>
+                    <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Альбомов в проекте</div><div class="pv-v2-metavalue pv-v2-metavalue--accent">Без лимита</div></div>
+                    <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Разворотов в альбоме</div><div class="pv-v2-metavalue pv-v2-metavalue--accent">Без лимита</div></div>
+                    <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Экспорт в печать</div><div class="pv-v2-metavalue">Включён</div></div>
+                    <div class="pv-v2-metarow"><div class="pv-v2-metalabel">Адаптация PSD</div><div class="pv-v2-metavalue pv-v2-metavalue--accent">Бесплатно</div></div>
+                  </div>
+                </div>
+                <div class="pv-v2-foot">
+                  <div class="pv-v2-promo">
+                    <span class="pv-v2-promo-old">980 ₽</span>
+                    <a href="https://t.me/lumirphoto_bot" class="pv-v2-promo-badge">10 000 ₽ на баланс</a>
+                  </div>
+                  <p class="pv-v2-footnote">Первым 500 фотографам — хватит на 10 классов</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 5: PREMIUM -->
+      <section class="slide slide--premium" data-index="4">
+        <div class="slide-inner">
+          <div class="premium-head">
+            <h2>Lumir Premium на год</h2>
+            <p>Первым 500 фотографам — особый пакет на год после регистрации</p>
+            <div class="premium-counter">
+              <span class="premium-pulse"></span>
+              <span>Осталось <span data-slots-remaining>367</span> мест из 500</span>
+            </div>
+          </div>
+          <div class="premium-grid">
+            <div class="premium-card">
+              <div class="premium-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 6v2m0 8v2"/></svg></div>
+              <div class="premium-card-amount">10 000 ₽</div>
+              <h4>На баланс</h4>
+              <p>Зачислим по первому запросу в поддержку. Хватит на 10 классов</p>
+            </div>
+            <div class="premium-card">
+              <div class="premium-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg></div>
+              <div class="premium-card-badge">−50%</div>
+              <h4>На печать первого класса</h4>
+              <p>В партнёрских типографиях. Уточните в поддержке</p>
+            </div>
+            <div class="premium-card">
+              <div class="premium-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/><path d="M14 14l3 3M14 17l3-3"/></svg></div>
+              <h4>Адаптация PSD бесплатно</h4>
+              <p>Заведём ваши дизайны в кабинет Lumir. Обычная цена — 2 900 ₽ за папку</p>
+            </div>
+            <div class="premium-card">
+              <div class="premium-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg></div>
+              <h4>Онбординг-созвон</h4>
+              <p>Покажем весь процесс за 30 минут</p>
+            </div>
+            <div class="premium-card">
+              <div class="premium-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg></div>
+              <h4>Все новые фичи</h4>
+              <p>Доступ к новым возможностям по мере выхода. На год</p>
+            </div>
+            <div class="premium-card">
+              <div class="premium-card-ic"><svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 7l-3 5h4l-3 5"/></svg></div>
+              <h4>Прямой канал в продукт</h4>
+              <p>Приоритизируем ваши предложения в разработке</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SLIDE 6: FOOTER -->
+      <section class="slide slide--footer" data-index="5">
+        <div class="slide-inner">
+          <div class="footer-logo">LUMIR PHOTO</div>
+          <div class="footer-tagline">Автоверстка школьных альбомов<br>Больше съёмок, меньше рутины ✨</div>
+          <div class="footer-links">
+            <a href="https://fotoklass.lumir.photo/projects">Попробовать</a>
+            <a href="https://t.me/lumirphoto_bot">Поддержка</a>
+          </div>
+          <div class="footer-socials">
+            <a href="https://t.me/lumir_photo" class="footer-social" aria-label="Telegram">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.5 4.2c-.3-.3-.7-.3-1.1-.2L3.3 10.7c-.4.2-.7.6-.7 1.1 0 .5.3.9.8 1l4 1.2 1.6 5.2c.1.3.4.6.7.7.1 0 .2 0 .3 0 .3 0 .6-.1.8-.4l2.3-2.6 4.4 3.2c.2.1.4.2.6.2.1 0 .2 0 .3 0 .4-.1.7-.4.8-.8l3-13.6c.1-.4 0-.8-.3-1zM10 14.5l-.6 3.6-1.3-4.2 8.7-6.1L10 14.5z"/></svg>
+            </a>
+            <a href="https://vk.ru/lumir.photo" class="footer-social" aria-label="ВКонтакте">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M21.6 6.8c.2-.6 0-1-.8-1h-2.7c-.7 0-1 .4-1.2.8 0 0-1.4 3.4-3.4 5.6-.6.6-.9.8-1.3.8-.2 0-.5-.2-.5-.8V6.8c0-.7-.2-1-.8-1H6.7c-.4 0-.7.3-.7.6 0 .7 1 .8 1.1 2.7v4.1c0 .9-.2 1.1-.5 1.1-.9 0-3.2-3.4-4.5-7.3-.3-.8-.5-1.1-1.2-1.1H-2c-.8 0-.9.4-.9.8 0 .7.9 4.4 4.4 9.2 2.4 3.3 5.7 5.1 8.7 5.1 1.8 0 2.1-.4 2.1-1.1v-2.5c0-.8.2-1 .7-1 .4 0 1.2.2 2.9 1.9 2 2 2.3 2.9 3.4 2.9h2.7c.8 0 1.1-.4.9-1.1-.2-.7-1.1-1.8-2.3-3-.6-.8-1.6-1.6-1.9-2-.4-.5-.3-.7 0-1.2 0 0 3.4-4.8 3.8-6.4z"/></svg>
+            </a>
+            <a href="mailto:info@lumir.photo" class="footer-social" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2z"/><path d="M22 8l-10 6L2 8"/></svg>
+            </a>
+          </div>
+          <a href="https://fotoklass.lumir.photo/projects" class="btn-primary">Попробовать</a>
+          <div class="footer-copy">&copy; 2026 Lumir Photo</div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<!-- STICKY COUNTER BAR -->
+<div class="sticky-counter" id="sticky-counter">
+  <div class="sticky-counter-text">
+    <span class="premium-pulse"></span>
+    <span class="sticky-full">Осталось <span data-slots-remaining>367</span> мест из 500</span>
+    <span class="sticky-short"><span data-slots-remaining>367</span>/500</span>
+  </div>
+  <a href="https://fotoklass.lumir.photo/projects" class="btn-primary">Попробовать</a>
+  <button class="sticky-counter-close" id="sticky-close" type="button" aria-label="Закрыть">&times;</button>
+</div>
+
+<script>
+(function(){
+  // Nav toggle
+  var sideNav = document.getElementById('side-nav');
+  sideNav.addEventListener('click', function(e) {
+    if (e.target.closest('.side-nav-dot') || e.target.closest('.side-nav-cta') || e.target.closest('.side-nav-cta-icon')) return;
+    sideNav.classList.toggle('open');
+    document.body.classList.toggle('nav-open');
+  });
+
+  var slides = document.querySelectorAll('.slide');
+  var dots = document.querySelectorAll('.side-nav-dot');
+  var mobileDots = document.querySelectorAll('#mobile-dots span');
+  var wrapper = document.getElementById('scroll-wrapper');
+  var slidesEl = document.getElementById('scroll-slides');
+  var progressBar = document.getElementById('progress-bar');
+  var stickyBar = document.getElementById('sticky-counter');
+  var stickyDismissed = false;
+  document.getElementById('sticky-close').addEventListener('click', function() {
+    stickyBar.classList.remove('visible');
+    stickyDismissed = true;
+  });
+  var totalSlides = slides.length;
+  var current = 0;
+  var isAnimating = false;
+  var touchStartY = 0;
+  var touchStartX = 0;
+
+  function goTo(index, smooth) {
+    if (index < 0 || index >= totalSlides || index === current) return;
+    isAnimating = true;
+
+    slides[current].classList.remove('active');
+    slides[current].classList.add('exiting');
+
+    current = index;
+    slides[current].classList.add('active');
+    slides[current].scrollTop = 0;
+
+    slidesEl.style.transition = smooth ? 'transform .7s cubic-bezier(.4,0,.2,1)' : 'none';
+    slidesEl.style.transform = 'translateX(-' + (current * 100) + '%)';
+
+    dots.forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+    mobileDots.forEach(function(d, i) {
+      d.classList.toggle('active', i === current);
+    });
+
+    // Progress
+    var pct = (current / (totalSlides - 1)) * 100;
+    progressBar.style.width = pct + '%';
+
+    // Sticky counter: show after leaving hero
+    if (!stickyDismissed) stickyBar.classList.toggle('visible', current > 0);
+
+    var hint = document.querySelector('.mobile-swipe-hint');
+    if (hint && current > 0) hint.style.display = 'none';
+
+    setTimeout(function() {
+      slides.forEach(function(s, i) {
+        if (i !== current) { s.classList.remove('exiting', 'active'); }
+      });
+      isAnimating = false;
+    }, 700);
+  }
+
+  // Scroll-driven navigation
+  var lastScrollTop = 0;
+  var scrollTimeout = null;
+  var accumulatedDelta = 0;
+  var SCROLL_THRESHOLD = 80;
+
+  window.addEventListener('wheel', function(e) {
+    e.preventDefault();
+    if (isAnimating) return;
+
+    accumulatedDelta += e.deltaY;
+
+    if (Math.abs(accumulatedDelta) >= SCROLL_THRESHOLD) {
+      if (accumulatedDelta > 0) {
+        goTo(current + 1, true);
+      } else {
+        goTo(current - 1, true);
+      }
+      accumulatedDelta = 0;
+    }
+
+    clearTimeout(scrollTimeout);
+    scrollTimeout = setTimeout(function() { accumulatedDelta = 0; }, 200);
+  }, { passive: false });
+
+  // Touch support
+  var isMobile = window.matchMedia('(max-width:768px)').matches;
+  var touchScrollStartTop = 0;
+  var edgeHitCount = 0;
+  var EDGE_SWIPES_NEEDED = 1;
+
+  function slideCanScroll(slide) {
+    return slide.scrollHeight > slide.clientHeight + 2;
+  }
+  function slideAtTop(slide) {
+    return slide.scrollTop <= 1;
+  }
+  function slideAtBottom(slide) {
+    return slide.scrollTop + slide.clientHeight >= slide.scrollHeight - 2;
+  }
+
+  window.addEventListener('touchstart', function(e) {
+    touchStartY = e.touches[0].clientY;
+    touchStartX = e.touches[0].clientX;
+    touchScrollStartTop = slides[current] ? slides[current].scrollTop : 0;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', function(e) {
+    if (!isMobile) { e.preventDefault(); return; }
+    var dx = Math.abs(e.touches[0].clientX - touchStartX);
+    var dy = Math.abs(e.touches[0].clientY - touchStartY);
+    // Block horizontal browser scroll; allow vertical for in-slide scroll
+    if (dx > dy && dx > 10) e.preventDefault();
+  }, { passive: false });
+
+  window.addEventListener('touchend', function(e) {
+    if (isAnimating) return;
+    var dy = touchStartY - e.changedTouches[0].clientY;
+    var dx = touchStartX - e.changedTouches[0].clientX;
+    var absDy = Math.abs(dy);
+    var absDx = Math.abs(dx);
+
+    if (isMobile) {
+      // Horizontal swipe always changes slide
+      if (absDx > 40 && absDx > absDy) {
+        goTo(current + (dx > 0 ? 1 : -1), true);
+        return;
+      }
+      // Vertical swipe: check if slide has overflow content
+      if (absDy > 40 && absDy > absDx) {
+        var slide = slides[current];
+        var canScroll = slideCanScroll(slide);
+        var swipingDown = dy > 0; // finger moves up = scroll down = next
+        var swipingUp = dy < 0;   // finger moves down = scroll up = prev
+
+        if (!canScroll) {
+          // No overflow — switch slide directly
+          goTo(current + (swipingDown ? 1 : -1), true);
+        } else if (swipingDown && slideAtBottom(slide)) {
+          // At bottom, swiping to next
+          goTo(current + 1, true);
+        } else if (swipingUp && slideAtTop(slide)) {
+          // At top, swiping to prev
+          goTo(current - 1, true);
+        }
+        // Otherwise: the native scroll handled it within the slide
+      }
+    } else {
+      var dominant = Math.max(absDy, absDx);
+      if (dominant > 40) {
+        if (absDx >= absDy) {
+          goTo(current + (dx > 0 ? 1 : -1), true);
+        } else {
+          goTo(current + (dy > 0 ? 1 : -1), true);
+        }
+      }
+    }
+  }, { passive: true });
+
+  // Keyboard
+  document.addEventListener('keydown', function(e) {
+    if (isAnimating) return;
+    if (e.key === 'ArrowDown' || e.key === 'ArrowRight') { e.preventDefault(); goTo(current + 1, true); }
+    if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); goTo(current - 1, true); }
+  });
+
+  // Nav dots
+  dots.forEach(function(dot) {
+    dot.addEventListener('click', function() {
+      goTo(parseInt(this.getAttribute('data-slide')), true);
+    });
+  });
+
+  // Mobile dots
+  mobileDots.forEach(function(dot, i) {
+    dot.addEventListener('click', function() {
+      goTo(i, true);
+    });
+  });
+
+  // Hero video
+  var hw = document.getElementById('hero-video-wrap');
+  var hv = document.getElementById('hero-video');
+  var hp = document.getElementById('hero-video-play');
+  if (hw && hv && hp) {
+    hp.addEventListener('click', function() {
+      hw.classList.add('playing');
+      var p = hv.play(); if (p && p.catch) p.catch(function(){});
+    });
+    hv.addEventListener('play', function() { hw.classList.add('playing'); });
+    hv.addEventListener('pause', function() { if (hv.currentTime === 0 || hv.ended) hw.classList.remove('playing'); });
+    hv.addEventListener('ended', function() { hw.classList.remove('playing'); });
+  }
+
+})();
+</script>
+</body>
+</html>
