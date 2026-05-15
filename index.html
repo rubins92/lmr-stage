@@ -2348,7 +2348,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 }
 @media (max-width: 768px) {
   .pricing-variant--v2 { padding: 0 24px; }
-  .pv-v2-card { margin: 0 auto; padding: 28px 22px 20px; max-width: 100%; border-radius: 18px; animation: none; }
+  .pv-v2-card { margin: 0 auto; padding: 28px 22px 20px; max-width: calc(100% - 16px); border-radius: 18px; animation: none; }
   .pv-v2-card::before { left: 12px; right: 12px; }
   .trust-grid { grid-template-columns: 1fr; gap: 12px; }
   .trust-card { flex-direction: row; text-align: left; padding: 20px; }
@@ -2553,30 +2553,41 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   gap: 28px;
   overflow: hidden;
 }
+.flow-list .flow-row:nth-child(n+2) {
+  max-height: 600px;
+  opacity: 1;
+  transition: max-height 0.5s ease, opacity 0.4s ease, margin 0.4s ease;
+  overflow: hidden;
+}
 .flow-list.collapsed .flow-row:nth-child(n+2) {
-  display: none;
+  max-height: 0;
+  opacity: 0;
+  margin: 0;
+  pointer-events: none;
 }
 .flow-list.collapsed .flow-row:nth-child(1) {
   pointer-events: none;
   mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 30%, transparent 100%);
+  transition: mask-image 0.4s ease;
 }
 .flow-expand {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   margin: 28px auto 0;
-  padding: 0;
+  padding: 10px 24px;
   font-family: var(--display);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--accent);
-  background: none;
-  border: none;
+  background: rgba(123,114,200,0.08);
+  border: 1px solid rgba(123,114,200,0.18);
+  border-radius: 100px;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
-.flow-expand:hover { opacity: 0.7; }
+.flow-expand:hover { background: rgba(123,114,200,0.14); }
 .flow-expand svg {
   width: 18px;
   height: 18px;
@@ -2752,30 +2763,42 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
    S7 — AI QUALITY (combined)
    ============================================ */
 .ai-section { background: transparent; }
+.ai-section .ai-body .ai-strip {
+  transition: mask-image 0.4s ease;
+}
 .ai-section .ai-body.collapsed .ai-strip {
   pointer-events: none;
   mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
 }
+.ai-section .ai-body .ai-cases {
+  max-height: 2000px;
+  opacity: 1;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+  overflow: hidden;
+}
 .ai-section .ai-body.collapsed .ai-cases {
-  display: none;
+  max-height: 0;
+  opacity: 0;
+  pointer-events: none;
 }
 .ai-expand {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   margin: 28px auto 0;
-  padding: 0;
+  padding: 10px 24px;
   font-family: var(--display);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--accent);
-  background: none;
-  border: none;
+  background: rgba(123,114,200,0.08);
+  border: 1px solid rgba(123,114,200,0.18);
+  border-radius: 100px;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
-.ai-expand:hover { opacity: 0.7; }
+.ai-expand:hover { background: rgba(123,114,200,0.14); }
 .ai-expand svg {
   width: 18px;
   height: 18px;
@@ -3002,7 +3025,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   justify-content: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.35s ease;
+  transition: opacity 0.6s cubic-bezier(0.4, 0, 0.2, 1);
   isolation: isolate;
 }
 .speed-popup.open {
@@ -3032,11 +3055,11 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  transform: translateY(24px);
-  transition: transform 0.35s ease;
+  transform: translateY(30px) scale(0.97);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .speed-popup.open .speed-popup-card {
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
 }
 .speed-popup-close {
   position: absolute;
@@ -3604,33 +3627,43 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 .faq-list.collapsed {
   max-height: none;
 }
+.faq-list .faq-item:nth-child(n+4) {
+  max-height: 400px;
+  opacity: 1;
+  transition: max-height 0.5s ease, opacity 0.4s ease;
+  overflow: hidden;
+}
 .faq-list.collapsed .faq-item:nth-child(n+4) {
   pointer-events: none;
 }
 .faq-list.collapsed .faq-item:nth-child(4) {
   mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
   -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 100%);
+  transition: mask-image 0.4s ease;
 }
 .faq-list.collapsed .faq-item:nth-child(n+5) {
-  display: none;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
 }
 .faq-expand {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   margin: 28px auto 0;
-  padding: 0;
+  padding: 10px 24px;
   font-family: var(--display);
   font-weight: 600;
-  font-size: 15px;
+  font-size: 16px;
   color: var(--accent);
-  background: none;
-  border: none;
+  background: rgba(123,114,200,0.08);
+  border: 1px solid rgba(123,114,200,0.18);
+  border-radius: 100px;
   cursor: pointer;
-  transition: opacity 0.2s;
+  transition: background 0.2s, transform 0.2s;
 }
 .faq-expand:hover {
-  opacity: 0.7;
+  background: rgba(123,114,200,0.14);
 }
 .faq-expand svg {
   width: 18px;
@@ -5132,15 +5165,17 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     });
   }
 
-  // ── Speed popup (triggered on FAQ scroll) ───────
+  // ── Speed popup (desktop only, triggered on FAQ scroll with delay) ───────
   const speedPopup = document.getElementById('speedPopup');
-  if (speedPopup) {
+  if (speedPopup && window.innerWidth >= 768) {
     let speedPopupShown = false;
+    let speedPopupTimer = null;
     const faqSection = document.querySelector('.faq-section');
     const closePopup = () => {
       speedPopup.classList.remove('open');
       speedPopup.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
+      if (speedPopupTimer) { clearTimeout(speedPopupTimer); speedPopupTimer = null; }
     };
     const openPopup = () => {
       speedPopup.classList.add('open');
@@ -5152,7 +5187,12 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     };
     if (faqSection && 'IntersectionObserver' in window) {
       const popupIO = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting && !speedPopupShown) openPopup();
+        if (entries[0].isIntersecting && !speedPopupShown && !speedPopupTimer) {
+          speedPopupTimer = setTimeout(openPopup, 3000);
+        }
+        if (!entries[0].isIntersecting && speedPopupTimer) {
+          clearTimeout(speedPopupTimer); speedPopupTimer = null;
+        }
       }, { threshold: 0.15 });
       popupIO.observe(faqSection);
     }
