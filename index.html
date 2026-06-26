@@ -5519,7 +5519,22 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 </script>
 
 <!-- ============================================ STICKY BAR — LUMIR PREMIUM ============================================ -->
-<script>var SLOTS_LEFT = 367;</script>
+<script>
+var SLOTS_DEFAULT = 367;
+var SLOTS_LEFT = SLOTS_DEFAULT;
+try { var s = parseInt(localStorage.getItem('slots-left'), 10); if (s > 0 && s <= SLOTS_DEFAULT) SLOTS_LEFT = s; } catch(e){}
+
+function updateSlots(n) {
+  SLOTS_LEFT = n;
+  try { localStorage.setItem('slots-left', n); } catch(e){}
+  document.querySelectorAll('[data-slots-remaining], #sticky-slots, #sticky-slots-mini, #sticky-slots-bar').forEach(function(el){ el.textContent = n; });
+}
+
+document.addEventListener('click', function(e) {
+  var link = e.target.closest('a[href*="fotoklass.lumir.photo"]');
+  if (link && SLOTS_LEFT > 1) updateSlots(SLOTS_LEFT - 1);
+});
+</script>
 <div class="sticky-premium" id="sticky-premium">
   <div class="sticky-premium-inner">
     <span class="sticky-premium-pulse"></span>
