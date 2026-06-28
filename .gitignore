@@ -15,6 +15,16 @@ _menu-variants.html
 # Image-gen working folder (raw exports, not deployed)
 image-gen/
 
+# Video assets — kept OUT of git so the repo history doesn't bloat (binaries
+# don't delta and live forever in history). They are web-optimized by
+# optimize-video.sh and shipped to lumir.photo through the deploy pipeline
+# (promote.sh → production/ → deploy.sh → GitLab). A fresh clone won't contain
+# them — get the current videos from Sergei / the shared assets folder, or pull
+# them from the deployed GitLab repo (dev/lumir-site). See ASSETS.md.
+*.mp4
+*.mov
+*.webm
+
 # OS / editor
 .DS_Store
 *.swp
