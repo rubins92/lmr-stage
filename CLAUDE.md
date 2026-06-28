@@ -35,7 +35,7 @@ git push origin main
 - **Don't move assets.** All stay in repo root (`og-image.jpg`, `placeholder-*.mp4`, `assets/*`).
 - **Don't push files >20 MB.** GitHub rejects them.
 - **Don't delete sections** without explicit user instruction.
-- **Don't touch analytics.** OpenPanel + Yandex Metrika scripts are pre-configured in `<head>`. Staging has `window.ANALYTICS_ENABLED = false` (line ~7) — leave as-is. Production deploy flips this via `_PROJECTS/_LANDING/deploy.sh`.
+- **Don't touch analytics.** OpenPanel + Yandex Metrika scripts are pre-configured in `<head>`. Staging has `window.ANALYTICS_ENABLED = false` (line ~7) — leave as-is. Production deploy flips this via the landing `deploy.sh`.
 
 ## Brand voice (короткая версия)
 

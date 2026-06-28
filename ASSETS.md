@@ -4,17 +4,26 @@
 
 ## Если ты только что клонировал репо
 
-Локальное превью (`index.html`) ссылается на видео в `assets/`. После чистого клона их не будет — видео нужно положить вручную:
+Локальное превью (`index.html`) ссылается на видео. После чистого клона их не будет — видео нужно положить вручную.
 
-- `assets/lumir-promo.mp4` — промо на главном экране (hero)
-- `assets/flow-approve.mp4`, `assets/flow-photo.mp4`, `assets/flow-psd.mp4` — анимации шагов
+Что реально использует `index.html` сейчас:
+- **`assets/lumir-promo.mp4`** — промо на главном экране (hero, тег `<source>`). На GitLab есть, тянется плоско.
+- **`placeholder-4x3.mp4`** — видео-модалки шагов (грузится из JS, `VIDEO_SOURCES`). Лежит **в корне репо** (не в `assets/`), `*.mp4` в `.gitignore` → его НЕТ ни в git, ни на GitLab (там 404). Из рецепта ниже его не вытянуть — попроси файл у Сергея. ⚠️ Это связано с открытым вопросом: модалка ссылается на `placeholder-4x3.mp4`, а на проде живут `flow-*.mp4`, которые сейчас не используются — см. ниже.
+- `assets/flow-approve.mp4`, `assets/flow-photo.mp4`, `assets/flow-psd.mp4` — на GitLab есть и тянутся, **но в `index.html` на них сейчас НЕТ ссылок** (модалка указывает на `placeholder-4x3.mp4`). Качаем их только чтобы иметь полный набор — для текущего превью они не нужны.
 
-**Где взять:** попроси у Сергея папку с видео, либо вытяни актуальные из задеплоенного репо:
+**Где взять — вариант 1 (есть доступ к gitlab.lumir.photo):** вытяни уже оптимизированные под веб версии из задеплоенного репо `dev/lumir-site`. Важно: на remote файлы лежат **плоско** (`lumir-promo.mp4`), а локальное превью ждёт их **в `assets/`** (`assets/lumir-promo.mp4`) — поэтому кладём в `assets/`. `placeholder-4x3.mp4` в этот список НЕ входит (его на GitLab нет — см. выше).
 
 ```bash
-# из GitLab dev/lumir-site (там лежат уже оптимизированные под веб версии)
-# (нужен доступ к gitlab.lumir.photo)
+TOKEN=$(grep '^GITLAB_TOKEN=' ~/.claude/.env | cut -d= -f2- | tr -d "'\"")
+mkdir -p assets
+for v in lumir-promo flow-approve flow-photo flow-psd; do
+  curl -s --header "PRIVATE-TOKEN: $TOKEN" \
+    "https://gitlab.lumir.photo/api/v4/projects/36/repository/files/$v.mp4/raw?ref=main" \
+    -o "assets/$v.mp4"
+done
 ```
+
+**Вариант 2 (нет доступа к GitLab):** попроси у Сергея папку с видео (включая `placeholder-4x3.mp4`).
 
 Без видео страница работает, но hero и блоки шагов покажут пустые плееры.
 

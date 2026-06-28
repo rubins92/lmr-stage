@@ -2624,124 +2624,27 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 }
 .flow-text p { font-size: 16px; line-height: 1.55; color: var(--text-2); }
 
-.flow-video-card {
+.flow-illustration {
   position: relative;
   aspect-ratio: 4 / 3;
   border-radius: 16px;
   overflow: hidden;
   background: var(--bg-dark);
-  cursor: pointer;
   box-shadow: var(--shadow-md);
-  transition: transform 0.3s var(--ease-fizz), box-shadow 0.3s var(--ease-fizz);
-}
-.flow-video-card:hover {
-  transform: translateY(-3px);
-  box-shadow: var(--shadow-lg);
 }
 .flow-video-cover {
   position: absolute;
   inset: 0;
   background-size: cover;
   background-position: center;
-  transition: transform 0.6s var(--ease-fizz);
 }
-.flow-video-card:hover .flow-video-cover { transform: scale(1.04); }
-.flow-video-cover.c1 {
-  background: linear-gradient(135deg, #6E5FB8 0%, #2A1D5C 100%);
-}
-.flow-video-cover.c1::after {
-  content: "";
-  position: absolute;
-  inset: 12% 18%;
-  background:
-    repeating-linear-gradient(135deg, rgba(255,255,255,0.08) 0 8px, transparent 8px 16px),
-    linear-gradient(180deg, rgba(255,255,255,0.12) 0%, transparent 100%);
-  border-radius: 6px;
-  border: 1px solid rgba(255,255,255,0.18);
-}
-.flow-video-cover.c2 {
-  background:
-    radial-gradient(120% 80% at 30% 50%, rgba(216,120,145,0.22) 0%, transparent 50%),
-    linear-gradient(135deg, #3A2D5C 0%, #1F1A40 100%);
-}
-.flow-video-cover.c2::after {
-  content: "";
-  position: absolute;
-  inset: 18%;
-  background-image:
-    radial-gradient(circle at 25% 35%, rgba(248,235,220,0.6) 0 14px, transparent 16px),
-    radial-gradient(circle at 50% 35%, rgba(248,235,220,0.6) 0 14px, transparent 16px),
-    radial-gradient(circle at 75% 35%, rgba(248,235,220,0.6) 0 14px, transparent 16px),
-    radial-gradient(circle at 25% 65%, rgba(248,235,220,0.6) 0 14px, transparent 16px),
-    radial-gradient(circle at 50% 65%, rgba(248,235,220,0.6) 0 14px, transparent 16px),
-    radial-gradient(circle at 75% 65%, rgba(248,235,220,0.6) 0 14px, transparent 16px);
-}
-.flow-video-cover.c3 {
-  background: linear-gradient(135deg, #4A3F7A 0%, #2C2452 100%);
-}
-.flow-video-cover.c3::after {
-  content: "";
-  position: absolute;
-  inset: 14% 22%;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.78) 100%);
-  border-radius: 4px;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.3);
-}
-.flow-video-cover.c4 {
-  background:
-    radial-gradient(80% 60% at 50% 30%, rgba(123,114,200,0.25) 0%, transparent 60%),
-    linear-gradient(135deg, #2A2452 0%, #1A153A 100%);
-}
-.flow-video-cover.c4::after {
-  content: "";
-  position: absolute;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  width: 30%; aspect-ratio: 9/19;
-  background: linear-gradient(180deg, #fff 0%, #e8e4ee 100%);
-  border-radius: 14px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
-}
-.flow-video-cover.c5 {
-  background: linear-gradient(135deg, #4D3D78 0%, #2C2050 100%);
-}
-.flow-video-cover.c5::after {
-  content: "";
-  position: absolute;
-  inset: 22% 30%;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.96) 0%, rgba(255,255,255,0.85) 100%);
-  border-radius: 4px;
-  box-shadow:
-    -8px 8px 0 rgba(255,255,255,0.4),
-    -16px 16px 0 rgba(255,255,255,0.18),
-    0 16px 32px rgba(0,0,0,0.4);
-}
-.flow-video-card::before {
+.flow-illustration::before {
   content: "";
   position: absolute;
   inset: 0;
   background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.42) 100%);
   z-index: 1;
 }
-.flow-play {
-  position: absolute;
-  z-index: 2;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%);
-  width: 56px; height: 56px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.95);
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.25), 0 0 0 0 rgba(255,255,255,0.4);
-  transition: transform 0.25s var(--ease-fizz), box-shadow 0.25s var(--ease-fizz);
-}
-.flow-video-card:hover .flow-play {
-  transform: translate(-50%, -50%) scale(1.08);
-  box-shadow: 0 12px 28px rgba(0,0,0,0.35), 0 0 0 10px rgba(255,255,255,0.15);
-}
-.flow-play svg { width: 22px; height: 22px; margin-left: 2px; color: var(--accent); }
 .flow-video-step {
   position: absolute; z-index: 2;
   left: 16px; bottom: 16px;
@@ -3875,62 +3778,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   gap: 16px;
 }
 
-/* ============================================
-   MODAL VIDEO PLAYER
-   ============================================ */
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 1000;
-  background: rgba(31,28,26,0.86);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 40px;
-  opacity: 0;
-  transition: opacity 0.25s var(--ease-fizz);
-}
-.modal[data-open="true"] {
-  display: flex;
-  opacity: 1;
-}
-.modal-content {
-  position: relative;
-  width: auto;
-  height: auto;
-  max-width: min(1200px, calc(100vw - 80px));
-  max-height: calc(100vh - 80px);
-  aspect-ratio: 4 / 3;
-  background: transparent;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 32px 64px rgba(0,0,0,0.5);
-  transform: scale(0.96);
-  transition: transform 0.3s var(--ease-fizz);
-}
-.modal[data-open="true"] .modal-content { transform: scale(1); }
-.modal-content video { width: 100%; height: 100%; object-fit: cover; display: block; }
-.modal-close {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  width: 56px; height: 56px;
-  border-radius: 999px;
-  background: var(--accent);
-  border: none;
-  cursor: pointer;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 8px 24px rgba(123,114,200,0.4);
-  transition: background 0.2s, transform 0.2s;
-  z-index: 2;
-}
-.modal-close svg { width: 22px; height: 22px; }
-.modal-close:hover { background: var(--accent-hover); transform: scale(1.05); }
 
 /* ============================================
    REVEAL ON SCROLL
@@ -3995,19 +3842,13 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   .flow-row { grid-template-columns: 1fr; gap: 20px; }
   .flow-row.reverse { direction: ltr; }
   .flow-text { padding: 0 20px; order: 2; }
-  .flow-video-card {
+  .flow-illustration {
     order: 1;
     border-radius: 0;
     box-shadow: none;
     margin: 0 calc(50% - 50vw);
     width: 100vw;
-    -webkit-tap-highlight-color: transparent;
   }
-  .flow-video-card:hover { transform: none; box-shadow: none; }
-  .flow-video-card.playing .flow-play,
-  .flow-video-card.playing .flow-video-cover,
-  .flow-video-card.playing .flow-video-step,
-  .flow-video-card.playing::before { opacity: 0; pointer-events: none; }
   .premium-grid { grid-template-columns: 1fr; }
   .ai-strip { grid-template-columns: 1fr 1fr; gap: 8px; }
   .ai-chip { padding: 16px 12px; }
@@ -4024,9 +3865,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   .demo-banner { padding: 28px 24px; border-radius: 16px; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
   .footer-bot { flex-direction: column; align-items: flex-start; gap: 8px; }
-  .modal { padding: 16px; }
-  .modal-close { top: 16px; right: 16px; width: 48px; height: 48px; }
-  .modal-close svg { width: 18px; height: 18px; }
 }
 @media (max-width: 540px) {
   .ai-strip { grid-template-columns: 1fr; }
@@ -4600,11 +4438,10 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
           <p style="font-size: 14px; opacity: 0.5; margin-bottom: 8px;">*если есть</p>
           <p>Или воспользуйтесь библиотекой дизайнов Lumir</p>
         </div>
-        <button class="flow-video-card" type="button" data-video-modal="step-1" aria-label="Смотреть видео шага 1">
+        <div class="flow-illustration">
           <img src="assets/banners/step-01-dark.png" alt="Шаг 01 — загрузка дизайнов" loading="lazy" class="flow-video-cover" style="object-fit: cover; width: 100%; height: 100%; position: absolute; inset: 0;">
-          <div class="flow-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-          <div class="flow-video-step">Шаг 01 · 18 сек</div>
-        </button>
+          <div class="flow-video-step">Шаг 01</div>
+        </div>
       </div>
 
       <!-- Step 2 -->
@@ -4614,11 +4451,10 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
           <h3>Загрузите съёмку</h3>
           <p>Lumir распознаёт лица и собирает альбомы под каждого ребёнка</p>
         </div>
-        <button class="flow-video-card" type="button" data-video-modal="step-2" aria-label="Смотреть видео шага 2">
+        <div class="flow-illustration">
           <img src="assets/banners/step-02-light.png" alt="Шаг 02 — загрузка съёмки" loading="lazy" class="flow-video-cover" style="object-fit: cover; width: 100%; height: 100%; position: absolute; inset: 0;">
-          <div class="flow-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-          <div class="flow-video-step">Шаг 02 · 24 сек</div>
-        </button>
+          <div class="flow-video-step">Шаг 02</div>
+        </div>
       </div>
 
       <!-- Step 3 -->
@@ -4628,11 +4464,10 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
           <h3>Отправьте ссылку заказчику</h3>
           <p>Организатор заполнит имена, ученики поменяют фото (если вы разрешите) и утвердят макеты</p>
         </div>
-        <button class="flow-video-card" type="button" data-video-modal="step-4" aria-label="Смотреть видео шага 3">
+        <div class="flow-illustration">
           <img src="assets/banners/step-03-dark.png" alt="Шаг 03 — утверждение макета" loading="lazy" class="flow-video-cover" style="object-fit: cover; width: 100%; height: 100%; position: absolute; inset: 0;">
-          <div class="flow-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-          <div class="flow-video-step">Шаг 03 · 20 сек</div>
-        </button>
+          <div class="flow-video-step">Шаг 03</div>
+        </div>
       </div>
 
       <!-- Step 4 -->
@@ -4642,11 +4477,10 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
           <h3>Скачайте макеты</h3>
           <p>Скачайте файлы для печати и отправьте в типографию</p>
         </div>
-        <button class="flow-video-card" type="button" data-video-modal="step-5" aria-label="Смотреть видео шага 4">
+        <div class="flow-illustration">
           <img src="assets/banners/step-04-light.png" alt="Шаг 04 — готов к печати" loading="lazy" class="flow-video-cover" style="object-fit: cover; width: 100%; height: 100%; position: absolute; inset: 0;">
-          <div class="flow-play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></div>
-          <div class="flow-video-step">Шаг 04 · 16 сек</div>
-        </button>
+          <div class="flow-video-step">Шаг 04</div>
+        </div>
       </div>
     </div>
     <button class="flow-expand" type="button"><span>Все шаги</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></button>
@@ -5117,19 +4951,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   </div>
 </div>
 
-<!-- ============================================ MODAL VIDEO PLAYER ============================================ -->
-<div class="modal" id="videoModal" role="dialog" aria-modal="true" aria-label="Видео">
-  <div class="modal-content">
-    <video id="modalVideo" controls playsinline preload="metadata"></video>
-  </div>
-  <button class="modal-close" type="button" aria-label="Закрыть">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true">
-      <line x1="6" y1="6" x2="18" y2="18"/>
-      <line x1="6" y1="18" x2="18" y2="6"/>
-    </svg>
-  </button>
-</div>
-
 <!-- ============================================ JS ============================================ -->
 <script>
 (function () {
@@ -5372,86 +5193,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     });
     heroVideo.addEventListener('ended', () => heroWrap.classList.remove('playing'));
   }
-
-  // ── Modal video sources (hero excluded — plays inline) ───
-  const VIDEO_SOURCES = {
-    'step-1': 'placeholder-4x3.mp4',
-    'step-2': 'placeholder-4x3.mp4',
-    'step-3': 'placeholder-4x3.mp4',
-    'step-4': 'placeholder-4x3.mp4',
-    'step-5': 'placeholder-4x3.mp4'
-  };
-  const modal = document.getElementById('videoModal');
-  const modalVideo = document.getElementById('modalVideo');
-  const modalClose = modal.querySelector('.modal-close');
-
-  function openModal(key) {
-    const src = VIDEO_SOURCES[key];
-    if (!src) return;
-    modalVideo.src = src;
-    modalVideo.currentTime = 0;
-    modal.setAttribute('data-open', 'true');
-    document.body.style.overflow = 'hidden';
-    // Autoplay
-    const p = modalVideo.play();
-    if (p && typeof p.catch === 'function') { p.catch(() => {}); }
-  }
-  function closeModal() {
-    modal.setAttribute('data-open', 'false');
-    document.body.style.overflow = '';
-    modalVideo.pause();
-    modalVideo.removeAttribute('src');
-    modalVideo.load();
-  }
-  const isMobile = () => window.matchMedia('(max-width: 768px)').matches;
-
-  function playInline(btn, src) {
-    if (btn.querySelector('video.flow-inline-video')) return;
-    const v = document.createElement('video');
-    v.className = 'flow-inline-video';
-    v.src = src;
-    v.controls = true;
-    v.playsInline = true;
-    v.autoplay = true;
-    v.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:3;background:#000';
-    btn.appendChild(v);
-    btn.classList.add('playing');
-    btn.dataset.inlineActive = 'true';
-    const tapOverlay = document.createElement('div');
-    tapOverlay.className = 'flow-tap-overlay';
-    tapOverlay.style.cssText = 'position:absolute;left:0;right:0;top:0;bottom:48px;z-index:4;background:transparent;cursor:pointer';
-    tapOverlay.addEventListener('click', (e) => {
-      e.preventDefault();
-      e.stopPropagation();
-      if (v.paused) {
-        const p = v.play();
-        if (p && typeof p.catch === 'function') p.catch(() => {});
-      } else {
-        v.pause();
-      }
-    });
-    btn.appendChild(tapOverlay);
-    const p = v.play();
-    if (p && typeof p.catch === 'function') p.catch(() => {});
-  }
-
-  document.querySelectorAll('[data-video-modal]').forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      if (btn.querySelector('video.flow-inline-video')) return;
-      const key = btn.getAttribute('data-video-modal');
-      const src = VIDEO_SOURCES[key];
-      if (isMobile() && src) {
-        playInline(btn, src);
-      } else {
-        openModal(key);
-      }
-    });
-  });
-  modalClose.addEventListener('click', closeModal);
-  modal.addEventListener('click', (e) => { if (e.target === modal) closeModal(); });
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modal.getAttribute('data-open') === 'true') closeModal();
-  });
 
   // ── Tweaks panel ────────────────────────────────
   const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
