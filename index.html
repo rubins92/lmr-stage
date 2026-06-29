@@ -5495,12 +5495,19 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   try { dismissed = localStorage.getItem('promo-popup-dismissed') === '1'; } catch(e){}
   if (dismissed) { mini.classList.add('visible'); return; }
 
+  var cookieBanner = document.getElementById('cookie-banner');
+
+  function hideCookie() { if (cookieBanner) cookieBanner.style.display = 'none'; }
+  function restoreCookie() { if (cookieBanner && !cookieBanner.hidden) cookieBanner.style.display = ''; }
+
   var timer = setTimeout(function(){
     popup.classList.add('visible');
+    hideCookie();
   }, 12000);
 
   closeBtn.addEventListener('click', function(){
     popup.classList.remove('visible');
+    restoreCookie();
     setTimeout(function(){ mini.classList.add('visible'); }, 350);
     try { localStorage.setItem('promo-popup-dismissed', '1'); } catch(e){}
   });
@@ -5508,6 +5515,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   mini.addEventListener('click', function(){
     mini.classList.remove('visible');
     popup.classList.add('visible');
+    hideCookie();
   });
   mini.addEventListener('keydown', function(e){
     if(e.key === 'Enter') {
