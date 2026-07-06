@@ -2749,9 +2749,15 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   border-color: rgba(123,114,200,0.35);
 }
 [data-theme="dark"] .premium-card:first-child {
-  background: rgba(123,114,200,0.12);
-  border: 2px solid rgba(155,143,232,0.4);
-  box-shadow: 0 4px 24px rgba(155,143,232,0.2), 0 0 0 1px rgba(155,143,232,0.1);
+  background: linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,62,108,0.10));
+  border: 2px solid rgba(255,107,53,0.4);
+  box-shadow: 0 4px 24px rgba(255,107,53,0.2), 0 0 0 1px rgba(255,107,53,0.1);
+}
+[data-theme="dark"] .premium-card:first-child .premium-card-ic {
+  background: rgba(255,107,53,0.15);
+}
+[data-theme="dark"] .premium-card:first-child .premium-card-amount {
+  color: #FF6B35;
 }
 [data-theme="dark"] .premium-card-ic {
   background: rgba(155,143,232,0.15);
@@ -4547,6 +4553,15 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 .promo-mini.visible {
   animation: promo-bounce 2s ease-in-out 1s 2;
 }
+.promo-mini--sample {
+  bottom: 130px;
+  background: linear-gradient(135deg, var(--accent), #9B5ED0);
+  box-shadow: 0 6px 24px rgba(155,143,232,0.3);
+  display: inline-flex;
+}
+.promo-mini--sample:hover {
+  box-shadow: 0 10px 32px rgba(155,143,232,0.4);
+}
 
 /* Mobile adjustments */
 @media (max-width: 640px) {
@@ -4571,6 +4586,9 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     right: 10px;
     font-size: 13px;
     padding: 10px 16px;
+  }
+  .promo-mini--sample {
+    bottom: 110px;
   }
 }
 </style>
@@ -5712,6 +5730,9 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     Получить скидку
   </a>
 </div>
+<div class="promo-mini promo-mini--sample" id="promo-mini-sample" role="button" tabindex="0" aria-label="Бесплатный образец альбома">
+  🎁 Образец <span class="promo-mini-label">бесплатно</span>
+</div>
 <div class="promo-mini" id="promo-mini" role="button" tabindex="0" aria-label="Открыть скидку на печать">
   🔥 −50% <span class="promo-mini-label">на печать</span>
 </div>
@@ -5753,6 +5774,16 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     popup.classList.add('visible');
     hideCookie();
   }, 12000);
+})();
+</script>
+<script>
+(function(){
+  var sampleBtn = document.getElementById('promo-mini-sample');
+  if (sampleBtn) {
+    sampleBtn.addEventListener('click', function(){
+      window.open('https://t.me/lumirphoto_bot', '_blank');
+    });
+  }
 })();
 </script>
 
