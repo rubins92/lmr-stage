@@ -15,6 +15,18 @@ _menu-variants.html
 # Image-gen working folder (raw exports, not deployed)
 image-gen/
 
+# Video assets — kept OUT of git so the repo history doesn't bloat going forward
+# (binaries don't delta and live forever in history). They are web-optimized by
+# optimize-video.sh and shipped to lumir.photo through the deploy pipeline
+# (promote.sh → production/ → deploy.sh → GitLab). A fresh clone won't contain
+# them — recovery recipe (incl. the GitLab flat→assets/ remap) is in ASSETS.md.
+# NOTE: existing history (~59 MB) was deliberately NOT rewritten (shared repo —
+# rewriting would break collaborators' clones); this ignore only stops *future*
+# growth, it does not shrink the current .git.
+*.mp4
+*.mov
+*.webm
+
 # OS / editor
 .DS_Store
 *.swp
