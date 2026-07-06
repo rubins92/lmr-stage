@@ -5510,81 +5510,73 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 </div>
 <script>
 (function(){
-  var popup = document.getElementById('promo-popup');
-  var mini = document.getElementById('promo-mini');
-  var closeBtn = document.getElementById('promo-popup-close');
+  var promoPopup = document.getElementById('promo-popup');
+  var promoMini = document.getElementById('promo-mini');
+  var promoClose = document.getElementById('promo-popup-close');
+  var samplePopup = document.getElementById('promo-popup-sample');
+  var sampleMini = document.getElementById('promo-mini-sample');
+  var sampleClose = document.getElementById('promo-popup-sample-close');
+  var cookieBanner = document.getElementById('cookie-banner');
+
   var dismissed = false;
   try { dismissed = localStorage.getItem('promo-popup-dismissed') === '1'; } catch(e){}
-
-  var cookieBanner = document.getElementById('cookie-banner');
 
   function hideCookie() { if (cookieBanner) cookieBanner.style.display = 'none'; }
   function restoreCookie() { if (cookieBanner && !cookieBanner.hidden) cookieBanner.style.display = ''; }
 
-  var sampleMiniRef = document.getElementById('promo-mini-sample');
+  function hideAll() {
+    promoMini.classList.remove('visible');
+    sampleMini.classList.remove('visible');
+    promoPopup.classList.remove('visible');
+    samplePopup.classList.remove('visible');
+  }
 
-  closeBtn.addEventListener('click', function(){
-    popup.classList.remove('visible');
+  function showMini(which) {
+    hideAll();
+    setTimeout(function(){ which.classList.add('visible'); }, 350);
+  }
+
+  // -50% popup close → show sample mini
+  promoClose.addEventListener('click', function(){
+    promoPopup.classList.remove('visible');
     restoreCookie();
-    setTimeout(function(){
-      mini.classList.add('visible');
-      if (sampleMiniRef) sampleMiniRef.classList.add('visible');
-    }, 350);
+    showMini(sampleMini);
     try { localStorage.setItem('promo-popup-dismissed', '1'); } catch(e){}
   });
 
-  mini.addEventListener('click', function(){
-    mini.classList.remove('visible');
-    if (sampleMiniRef) sampleMiniRef.classList.remove('visible');
-    popup.classList.add('visible');
+  // -50% mini click → open -50% popup
+  promoMini.addEventListener('click', function(){
+    hideAll();
+    promoPopup.classList.add('visible');
     hideCookie();
   });
-  mini.addEventListener('keydown', function(e){
-    if(e.key === 'Enter') {
-      mini.classList.remove('visible');
-      if (sampleMiniRef) sampleMiniRef.classList.remove('visible');
-      popup.classList.add('visible');
-    }
+  promoMini.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') { promoMini.click(); }
   });
 
-  if (dismissed) { mini.classList.add('visible'); return; }
-
-  var timer = setTimeout(function(){
-    popup.classList.add('visible');
-    hideCookie();
-  }, 12000);
-})();
-</script>
-<script>
-(function(){
-  var samplePopup = document.getElementById('promo-popup-sample');
-  var sampleMini = document.getElementById('promo-mini-sample');
-  var sampleClose = document.getElementById('promo-popup-sample-close');
-  var promoMiniRef = document.getElementById('promo-mini');
-  if (!samplePopup || !sampleMini || !sampleClose) return;
-
-  sampleMini.classList.add('visible');
-
+  // sample popup close → show -50% mini
   sampleClose.addEventListener('click', function(){
     samplePopup.classList.remove('visible');
-    setTimeout(function(){
-      sampleMini.classList.add('visible');
-      if (promoMiniRef) promoMiniRef.classList.add('visible');
-    }, 350);
+    showMini(promoMini);
   });
 
+  // sample mini click → open sample popup
   sampleMini.addEventListener('click', function(){
-    sampleMini.classList.remove('visible');
-    if (promoMiniRef) promoMiniRef.classList.remove('visible');
+    hideAll();
     samplePopup.classList.add('visible');
   });
   sampleMini.addEventListener('keydown', function(e){
-    if (e.key === 'Enter') {
-      sampleMini.classList.remove('visible');
-      if (promoMiniRef) promoMiniRef.classList.remove('visible');
-      samplePopup.classList.add('visible');
-    }
+    if (e.key === 'Enter') { sampleMini.click(); }
   });
+
+  // Init: if promo was dismissed before, start with sample mini
+  if (dismissed) { sampleMini.classList.add('visible'); return; }
+
+  // Otherwise auto-open -50% popup after 12s
+  setTimeout(function(){
+    promoPopup.classList.add('visible');
+    hideCookie();
+  }, 12000);
 })();
 </script>
 
