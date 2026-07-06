@@ -4557,10 +4557,20 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   bottom: 130px;
   background: linear-gradient(135deg, var(--accent), #9B5ED0);
   box-shadow: 0 6px 24px rgba(155,143,232,0.3);
-  display: inline-flex;
 }
 .promo-mini--sample:hover {
   box-shadow: 0 10px 32px rgba(155,143,232,0.4);
+}
+.promo-popup--sample .promo-sticker {
+  background: linear-gradient(135deg, var(--accent), #9B5ED0);
+  box-shadow: 0 6px 20px rgba(155,143,232,0.35);
+}
+.promo-popup--sample .promo-popup-cta {
+  background: linear-gradient(135deg, var(--accent), #9B5ED0);
+  box-shadow: 0 4px 16px rgba(155,143,232,0.3);
+}
+.promo-popup--sample .promo-popup-cta:hover {
+  box-shadow: 0 8px 24px rgba(155,143,232,0.45);
 }
 
 /* Mobile adjustments */
@@ -4589,6 +4599,9 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   }
   .promo-mini--sample {
     bottom: 110px;
+  }
+  .promo-popup--sample {
+    bottom: 60px;
   }
 }
 </style>
@@ -5730,6 +5743,16 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     Получить скидку
   </a>
 </div>
+<div class="promo-popup promo-popup--sample" id="promo-popup-sample">
+  <button class="promo-popup-close" id="promo-popup-sample-close" type="button" aria-label="Закрыть">✕</button>
+  <div class="promo-sticker" style="transform: rotate(2deg);">🎁</div>
+  <div class="promo-popup-title">Бесплатный образец альбома</div>
+  <p class="promo-popup-desc">Оплатим 100% стоимости образца в&nbsp;любой типографии — один альбом для одного фотографа, до&nbsp;20&nbsp;разворотов.</p>
+  <a href="https://t.me/lumirphoto_bot" target="_blank" rel="noopener" class="promo-popup-cta">
+    <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.53 8.15l-1.83 8.63c-.14.62-.5.77-1.01.48l-2.8-2.06-1.35 1.3c-.15.15-.28.28-.57.28l.2-2.85 5.18-4.68c.22-.2-.05-.31-.35-.12l-6.4 4.03-2.76-.86c-.6-.19-.61-.6.13-.89l10.78-4.16c.5-.18.93.12.78.9z"/></svg>
+    Получить образец
+  </a>
+</div>
 <div class="promo-mini promo-mini--sample" id="promo-mini-sample" role="button" tabindex="0" aria-label="Бесплатный образец альбома">
   🎁 Образец <span class="promo-mini-label">бесплатно</span>
 </div>
@@ -5778,12 +5801,28 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 </script>
 <script>
 (function(){
-  var sampleBtn = document.getElementById('promo-mini-sample');
-  if (sampleBtn) {
-    sampleBtn.addEventListener('click', function(){
-      window.open('https://t.me/lumirphoto_bot', '_blank');
-    });
-  }
+  var samplePopup = document.getElementById('promo-popup-sample');
+  var sampleMini = document.getElementById('promo-mini-sample');
+  var sampleClose = document.getElementById('promo-popup-sample-close');
+  if (!samplePopup || !sampleMini || !sampleClose) return;
+
+  sampleMini.classList.add('visible');
+
+  sampleClose.addEventListener('click', function(){
+    samplePopup.classList.remove('visible');
+    setTimeout(function(){ sampleMini.classList.add('visible'); }, 350);
+  });
+
+  sampleMini.addEventListener('click', function(){
+    sampleMini.classList.remove('visible');
+    samplePopup.classList.add('visible');
+  });
+  sampleMini.addEventListener('keydown', function(e){
+    if (e.key === 'Enter') {
+      sampleMini.classList.remove('visible');
+      samplePopup.classList.add('visible');
+    }
+  });
 })();
 </script>
 
