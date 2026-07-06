@@ -341,6 +341,192 @@ if (window.ANALYTICS_ENABLED) {
 }
 
 /* ============================================
+   DARK THEME
+   ============================================ */
+[data-theme="dark"] {
+  --bg-cream: #1A1726;
+  --bg-white: #221F2E;
+  --bg-warm: #1E1B28;
+  --bg-violet-wash: #1D1A2A;
+  --bg-dark: #2B2839;
+
+  --color-body: #B0A9C0;
+  --color-nav: #C5BDD6;
+  --color-secondary: #9990AE;
+  --color-micro: #7A7290;
+  --color-brand: #9B8FE8;
+  --color-accent-pink: #E89BB0;
+
+  --text-1: #F0ECF6;
+  --text-2: #C5BDD6;
+  --text-3: #9990AE;
+  --text-4: #6A6280;
+
+  --accent: #9B8FE8;
+  --accent-hover: #8A7ED8;
+
+  --border: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.14);
+
+  --shadow-sm: 0 1px 0 rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.15);
+  --shadow-md: 0 1px 0 rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.15), 0 8px 16px rgba(0,0,0,0.2);
+  --shadow-lg: 0 1px 0 rgba(0,0,0,0.2), 0 2px 4px rgba(0,0,0,0.15), 0 8px 16px rgba(0,0,0,0.2), 0 24px 48px rgba(0,0,0,0.3);
+  --shadow-cta: 0 1px 0 rgba(0,0,0,0.2), 0 4px 12px rgba(155,143,232,0.3), 0 12px 24px rgba(155,143,232,0.15);
+}
+[data-theme="dark"] body {
+  background: linear-gradient(180deg,
+    #1D1A2A 0%,
+    #1A1726 8%,
+    #161323 20%,
+    #141120 35%,
+    #161323 50%,
+    #1A1726 62%,
+    #1D1A2A 72%,
+    #1F1C2D 85%,
+    #1D1A2A 100%
+  );
+  color: var(--text-1);
+}
+[data-theme="dark"] .nav-wrap {
+  background: rgba(22,19,35,0.85);
+  border-color: rgba(255,255,255,0.06);
+}
+[data-theme="dark"] .nav-login {
+  background: var(--accent);
+}
+[data-theme="dark"] .nav-login:hover {
+  background: var(--accent-hover);
+}
+[data-theme="dark"] .nav-link { color: var(--text-2); }
+[data-theme="dark"] .nav-link:hover { color: var(--text-1); }
+[data-theme="dark"] .nav-overlay {
+  background: rgba(22,19,35,0.97);
+}
+[data-theme="dark"] .hero-offer {
+  background: rgba(155,143,232,0.1);
+  border-color: rgba(155,143,232,0.2);
+}
+[data-theme="dark"] .hero-video-placeholder-tag {
+  background: rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.8);
+}
+[data-theme="dark"] .hero-video-meta {
+  color: rgba(255,255,255,0.5);
+}
+[data-theme="dark"] .cookie-banner {
+  background: #2A2738;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+[data-theme="dark"] .metric-card,
+[data-theme="dark"] .step-card,
+[data-theme="dark"] .faq-item,
+[data-theme="dark"] .pricing-card,
+[data-theme="dark"] .tpl-perk,
+[data-theme="dark"] .tpl-privacy,
+[data-theme="dark"] .tpl-labs,
+[data-theme="dark"] .ai-case {
+  background: var(--bg-white);
+  border-color: rgba(155,143,232,0.15);
+}
+[data-theme="dark"] .faq-q { color: var(--text-1); }
+[data-theme="dark"] .faq-item[open] { background: var(--bg-white); }
+[data-theme="dark"] .sticky-premium {
+  background: rgba(30,27,40,0.96);
+  border-top-color: rgba(155,143,232,0.15);
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.2);
+}
+[data-theme="dark"] .sticky-premium-mini {
+  background: rgba(30,27,40,0.96);
+  border-color: rgba(155,143,232,0.15);
+  color: var(--text-1);
+}
+[data-theme="dark"] .sticky-premium-close { color: var(--text-3); }
+[data-theme="dark"] .sticky-premium-close:hover { background: rgba(255,255,255,0.08); }
+[data-theme="dark"] .promo-popup {
+  background: #2A2738;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+}
+[data-theme="dark"] .promo-popup-close { background: rgba(255,255,255,0.08); color: var(--text-3); }
+[data-theme="dark"] .promo-popup-close:hover { background: rgba(255,255,255,0.12); }
+[data-theme="dark"] .promo-popup-title { color: var(--text-1); }
+[data-theme="dark"] .promo-popup-desc { color: var(--text-2); }
+[data-theme="dark"] .btn-primary {
+  background: var(--accent);
+  box-shadow: var(--shadow-cta);
+}
+[data-theme="dark"] .btn-primary:hover { background: var(--accent-hover); }
+[data-theme="dark"] .section-dark { background: #161323; }
+[data-theme="dark"] .pricing-card { background: var(--bg-white); }
+[data-theme="dark"] .pricing-card-head { border-color: rgba(255,255,255,0.06); }
+[data-theme="dark"] .footer { background: #0F0D1A; }
+[data-theme="dark"] .nav-logo img { filter: brightness(10); }
+[data-theme="dark"] .footer-logo img { filter: brightness(10); }
+[data-theme="dark"] .hero-video-placeholder {
+  background: #161323;
+}
+[data-theme="dark"] .tpl-lab {
+  background: var(--bg-white);
+  border-color: rgba(155,143,232,0.12);
+  color: var(--text-2);
+}
+[data-theme="dark"] .hero-sub { color: var(--text-2); }
+[data-theme="dark"] .hero::before {
+  background: linear-gradient(180deg, #1D1A2A 0%, #1A1726 30%, #161323 65%, transparent 100%);
+}
+[data-theme="dark"] .nav-wrap.scrolled { background: rgba(22,19,35,0.92); border-bottom-color: rgba(255,255,255,0.06); }
+[data-theme="dark"] .nav-links a { color: var(--text-2); }
+[data-theme="dark"] .nav-links a:hover { color: var(--text-1); }
+[data-theme="dark"] .nav-beta { color: var(--accent); border-color: rgba(155,143,232,0.3); }
+[data-theme="dark"] .nav-beta:hover { background: rgba(155,143,232,0.08); border-color: rgba(155,143,232,0.5); }
+[data-theme="dark"] .btn-on-dark { background: var(--accent); color: #fff; }
+[data-theme="dark"] .hero-video-placeholder-spread { background: #2A2738; }
+[data-theme="dark"] .hero-video-placeholder-spread .photo { background: #3A3650 !important; }
+[data-theme="dark"] .tpl-page { background: #2A2738; }
+[data-theme="dark"] .tpl-spread-placeholder { background: var(--bg-white); }
+[data-theme="dark"] .tpl-ph-1 { background: var(--bg-white); }
+[data-theme="dark"] .metric-card.win {
+  background: linear-gradient(180deg, #2A2738 0%, #221F2E 100%);
+  box-shadow: 0 1px 0 rgba(155,143,232,0.14), 0 8px 24px rgba(0,0,0,0.2), 0 24px 48px rgba(0,0,0,0.15);
+  outline-color: rgba(155,143,232,0.2);
+}
+[data-theme="dark"] .pv-v2-card { background: var(--bg-white); border-color: rgba(155,143,232,0.12); }
+[data-theme="dark"] .tweaks-panel {
+  background: #2A2738;
+  border-color: rgba(255,255,255,0.08);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.3), 0 24px 48px rgba(0,0,0,0.2);
+}
+[data-theme="dark"] .tweaks-radio button[aria-pressed="true"] {
+  background: rgba(155,143,232,0.15);
+  color: var(--text-1);
+  box-shadow: none;
+}
+[data-theme="dark"] .org-status.done { background: rgba(91,201,122,0.12); color: #7BCF8C; }
+[data-theme="dark"] .section-dark { background: #121020; }
+[data-theme="dark"] .hero-badge { background: rgba(155,143,232,0.12); color: var(--accent); border-color: rgba(155,143,232,0.2); }
+[data-theme="dark"] .sticky-cta { background: rgba(30,27,40,0.96); border-color: rgba(155,143,232,0.15); }
+[data-theme="dark"] .promo-mini { background: rgba(30,27,40,0.96); border-color: rgba(155,143,232,0.15); }
+[data-theme="dark"] .hero-tagline { background: rgba(155,143,232,0.1); color: var(--accent); }
+
+/* Theme toggle */
+.theme-toggle {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.05);
+  border: none;
+  font-size: 14px;
+  transition: background 0.2s;
+  flex-shrink: 0;
+}
+.theme-toggle:hover { background: rgba(0,0,0,0.1); }
+[data-theme="dark"] .theme-toggle { background: rgba(255,255,255,0.08); }
+[data-theme="dark"] .theme-toggle:hover { background: rgba(255,255,255,0.12); }
+.theme-toggle-icon { line-height: 1; }
+
+/* ============================================
    RESET / BASE
    ============================================ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -4354,6 +4540,14 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   }
 }
 </style>
+<script>
+(function(){
+  var saved = null;
+  try { saved = localStorage.getItem('lumir-theme'); } catch(e){}
+  var theme = saved || 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+})();
+</script>
 </head>
 <body data-pricing="v3">
 
@@ -4367,6 +4561,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
       <a href="#how" class="nav-link nav-link-how">Как работает</a>
       <a href="#faq" class="nav-link nav-link-faq">FAQ</a>
     </div>
+    <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Переключить тему"><span class="theme-toggle-icon" id="theme-toggle-icon">☀️</span></button>
     <a href="https://fotoklass.lumir.photo/projects" class="nav-login">Войти</a>
     <button class="nav-burger" id="nav-burger" type="button" aria-label="Меню" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -5632,6 +5827,30 @@ document.addEventListener('click', function(e) {
       banner.setAttribute('hidden','');
     });
   }
+})();
+</script>
+
+<!-- ============================================ THEME TOGGLE ============================================ -->
+<script>
+(function(){
+  var btn = document.getElementById('theme-toggle');
+  var icon = document.getElementById('theme-toggle-icon');
+  if (!btn) return;
+
+  function getTheme() {
+    return document.documentElement.getAttribute('data-theme') || 'dark';
+  }
+  function setIcon() {
+    icon.textContent = getTheme() === 'dark' ? '☀️' : '🌙';
+  }
+  setIcon();
+
+  btn.addEventListener('click', function(){
+    var next = getTheme() === 'dark' ? 'light' : 'dark';
+    document.documentElement.setAttribute('data-theme', next);
+    try { localStorage.setItem('lumir-theme', next); } catch(e){}
+    setIcon();
+  });
 })();
 </script>
 
