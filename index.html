@@ -472,6 +472,9 @@ if (window.ANALYTICS_ENABLED) {
 [data-theme="dark"] .hero-sub { color: var(--text-2); }
 [data-theme="dark"] .tpl-spread img { border-radius: 16px; filter: brightness(0.85); }
 [data-theme="dark"] .tpl-labs { background: var(--bg-white); border-radius: 16px; padding: 20px; border: 1px solid rgba(155,143,232,0.12); }
+[data-theme="dark"] .ai-demo img { filter: brightness(0.85); }
+[data-theme="dark"] .flow2-col { background: var(--bg-white); border-color: rgba(155,143,232,0.12); }
+[data-theme="dark"] .flow2-col.now { background: linear-gradient(180deg, #2A2738 0%, var(--bg-white) 100%); border-color: rgba(155,143,232,0.2); }
 [data-theme="dark"] .hero::before {
   background: linear-gradient(180deg, #1D1A2A 0%, #1A1726 30%, #161323 65%, transparent 100%);
 }
@@ -508,6 +511,11 @@ if (window.ANALYTICS_ENABLED) {
 [data-theme="dark"] .sticky-cta { background: rgba(30,27,40,0.96); border-color: rgba(155,143,232,0.15); }
 [data-theme="dark"] .promo-mini { background: rgba(30,27,40,0.96); border-color: rgba(155,143,232,0.15); }
 [data-theme="dark"] .hero-tagline { background: rgba(155,143,232,0.1); color: var(--accent); }
+[data-theme="dark"] .metric-h-accent span[style*="color: rgb(45"] { color: var(--text-1) !important; }
+[data-theme="dark"] .metric-visual img { filter: brightness(0.85); }
+[data-theme="dark"] .student-mock { background: var(--bg-white) !important; border-radius: 24px; overflow: hidden; border: 1px solid rgba(155,143,232,0.12); }
+[data-theme="dark"] .student-mock img { filter: brightness(0.88); border-radius: 24px; }
+[data-theme="dark"] .metric-caption { background: var(--bg-white); color: var(--text-2); border-color: rgba(155,143,232,0.12); }
 
 /* Theme toggle */
 .theme-toggle {
@@ -2738,9 +2746,9 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   border-color: rgba(123,114,200,0.35);
 }
 [data-theme="dark"] .premium-card:first-child {
-  background: rgba(123,114,200,0.1);
-  border-color: rgba(123,114,200,0.3);
-  box-shadow: 0 4px 24px rgba(123,114,200,0.15);
+  background: rgba(123,114,200,0.12);
+  border: 2px solid rgba(155,143,232,0.4);
+  box-shadow: 0 4px 24px rgba(155,143,232,0.2), 0 0 0 1px rgba(155,143,232,0.1);
 }
 [data-theme="dark"] .premium-card-ic {
   background: rgba(155,143,232,0.15);
