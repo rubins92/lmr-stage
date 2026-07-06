@@ -419,7 +419,6 @@ if (window.ANALYTICS_ENABLED) {
 }
 [data-theme="dark"] .metric-card,
 [data-theme="dark"] .step-card,
-[data-theme="dark"] .faq-item,
 [data-theme="dark"] .pricing-card,
 [data-theme="dark"] .tpl-perk,
 [data-theme="dark"] .tpl-privacy,
@@ -428,8 +427,12 @@ if (window.ANALYTICS_ENABLED) {
   background: var(--bg-white);
   border-color: rgba(155,143,232,0.15);
 }
+[data-theme="dark"] .faq-item { background: transparent; border-color: rgba(255,255,255,0.08); }
+[data-theme="dark"] .tpl-perk--accent {
+  border: 2px solid rgba(155,143,232,0.35);
+  box-shadow: 0 4px 24px rgba(155,143,232,0.15), 0 0 0 1px rgba(155,143,232,0.08);
+}
 [data-theme="dark"] .faq-q { color: var(--text-1); }
-[data-theme="dark"] .faq-item[open] { background: var(--bg-white); }
 [data-theme="dark"] .sticky-premium {
   background: rgba(30,27,40,0.96);
   border-top-color: rgba(155,143,232,0.15);
@@ -4692,8 +4695,8 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
           <p class="tpl-perk-sub">Скидка 50% на печать в партнёрских типографиях — первым 500 фотографам</p>
         </div>
 
-        <div class="tpl-perk reveal">
-          <div class="tpl-perk-flag">🎁 Образец бесплатно</div>
+        <div class="tpl-perk tpl-perk--accent reveal">
+          <div class="tpl-perk-flag" style="background: var(--accent); color: #fff;">🎁 ОБРАЗЕЦ БЕСПЛАТНО</div>
           <p class="tpl-perk-h">Оплатим 100% стоимости образца в&nbsp;любой типографии</p>
           <p class="tpl-perk-sub">Один альбом для одного фотографа, до&nbsp;20&nbsp;разворотов — если он сделан в&nbsp;Lumir</p>
         </div>
