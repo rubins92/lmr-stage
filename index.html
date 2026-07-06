@@ -5524,59 +5524,51 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   function hideCookie() { if (cookieBanner) cookieBanner.style.display = 'none'; }
   function restoreCookie() { if (cookieBanner && !cookieBanner.hidden) cookieBanner.style.display = ''; }
 
-  function hideAll() {
+  function showBothMinis() {
+    promoPopup.classList.remove('visible');
+    samplePopup.classList.remove('visible');
+    restoreCookie();
+    setTimeout(function(){
+      sampleMini.classList.add('visible');
+      setTimeout(function(){ promoMini.classList.add('visible'); }, 600);
+    }, 350);
+  }
+
+  function openPopup(popup) {
     promoMini.classList.remove('visible');
     sampleMini.classList.remove('visible');
     promoPopup.classList.remove('visible');
     samplePopup.classList.remove('visible');
+    popup.classList.add('visible');
+    hideCookie();
   }
 
-  function showMini(which) {
-    hideAll();
-    setTimeout(function(){ which.classList.add('visible'); }, 350);
-  }
-
-  // -50% popup close → show sample mini
+  // -50% popup close → show both minis
   promoClose.addEventListener('click', function(){
-    promoPopup.classList.remove('visible');
-    restoreCookie();
-    showMini(sampleMini);
+    showBothMinis();
     try { localStorage.setItem('promo-popup-dismissed', '1'); } catch(e){}
   });
 
   // -50% mini click → open -50% popup
-  promoMini.addEventListener('click', function(){
-    hideAll();
-    promoPopup.classList.add('visible');
-    hideCookie();
-  });
-  promoMini.addEventListener('keydown', function(e){
-    if (e.key === 'Enter') { promoMini.click(); }
-  });
+  promoMini.addEventListener('click', function(){ openPopup(promoPopup); });
+  promoMini.addEventListener('keydown', function(e){ if (e.key === 'Enter') promoMini.click(); });
 
-  // sample popup close → show -50% mini
-  sampleClose.addEventListener('click', function(){
-    samplePopup.classList.remove('visible');
-    showMini(promoMini);
-  });
+  // sample popup close → show both minis
+  sampleClose.addEventListener('click', function(){ showBothMinis(); });
 
   // sample mini click → open sample popup
-  sampleMini.addEventListener('click', function(){
-    hideAll();
-    samplePopup.classList.add('visible');
-  });
-  sampleMini.addEventListener('keydown', function(e){
-    if (e.key === 'Enter') { sampleMini.click(); }
-  });
+  sampleMini.addEventListener('click', function(){ openPopup(samplePopup); });
+  sampleMini.addEventListener('keydown', function(e){ if (e.key === 'Enter') sampleMini.click(); });
 
-  // Init: if promo was dismissed before, start with sample mini
-  if (dismissed) { sampleMini.classList.add('visible'); return; }
+  // Init
+  if (dismissed) {
+    sampleMini.classList.add('visible');
+    setTimeout(function(){ promoMini.classList.add('visible'); }, 600);
+    return;
+  }
 
-  // Otherwise auto-open -50% popup after 12s
-  setTimeout(function(){
-    promoPopup.classList.add('visible');
-    hideCookie();
-  }, 12000);
+  // First visit: auto-open -50% popup once after 12s
+  setTimeout(function(){ openPopup(promoPopup); }, 12000);
 })();
 </script>
 
