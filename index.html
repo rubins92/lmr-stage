@@ -5745,16 +5745,13 @@ document.addEventListener('click', function(e) {
     if(el.closest('.tpl-lab'))return 'templates';
     return 'other';
   }
-  var incoming=new URLSearchParams(window.location.search||'');
 
-  // Auto-propagate UTMs + lvid в ссылки на app
+  // App-CTA click tracking. Links stay CLEAN — no lvid/UTM appended to the href
+  // (Sergei 2026-07-07: all auth CTAs lead to a bare fotoklass.lumir.photo/).
+  // Attribution is still preserved server-side: window.op carries lumir_vid as a
+  // global property (see setGlobalProperties in <head>), so the click event is
+  // tied to the visitor without dirtying the URL.
   document.querySelectorAll('a[href*="fotoklass.lumir.photo"]').forEach(function(a){
-    try{
-      var u=new URL(a.href);
-      incoming.forEach(function(v,k){if(!u.searchParams.has(k))u.searchParams.set(k,v)});
-      if(window.__lumir_vid&&!u.searchParams.has('lvid'))u.searchParams.set('lvid',window.__lumir_vid);
-      a.href=u.toString();
-    }catch(e){}
     a.addEventListener('click',function(){
       try{
         if(window.op){
