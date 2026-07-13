@@ -1,8 +1,85 @@
 # SEO-патч для lumir.photo
 
-**Проблема:** сайт пропал из поиска. Причина — мета-теги `noindex, nofollow` блокируют индексацию всеми поисковиками.
+**Проблема:** сайт пропал из поиска. Три причины:
+1. Мета-теги `noindex, nofollow` в `<head>` блокируют индексацию всеми поисковиками
+2. `robots.txt` содержит `Disallow: /` для всех ботов — полная блокировка краулинга
+3. `sitemap.xml` не указан в robots.txt
 
 **Целевые запросы:** Люмир, Люмир фото, Люмир фотокласс, Автоверстка индивидуальных альбомов, Автоверстка фотокниг, Lumir, Lumir photo
+
+---
+
+## 0. Файлы `robots.txt` и `sitemap.xml` — ЗАМЕНИТЬ ЦЕЛИКОМ
+
+### robots.txt — заменить содержимое на:
+
+```
+User-agent: *
+Allow: /
+Disallow: /assets/screens/
+
+# AI training crawlers — block
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+# SEO crawlers — block (optional, saves bandwidth)
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
+
+Sitemap: https://lumir.photo/sitemap.xml
+Host: https://lumir.photo
+```
+
+Логика: разрешаем краулинг для Google/Yandex/Bing, блокируем только AI-тренировочных ботов и SEO-краулеры.
+
+### sitemap.xml — заменить содержимое на:
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://lumir.photo/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://fotoklass.lumir.photo/</loc>
+    <lastmod>2026-07-08</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+</urlset>
+```
+
+При каждом обновлении лендинга менять `<lastmod>` на текущую дату.
 
 ---
 
