@@ -592,18 +592,19 @@ body::before{
   background-size:256px;
 }
 
-/* ── Cookie banner ────────────────────────────── */
+/* ── Cookie card (in the corner promo stack, top) ─── */
 .cookie-banner{
   position:fixed;
-  bottom:20px;
+  bottom:190px;                 /* above sample mini (130px) + fire mini (80px) */
   right:20px;
   left:auto;
-  z-index:9000;
-  width:280px;
-  background:#FFFFFF;
-  border-radius:18px;
-  box-shadow:0 12px 40px rgba(44,40,37,0.12), 0 2px 6px rgba(44,40,37,0.05);
-  padding:16px 18px 14px;
+  z-index:101;                  /* same stacking layer as the promo minis/popups */
+  width:250px;
+  background:#221f30;           /* dark card — matches the promo dark theme */
+  border:1px solid rgba(255,255,255,0.10);
+  border-radius:16px;
+  box-shadow:0 24px 70px rgba(0,0,0,0.55), 0 4px 16px rgba(0,0,0,0.35);
+  padding:15px 17px;
   display:flex;
   flex-direction:column;
   align-items:flex-start;
@@ -613,12 +614,12 @@ body::before{
 .cookie-banner[hidden]{display:none;}
 .cookie-banner p{
   font-size:13px;
-  line-height:1.45;
-  color:var(--text-2);
+  line-height:1.5;
+  color:#e9e6f2;                /* high-contrast near-white — legible on dark */
   margin:0;
 }
 .cookie-banner a{
-  color:var(--text-2);
+  color:#b9a9ea;
   text-decoration:underline;
   text-underline-offset:2px;
   transition:color 0.15s;
@@ -630,7 +631,7 @@ body::before{
   color:#fff;
   font-family:var(--display);
   font-weight:700;
-  font-size:12px;
+  font-size:12.5px;
   letter-spacing:0.025em;
   border:none;
   border-radius:999px;
@@ -644,17 +645,16 @@ body::before{
   .cookie-banner{
     left:10px;
     right:10px;
-    bottom:10px;
+    bottom:190px;               /* above sample mini (110px) + fire mini (60px) on mobile */
     width:auto;
     flex-direction:column;
     align-items:flex-start;
     gap:10px;
     border-radius:16px;
-    padding:12px 14px;
+    padding:14px 16px;
     transition:bottom 0.25s var(--ease-fizz);
   }
-  .cookie-banner.lifted{bottom:80px;}
-  .cookie-banner p{font-size:12.5px; line-height:1.4; letter-spacing:-0.005em;}
+  .cookie-banner p{font-size:12.5px; line-height:1.45;}
   .cookie-banner-btn{align-self:flex-start; font-size:11.5px; padding:7px 18px;}
 }
 
@@ -4261,8 +4261,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     font-size: 14px;
   }
   .sticky-premium-mini { bottom: 80px; }
-  /* Lift cookie banner above sticky premium bar */
-  .sticky-premium.visible ~ #cookie-banner.cookie-banner { bottom: 80px; }
   /* Hide mobile sticky CTA when premium bar is visible */
   .sticky-premium.visible ~ .sticky-cta { opacity: 0; pointer-events: none; }
 }
@@ -4474,7 +4472,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
       <a href="#faq" class="nav-link nav-link-faq">FAQ</a>
     </div>
     <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Переключить тему"><span class="theme-toggle-icon" id="theme-toggle-icon">☀️</span></button>
-    <a href="https://fotoklass.lumir.photo/projects" class="nav-login">Войти</a>
+    <a href="https://fotoklass.lumir.photo/" class="nav-login">Войти</a>
     <button class="nav-burger" id="nav-burger" type="button" aria-label="Меню" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
@@ -4486,7 +4484,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   <a href="#premium" class="nav-overlay-link">Премиум</a>
   <a href="#how" class="nav-overlay-link">Как работает</a>
   <a href="#faq" class="nav-overlay-link">FAQ</a>
-  <a href="https://fotoklass.lumir.photo/projects" class="nav-overlay-link cta-style">Войти</a>
+  <a href="https://fotoklass.lumir.photo/" class="nav-overlay-link cta-style">Войти</a>
 </div>
 
 <!-- ============================================ S1 — HERO ============================================ -->
@@ -4516,7 +4514,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   </div>
   <p class="hero-sub" style="max-width: 680px; font-weight: 400; margin: 32px auto 0; text-align: center;">Lumir распознаёт лица, выбирает лучшие кадры и собирает индивидуальные альбомы для каждого ребёнка</p>
   <div style="text-align: center; margin-top: 24px; margin-bottom: 16px;">
-    <a href="https://fotoklass.lumir.photo/projects" class="btn btn-primary">ПОПРОБОВАТЬ</a>
+    <a href="https://fotoklass.lumir.photo/" class="btn btn-primary">ПОПРОБОВАТЬ</a>
   </div>
   </div>
 </header>
@@ -4871,7 +4869,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     </div>
 
     <div class="premium-cta reveal" style="text-align: center; margin-top: 48px;">
-      <a href="https://fotoklass.lumir.photo/projects" class="btn btn-primary">Забрать Lumir Premium</a>
+      <a href="https://fotoklass.lumir.photo/" class="btn btn-primary">Забрать Lumir Premium</a>
     </div>
   </div>
 </section>
@@ -4884,7 +4882,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
       <h2>Соберите первый класс уже сегодня</h2>
       <p class="cta-sub">10 000 ₽ на баланс и 50% на печать класса у партнеров первым 500 фотографам</p>
       <div class="cta-banner-ctas">
-        <a href="https://fotoklass.lumir.photo/projects" class="btn btn-on-dark">Попробовать</a>
+        <a href="https://fotoklass.lumir.photo/" class="btn btn-on-dark">Попробовать</a>
       </div>
     </div>
   </div>
@@ -5156,7 +5154,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
         <h4>Продукт</h4>
         <a href="#pricing">Стоимость</a>
         <a href="#how">Как работает</a>
-        <a href="https://fotoklass.lumir.photo/projects">Попробовать</a>
+        <a href="https://fotoklass.lumir.photo/">Попробовать</a>
       </div>
       <div class="footer-col">
         <h4>Связь</h4>
@@ -5216,7 +5214,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
         </div>
       </div>
     </div>
-    <a href="https://fotoklass.lumir.photo/projects" class="btn btn-primary" style="margin-top: 28px; display: inline-flex; align-self: center;">Попробовать</a>
+    <a href="https://fotoklass.lumir.photo/" class="btn btn-primary" style="margin-top: 28px; display: inline-flex; align-self: center;">Попробовать</a>
   </div>
 </div>
 
@@ -5481,6 +5479,12 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 })();
 </script>
 
+<!-- ============================================ COOKIE CARD (top of corner promo stack — must precede promo script so it can coordinate) ============================================ -->
+<div id="cookie-banner" class="cookie-banner" hidden>
+  <p>🍪&nbsp;Пользуясь сайтом, вы соглашаетесь с&nbsp;использованием cookies</p>
+  <button class="cookie-banner-btn" type="button">Хорошо</button>
+</div>
+
 <!-- ============================================ PROMO POPUP — -50% НА ПЕЧАТЬ ============================================ -->
 <div class="promo-popup" id="promo-popup">
   <button class="promo-popup-close" id="promo-popup-close" type="button" aria-label="Закрыть">✕</button>
@@ -5585,7 +5589,7 @@ function updateSlots(n) {
 }
 
 document.addEventListener('click', function(e) {
-  var link = e.target.closest('a[href*="fotoklass.lumir.photo"]');
+  var link = e.target.closest('a[href*="fotoklass.lumir.photo"], a[data-claim]');
   if (link && SLOTS_LEFT > 1) updateSlots(SLOTS_LEFT - 1);
 });
 </script>
@@ -5593,7 +5597,7 @@ document.addEventListener('click', function(e) {
   <div class="sticky-premium-inner">
     <span class="sticky-premium-pulse"></span>
     <span class="sticky-premium-text"><span class="sticky-premium-text-full">Осталось <strong><span id="sticky-slots">367</span> мест из 500</strong> · Lumir Premium для первых 500 фотографов на год</span><span class="sticky-premium-text-short"><strong><span id="sticky-slots-bar">367</span> из 500</strong> мест · Premium на год</span></span>
-    <a href="https://fotoklass.lumir.photo/projects" class="sticky-premium-cta">Забрать →</a>
+    <a href="https://t.me/lumirphoto_bot" target="_blank" rel="noopener" class="sticky-premium-cta" data-claim>Забрать →</a>
     <button class="sticky-premium-close" id="sticky-premium-close" type="button" aria-label="Свернуть">✕</button>
   </div>
 </div>
@@ -5641,15 +5645,8 @@ document.addEventListener('click', function(e) {
 })();
 </script>
 
-<!-- ============================================ COOKIE BANNER ============================================ -->
-<!-- TODO: заменить href="/privacy" на реальный URL страницы политики конфиденциальности, когда она появится. -->
-<div id="cookie-banner" class="cookie-banner" hidden>
-  <p>Пользуясь сайтом, вы соглашаетесь с&nbsp;использованием cookies и&nbsp;<a href="/privacy">политикой конфиденциальности</a></p>
-  <button class="cookie-banner-btn" type="button">Хорошо</button>
-</div>
-
 <!-- ============================================ STICKY CTA (mobile) ============================================ -->
-<a href="https://fotoklass.lumir.photo/projects" class="sticky-cta" id="sticky-cta">Попробовать</a>
+<a href="https://fotoklass.lumir.photo/" class="sticky-cta" id="sticky-cta">Попробовать</a>
 
 <!-- ============================================ COOKIE CONSENT JS ============================================ -->
 <script>
@@ -5746,16 +5743,13 @@ document.addEventListener('click', function(e) {
     if(el.closest('.tpl-lab'))return 'templates';
     return 'other';
   }
-  var incoming=new URLSearchParams(window.location.search||'');
 
-  // Auto-propagate UTMs + lvid в ссылки на app
+  // App-CTA click tracking. Links stay CLEAN — no lvid/UTM appended to the href
+  // (Sergei 2026-07-07: all auth CTAs lead to a bare fotoklass.lumir.photo/).
+  // Attribution is still preserved server-side: window.op carries lumir_vid as a
+  // global property (see setGlobalProperties in <head>), so the click event is
+  // tied to the visitor without dirtying the URL.
   document.querySelectorAll('a[href*="fotoklass.lumir.photo"]').forEach(function(a){
-    try{
-      var u=new URL(a.href);
-      incoming.forEach(function(v,k){if(!u.searchParams.has(k))u.searchParams.set(k,v)});
-      if(window.__lumir_vid&&!u.searchParams.has('lvid'))u.searchParams.set('lvid',window.__lumir_vid);
-      a.href=u.toString();
-    }catch(e){}
     a.addEventListener('click',function(){
       try{
         if(window.op){
