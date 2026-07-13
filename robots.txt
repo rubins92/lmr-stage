@@ -1,52 +1,8 @@
+# Поисковикам — всё открыто (индексация lumir.photo)
 User-agent: *
-Disallow: /
+Allow: /
 
-# Russian / regional search engines
-User-agent: Yandex
-Disallow: /
-
-User-agent: YandexBot
-Disallow: /
-
-User-agent: Mail.RU_Bot
-Disallow: /
-
-User-agent: StackRambler
-Disallow: /
-
-# Global search engines (explicit, in addition to wildcard)
-User-agent: Googlebot
-Disallow: /
-
-User-agent: Bingbot
-Disallow: /
-
-User-agent: DuckDuckBot
-Disallow: /
-
-User-agent: Slurp
-Disallow: /
-
-User-agent: Baiduspider
-Disallow: /
-
-# Web archives
-User-agent: ia_archiver
-Disallow: /
-
-User-agent: ia_archiver-web.archive.org
-Disallow: /
-
-User-agent: archive.org_bot
-Disallow: /
-
-User-agent: Wayback
-Disallow: /
-
-User-agent: archive.today
-Disallow: /
-
-# AI training crawlers
+# AI training crawlers — закрыто
 User-agent: CCBot
 Disallow: /
 
@@ -74,13 +30,7 @@ Disallow: /
 User-agent: Amazonbot
 Disallow: /
 
-User-agent: FacebookBot
-Disallow: /
-
-User-agent: Applebot
-Disallow: /
-
-# SEO crawlers
+# SEO-краулеры — закрыто
 User-agent: AhrefsBot
 Disallow: /
 
@@ -89,3 +39,5 @@ Disallow: /
 
 User-agent: MJ12bot
 Disallow: /
+
+Sitemap: https://lumir.photo/sitemap.xml
