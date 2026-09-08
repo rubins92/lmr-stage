@@ -3973,13 +3973,12 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 .footer {
   background: var(--bg-dark);
   color: rgba(255,255,255,0.6);
-  padding: 64px 0 40px;
+  padding: 72px 0 56px;
 }
 .footer-grid {
   display: grid;
-  grid-template-columns: 2fr 1fr 1fr;
+  grid-template-columns: 1.7fr 1fr 1.15fr 0.8fr;
   gap: 40px;
-  margin-bottom: 56px;
 }
 .footer-brand {
   text-align: left;
@@ -4029,16 +4028,10 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   transition: color 0.15s;
 }
 .footer-col a:hover { color: #fff; }
-.footer-bot {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding-top: 32px;
-  border-top: 1px solid rgba(255,255,255,0.1);
+.footer-copy {
+  margin-top: 22px;
   font-size: 12px;
   color: rgba(255,255,255,0.3);
-  flex-wrap: wrap;
-  gap: 16px;
 }
 
 
@@ -4077,6 +4070,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   .metric-text-block .h2 span[style] { font-size: inherit !important; }
   .student-grid { grid-template-columns: 1fr; gap: 32px; }
   .footer-grid { grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+  .footer-brand { grid-column: 1 / -1; }
 }
 @media (max-width: 1180px) { .nav-link-faq { display: none; } }
 @media (max-width: 1080px) { .nav-link-how { display: none; } }
@@ -4127,7 +4121,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   .cta-banner-ctas { flex-direction: column; align-items: stretch; }
   .demo-banner { padding: 28px 24px; border-radius: 16px; }
   .footer-grid { grid-template-columns: 1fr; gap: 28px; }
-  .footer-bot { flex-direction: column; align-items: flex-start; gap: 8px; }
 }
 @media (max-width: 540px) {
   .ai-strip { grid-template-columns: 1fr; }
@@ -5177,12 +5170,18 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
       <div class="footer-brand">
         <a href="/" class="footer-logo" aria-label="Lumir Photo"><img src="assets/logo-lumir-photo.png" alt="Lumir Photo" width="585" height="72" loading="lazy" decoding="async" /></a>
         <p>Автоверстка школьных альбомов<br>Больше съёмок, меньше рутины ✨</p>
+        <p class="footer-copy">© 2026 Lumir Photo</p>
       </div>
       <div class="footer-col">
         <h4>Продукт</h4>
         <a href="#pricing">Стоимость</a>
         <a href="#how">Как работает</a>
         <a href="https://fotoklass.lumir.photo/">Попробовать</a>
+      </div>
+      <div class="footer-col">
+        <h4>Документы</h4>
+        <a href="/privacy.html">Политика конфиденциальности</a>
+        <a href="/terms.html">Пользовательское соглашение</a>
       </div>
       <div class="footer-col">
         <h4>Связь</h4>
@@ -5200,9 +5199,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
         <a href="https://t.me/lumirphoto_bot">Поддержка</a>
       </div>
 
-    </div>
-    <div class="footer-bot">
-      <span>© 2026 Lumir Photo</span>
     </div>
   </div>
 </footer>
