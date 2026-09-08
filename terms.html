@@ -11,7 +11,11 @@
 <link rel="icon" type="image/png" sizes="32x32" href="https://lumir.photo/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet" />
+<!-- same font URL as the landing (so a visitor arriving from lumir.photo hits a warm cache),
+     loaded non-render-blocking: the page paints on the system fallback at once and swaps
+     when Google answers, instead of holding the first paint hostage to fonts.googleapis.com -->
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" /></noscript>
 <style>
 :root {
   --bg-cream: #F9F7F5;
@@ -83,13 +87,6 @@ a { color: inherit; text-decoration: none; }
 .doc code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.88em; background: rgba(44,40,37,0.06); padding: 2px 6px; border-radius: 6px; color: var(--text-1); }
 
 /* contents */
-.toc { margin: 0 0 88px; padding: 28px 32px; background: rgba(255,255,255,0.55); border: 1px solid var(--border); border-radius: 20px; }
-.toc ol { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 40px; }
-.toc li { break-inside: avoid; margin: 0 0 10px; font-size: 15px; line-height: 1.4; }
-.toc li a { color: var(--text-2); text-decoration: none; transition: color .125s var(--ease-fizz); }
-.toc li a:hover { color: var(--accent); }
-.toc li.toc-app { font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: .03em; text-transform: uppercase; margin-top: 14px; }
-.toc li.toc-app a { color: var(--accent); }
 
 /* footer — same as the landing */
 .footer { background: var(--bg-dark); color: rgba(255,255,255,0.6); padding: 72px 0 56px; }
@@ -108,7 +105,6 @@ a { color: inherit; text-decoration: none; }
 .footer-brand p.footer-copy { margin: 22px 0 0; font-size: 12px; color: rgba(255,255,255,0.3); }
 
 @media (max-width: 760px) {
-  .toc ol { columns: 1; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 640px) {
@@ -117,7 +113,6 @@ a { color: inherit; text-decoration: none; }
   .doc h1 { margin-bottom: 28px; }
   .doc h2 { margin-top: 80px; padding-top: 36px; }
   .doc h3 { margin-top: 48px; }
-  .toc { margin-bottom: 56px; padding: 22px 22px; border-radius: 16px; }
   .container { padding: 0 20px; }
 }
 </style>
@@ -129,8 +124,7 @@ a { color: inherit; text-decoration: none; }
 </div></div>
 
 <main class="doc">
-<h1>Пользовательское соглашение (Публичная оферта)</h1>
-<nav class="toc" aria-label="Содержание"><ol><li><a href="#s-1">1. Термины и определения</a></li><li><a href="#s-2">2. Предмет Соглашения</a></li><li><a href="#s-3">3. Порядок заключения Соглашения</a></li><li><a href="#s-4">4. Регистрация и Аккаунт Пользователя</a></li><li><a href="#s-5">5. Права и обязанности Пользователя</a></li><li><a href="#s-6">6. Права и обязанности Лицензиара</a></li><li><a href="#s-7">7. Условия оплаты</a></li><li><a href="#s-8">8. Интеллектуальная собственность</a></li><li><a href="#s-9">9. Ответственность Сторон</a></li><li><a href="#s-10">10. Прекращение действия Соглашения</a></li><li><a href="#s-11">11. Персональные данные и конфиденциальность</a></li><li><a href="#s-12">12. Применимое право и разрешение споров</a></li><li><a href="#s-13">13. Заключительные положения</a></li><li><a href="#s-14">14. Реквизиты Лицензиара</a></li></ol></nav>
+<h1>Пользовательское соглашение (публичная оферта)</h1>
 <p>Настоящее пользовательское соглашение (далее — «Соглашение») в соответствии со статьёй 437 Гражданского кодекса Российской Федерации является публичной офертой Общества с ограниченной ответственностью «ЛЮМИР ФОТО» (ООО «ЛЮМИР ФОТО»), ИНН 5257220960, КПП 525701001, ОГРН 1255200011516 (далее — «Лицензиар»), адресовано неопределённому кругу лиц и содержит условия использования интернет-сервиса «Люмир Фото», доступного по адресу <a href="https://lumir.photo">https://lumir.photo</a> и на его поддоменах (далее — «Сервис»).</p>
 <p>Полным и безоговорочным акцептом настоящей оферты считается совершение Пользователем любых действий по использованию Сервиса, в том числе регистрация в Сервисе, авторизация, фактическое использование функциональных возможностей Сервиса и/или оплата услуг Лицензиара. С момента акцепта Соглашения между Лицензиаром и лицом, принявшим оферту (далее — «Пользователь»), заключается договор на условиях настоящего Соглашения.</p>
 <p>Присоединяясь к настоящему Соглашению, Пользователь подтверждает, что ознакомился, понимает и принимает все его условия, а также условия Политики обработки персональных данных (Политики конфиденциальности), размещённой в Сервисе.</p>

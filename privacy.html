@@ -11,7 +11,11 @@
 <link rel="icon" type="image/png" sizes="32x32" href="https://lumir.photo/favicon.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet" />
+<!-- same font URL as the landing (so a visitor arriving from lumir.photo hits a warm cache),
+     loaded non-render-blocking: the page paints on the system fallback at once and swaps
+     when Google answers, instead of holding the first paint hostage to fonts.googleapis.com -->
+<link rel="stylesheet" media="print" onload="this.media='all'" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" />
+<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" /></noscript>
 <style>
 :root {
   --bg-cream: #F9F7F5;
@@ -83,13 +87,6 @@ a { color: inherit; text-decoration: none; }
 .doc code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.88em; background: rgba(44,40,37,0.06); padding: 2px 6px; border-radius: 6px; color: var(--text-1); }
 
 /* contents */
-.toc { margin: 0 0 88px; padding: 28px 32px; background: rgba(255,255,255,0.55); border: 1px solid var(--border); border-radius: 20px; }
-.toc ol { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 40px; }
-.toc li { break-inside: avoid; margin: 0 0 10px; font-size: 15px; line-height: 1.4; }
-.toc li a { color: var(--text-2); text-decoration: none; transition: color .125s var(--ease-fizz); }
-.toc li a:hover { color: var(--accent); }
-.toc li.toc-app { font-family: var(--display); font-weight: 700; font-size: 13px; letter-spacing: .03em; text-transform: uppercase; margin-top: 14px; }
-.toc li.toc-app a { color: var(--accent); }
 
 /* footer — same as the landing */
 .footer { background: var(--bg-dark); color: rgba(255,255,255,0.6); padding: 72px 0 56px; }
@@ -108,7 +105,6 @@ a { color: inherit; text-decoration: none; }
 .footer-brand p.footer-copy { margin: 22px 0 0; font-size: 12px; color: rgba(255,255,255,0.3); }
 
 @media (max-width: 760px) {
-  .toc ol { columns: 1; }
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
 }
 @media (max-width: 640px) {
@@ -117,7 +113,6 @@ a { color: inherit; text-decoration: none; }
   .doc h1 { margin-bottom: 28px; }
   .doc h2 { margin-top: 80px; padding-top: 36px; }
   .doc h3 { margin-top: 48px; }
-  .toc { margin-bottom: 56px; padding: 22px 22px; border-radius: 16px; }
   .container { padding: 0 20px; }
 }
 </style>
@@ -129,8 +124,7 @@ a { color: inherit; text-decoration: none; }
 </div></div>
 
 <main class="doc">
-<h1>Политика обработки персональных данных (Политика конфиденциальности)</h1>
-<nav class="toc" aria-label="Содержание"><ol><li><a href="#s-1">1. Общие положения</a></li><li><a href="#s-2">2. Термины и определения</a></li><li><a href="#s-3">3. Цели обработки персональных данных</a></li><li><a href="#s-4">4. Объём и категории обрабатываемых персональных данных</a></li><li><a href="#s-5">5. Правовые основания обработки персональных данных</a></li><li><a href="#s-6">6. Порядок и условия обработки персональных данных</a></li><li><a href="#s-7">7. Передача персональных данных третьим лицам и трансграничная передача</a></li><li><a href="#s-8">8. Использование файлов cookie и аналогичных технологий</a></li><li><a href="#s-9">9. Меры по защите персональных данных</a></li><li><a href="#s-10">10. Права субъекта персональных данных</a></li><li><a href="#s-11">11. Контактная информация Оператора</a></li><li><a href="#s-12">12. Заключительные положения</a></li><li class="toc-app"><a href="#cookies">Приложение 1. Политика использования файлов cookie</a></li><li class="toc-app"><a href="#consents">Приложение 2. Формы согласий</a></li></ol></nav>
+<h1>Политика обработки персональных данных (политика конфиденциальности)</h1>
 <h3 id="s-1">1. Общие положения</h3>
 <p>1.1. Настоящая Политика обработки персональных данных (далее — «Политика») определяет порядок и условия обработки персональных данных пользователей интернет-сервиса «Люмир Фото», размещённого по адресу <a href="https://lumir.photo">https://lumir.photo</a> и на его поддоменах (далее — «Сервис»), а также меры по обеспечению безопасности персональных данных.</p>
 <p>1.2. Оператором персональных данных является Общество с ограниченной ответственностью «ЛЮМИР ФОТО» (ООО «ЛЮМИР ФОТО»), ИНН 5257220960, КПП 525701001, ОГРН 1255200011516 (далее — «Оператор»).</p>
