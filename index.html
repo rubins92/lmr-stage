@@ -101,7 +101,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
       "name": "Сколько стоит?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Один класс — 980 ₽, и не важно, сколько там альбомов, учеников и разворотов. Зарегистрироваться, собрать альбомы и согласовать с заказчиком — бесплатно. Платите только когда всё нравится и нужно скачать файлы на печать. Первым 500 фотографам — особые условия на старте: 10 000 ₽ на баланс — хватит на десять классов; скидка 50% на первый заказ печати в партнёрских типографиях (уточните в поддержке); адаптация ваших PSD/InDesign — бесплатно (обычно 2 900 ₽ за папку), загрузите дизайны — перенесём их в Lumir, и вы продолжите работать с привычными макетами через сервис; онбординг-созвон с командой — 30 минут и первый класс готов к печати."
+        "text": "Один класс — 980 ₽, и не важно, сколько там альбомов, учеников и разворотов. Зарегистрироваться, собрать альбомы и согласовать с заказчиком — бесплатно. Платите только когда всё нравится и нужно скачать файлы на печать. Первым 1000 фотографов — особые условия на старте: 10 000 ₽ на баланс — хватит на десять классов; скидка 50% на первый заказ печати в партнёрских типографиях (уточните в поддержке); адаптация ваших PSD/InDesign — бесплатно (обычно 2 900 ₽ за папку), загрузите дизайны — перенесём их в Lumir, и вы продолжите работать с привычными макетами через сервис; онбординг-созвон с командой — 30 минут и первый класс готов к печати."
       }
     },
     {
@@ -467,6 +467,18 @@ if (window.ANALYTICS_ENABLED) {
   box-shadow: 0 4px 24px rgba(155,143,232,0.15), 0 0 0 1px rgba(155,143,232,0.08);
 }
 [data-theme="dark"] .faq-q { color: var(--text-1); }
+[data-theme="dark"] .sticky-premium {
+  background: rgba(22,20,31,0.96);
+  border-top-color: rgba(155,143,232,0.15);
+  box-shadow: 0 -8px 32px rgba(0,0,0,0.2);
+}
+[data-theme="dark"] .sticky-premium-mini {
+  background: rgba(22,20,31,0.96);
+  border-color: rgba(155,143,232,0.15);
+  color: var(--text-1);
+}
+[data-theme="dark"] .sticky-premium-close { color: var(--text-3); }
+[data-theme="dark"] .sticky-premium-close:hover { background: rgba(255,255,255,0.08); }
 [data-theme="dark"] .promo-popup {
   background: #221E30;
   box-shadow: 0 20px 60px rgba(0,0,0,0.4);
@@ -533,7 +545,7 @@ if (window.ANALYTICS_ENABLED) {
 [data-theme="dark"] .org-status.done { background: rgba(91,201,122,0.12); color: #7BCF8C; }
 [data-theme="dark"] .section-dark { background: #121020; }
 [data-theme="dark"] .hero-badge { background: rgba(155,143,232,0.12); color: var(--accent); border-color: rgba(155,143,232,0.2); }
-[data-theme="dark"] .sticky-cta { background: rgba(30,27,40,0.96); border-color: rgba(155,143,232,0.15); }
+[data-theme="dark"] .sticky-cta { background: rgba(22,20,31,0.96); border-color: rgba(155,143,232,0.15); }
 [data-theme="dark"] .hero-tagline { background: rgba(155,143,232,0.1); color: var(--accent); }
 [data-theme="dark"] .metric-h-accent span[style*="color: rgb(45"] { color: var(--text-1) !important; }
 [data-theme="dark"] .metric-visual img { filter: brightness(0.88); border: 1px solid rgba(155,143,232,0.12); }
@@ -2939,13 +2951,6 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   background-size: cover;
   background-position: center;
 }
-.flow-illustration::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.42) 100%);
-  z-index: 1;
-}
 
 /* ============================================
    S7 — AI QUALITY (combined)
@@ -3958,6 +3963,155 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 }
 
 /* ============================================
+   STICKY BAR — LUMIR PREMIUM
+   ============================================ */
+.sticky-premium {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(123,114,200,0.2);
+  box-shadow: 0 -8px 32px rgba(123,114,200,0.08);
+  padding: 0 24px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  transform: translateY(100%);
+  transition: transform 0.4s var(--ease-fizz);
+}
+.sticky-premium.visible { transform: translateY(0); }
+.sticky-premium.collapsed { display: none; }
+.sticky-premium-inner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 1300px;
+  width: 100%;
+  justify-content: center;
+}
+.sticky-premium-pulse {
+  width: 8px; height: 8px;
+  border-radius: 999px;
+  background: #10B981;
+  box-shadow: 0 0 0 0 rgba(16,185,129,0.5);
+  animation: premium-pulse 2s infinite;
+  flex-shrink: 0;
+}
+.sticky-premium-text {
+  font-family: var(--body);
+  font-size: 14px;
+  color: var(--text-2);
+}
+.sticky-premium-text-short { display: none; }
+@media (max-width: 640px) {
+  .sticky-premium-text-full { display: none; }
+  .sticky-premium-text-short { display: inline; }
+}
+.sticky-premium-text strong {
+  color: var(--text-1);
+  font-weight: 600;
+}
+.sticky-premium-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: var(--accent);
+  color: #fff;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 20px;
+  border-radius: 999px;
+  white-space: nowrap;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.125s var(--ease-fizz);
+  box-shadow: var(--shadow-cta);
+}
+.sticky-premium-cta:hover {
+  background: var(--accent-hover);
+  transform: translateY(-1px);
+}
+.sticky-premium-close {
+  width: 32px; height: 32px;
+  border-radius: 999px;
+  display: flex; align-items: center; justify-content: center;
+  color: var(--text-3);
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.15s;
+  flex-shrink: 0;
+  background: transparent;
+  border: none;
+}
+.sticky-premium-close:hover { background: rgba(0,0,0,0.05); }
+.sticky-premium-mini {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 100;
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(123,114,200,0.2);
+  border-radius: 999px;
+  padding: 10px 18px;
+  display: none;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 24px rgba(123,114,200,0.12);
+  cursor: pointer;
+  font-family: var(--display);
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-1);
+  transition: transform 0.15s var(--ease-fizz);
+}
+.sticky-premium-mini:hover { transform: translateY(-2px); }
+.sticky-premium-mini.visible { display: inline-flex; }
+@media (max-width: 640px) {
+  .sticky-premium {
+    height: auto;
+    padding: 16px 44px 16px 16px;
+    gap: 6px;
+    border-radius: 16px 16px 0 0;
+  }
+  .sticky-premium-inner {
+    gap: 10px;
+    justify-content: space-between;
+  }
+  .sticky-premium-text {
+    font-size: 13px;
+    line-height: 1.4;
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .sticky-premium-pulse { display: none; }
+  .sticky-premium-cta {
+    font-size: 11px;
+    padding: 7px 14px;
+    flex-shrink: 0;
+  }
+  .sticky-premium-close {
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+  }
+  .sticky-premium-mini { bottom: 80px; }
+  /* Hide mobile sticky CTA when premium bar is visible */
+  .sticky-premium.visible ~ .sticky-cta { opacity: 0; pointer-events: none; }
+}
+
+/* ============================================
    PROMO POPUP — -50% НА ПЕЧАТЬ
    ============================================ */
 .promo-popup {
@@ -4158,8 +4312,8 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 <header class="hero container" data-screen-label="01 Hero">
   <h1 style="font-size: clamp(40px, 7vw, 72px); line-height: 1.1"><span class="grad">Автовёрстка</span> индивидуальных школьных альбомов</h1>
   <a href="#pricing" class="hero-offer" style="text-decoration: none; color: inherit;">
-    <span class="hero-offer-icon">✦</span>
-    <span>Первым 500 фотографам — <strong>10 000 ₽ на баланс</strong></span>
+    <span class="hero-offer-icon">🎁</span>
+    <span>Первым 1000 фотографов — <strong>10 000 ₽ на баланс</strong></span>
   </a>
 
   <div class="hero-grid-wrap">
@@ -4226,12 +4380,12 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
         <div class="tpl-perk reveal" data-comment-anchor="d2cdcc189e-p">
           <div class="tpl-perk-flag">Бесплатно</div>
           <p class="tpl-perk-h">Адаптируем ваши дизайны</p>
-          <p class="tpl-perk-sub">Первым 500 фотографам — бесплатно. Обычная цена — 2 900 ₽ за дизайн-пак</p>
+          <p class="tpl-perk-sub">Первым 1000 фотографов — бесплатно. Обычная цена — 2 900 ₽ за дизайн-пак</p>
         </div>
         <div class="tpl-perk reveal">
           <div class="tpl-perk-flag" style="background: linear-gradient(120deg, #F0C878, #D89A3E); color: #241A05;">−50%</div>
           <p class="tpl-perk-h">Печать первого класса</p>
-          <p class="tpl-perk-sub">Скидка 50% на печать в партнёрских типографиях — первым 500 фотографам</p>
+          <p class="tpl-perk-sub">Скидка 50% на печать в партнёрских типографиях — первым 1000 фотографов</p>
         </div>
 
         <div class="tpl-privacy">
@@ -4340,8 +4494,15 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
         </ul>
       </div>
 
-      <div class="student-mock reveal" style="display: block; padding: 0; background: transparent;">
-        <img src="assets/banners/class-self-assembly.png" alt="Класс собирает себя сам — организатор и ученик утверждают альбом" loading="lazy" style="width: 100%; height: auto; border-radius: 24px;">
+      <div class="student-mock reveal" style="display: flex; gap: 20px; justify-content: center; align-items: flex-start; padding: 0; background: transparent;">
+        <figure style="margin: 0; flex: 1 1 0; max-width: 270px; min-width: 0;">
+          <video src="assets/organizator-9x16.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Роль организатора: заполнить имена класса за 10 минут" style="width: 100%; display: block; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.3);"></video>
+          <figcaption style="font-family: var(--body); font-size: 13.5px; color: var(--text-3); text-align: center; margin-top: 10px;">Организатор</figcaption>
+        </figure>
+        <figure style="margin: 0; flex: 1 1 0; max-width: 270px; min-width: 0;">
+          <video src="assets/uchenik-guide-9x16.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Ученик выбирает себя и утверждает альбом с телефона" style="width: 100%; display: block; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.3);"></video>
+          <figcaption style="font-family: var(--body); font-size: 13.5px; color: var(--text-3); text-align: center; margin-top: 10px;">Ученик</figcaption>
+        </figure>
       </div>
     </div>
   </div>
@@ -4364,7 +4525,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
           <p style="font-size: 14px; opacity: 0.5; margin-bottom: 8px;">*если есть</p>
           <p>Или воспользуйтесь библиотекой дизайнов Lumir</p>
         </div>
-        <div class="flow-illustration">
+        <div class="flow-illustration" style="aspect-ratio: 3 / 2;">
           <img src="assets/banners/step-01-dark.png" alt="Шаг 01 — загрузка дизайнов" loading="lazy" class="flow-video-cover" style="object-fit: cover; width: 100%; height: 100%; position: absolute; inset: 0;">
         </div>
       </div>
@@ -4452,7 +4613,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
             <span class="pv-v2-promo-old">980 ₽</span>
             <a href="https://t.me/lumirphoto_bot" class="pv-v2-promo-badge" style="text-decoration: none; color: #fff;">10 000 ₽ на баланс</a>
           </div>
-          <p class="pv-v2-footnote">Первым 500 фотографам — хватит на 10 классов</p>
+          <p class="pv-v2-footnote">Первым 1000 фотографов — хватит на 10 классов</p>
         </div>
       </div>
     </div>
@@ -4463,12 +4624,12 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 <section class="section premium-section" id="premium" data-screen-label="05 Premium">
   <div class="container">
     <div class="premium-head reveal">
-      <div class="id-pill id-pill--gold">✦ Первым 500 фотографам</div>
+      <div class="id-pill id-pill--gold">✦ Первым 1000 фотографов</div>
       <h2 class="h2">Lumir Premium на год</h2>
-      <p class="lede" style="margin-top: 18px; max-width: 56ch; margin-left: auto; margin-right: auto;">Первым 500 фотографам — особый пакет на год после регистрации</p>
+      <p class="lede" style="margin-top: 18px; max-width: 56ch; margin-left: auto; margin-right: auto;">Первым 1000 фотографов — особый пакет на год после регистрации</p>
       <div class="premium-counter">
         <span class="premium-pulse"></span>
-        <span>Осталось <span data-slots-remaining>367</span> мест из 500</span>
+        <span>Осталось <span data-slots-remaining>589</span> мест из 1000</span>
       </div>
     </div>
 
@@ -4563,7 +4724,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
           <div>
             <div class="faq-a-content">
               <p>Один класс — 980 ₽, и не важно, сколько там альбомов, учеников и разворотов. Зарегистрироваться, собрать альбомы и согласовать с заказчиком — бесплатно. Платите только когда всё нравится и нужно скачать файлы на печать</p>
-              <p>Первым 500 фотографам — особые условия на старте:</p>
+              <p>Первым 1000 фотографов — особые условия на старте:</p>
               <ul>
                 <li><strong>10 000 ₽ на баланс</strong> — хватит на десять классов</li>
                 <li><strong>Скидка 50% на первый заказ печати</strong> в партнёрских типографиях (уточните в поддержке)</li>
@@ -5128,24 +5289,75 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 })();
 </script>
 
-<!-- ============================================ SLOTS COUNTER (счётчик мест в секции Premium) ============================================ -->
+<!-- ============================================ STICKY BAR — LUMIR PREMIUM ============================================ -->
 <script>
-var SLOTS_DEFAULT = 367;
+var SLOTS_DEFAULT = 589;
 var SLOTS_LEFT = SLOTS_DEFAULT;
-try { var s = parseInt(localStorage.getItem('slots-left'), 10); if (s > 0 && s <= SLOTS_DEFAULT) SLOTS_LEFT = s; } catch(e){}
+try { var s = parseInt(localStorage.getItem('slots-left-1k'), 10); if (s > 0 && s <= SLOTS_DEFAULT) SLOTS_LEFT = s; } catch(e){}
 
 function updateSlots(n) {
   SLOTS_LEFT = n;
-  try { localStorage.setItem('slots-left', n); } catch(e){}
-  document.querySelectorAll('[data-slots-remaining]').forEach(function(el){ el.textContent = n; });
+  try { localStorage.setItem('slots-left-1k', n); } catch(e){}
+  document.querySelectorAll('[data-slots-remaining], #sticky-slots, #sticky-slots-mini, #sticky-slots-bar').forEach(function(el){ el.textContent = n; });
 }
 
 document.addEventListener('click', function(e) {
   var link = e.target.closest('a[href*="fotoklass.lumir.photo"], a[data-claim]');
   if (link && SLOTS_LEFT > 1) updateSlots(SLOTS_LEFT - 1);
 });
-document.querySelectorAll('[data-slots-remaining]').forEach(function(el){ el.textContent = SLOTS_LEFT; });
 </script>
+<div class="sticky-premium" id="sticky-premium">
+  <div class="sticky-premium-inner">
+    <span class="sticky-premium-pulse"></span>
+    <span class="sticky-premium-text"><span class="sticky-premium-text-full">Осталось <strong><span id="sticky-slots">589</span> мест из 1000</strong> · Lumir Premium для первых 1000 фотографов на год</span><span class="sticky-premium-text-short"><strong><span id="sticky-slots-bar">589</span> из 1000</strong> мест · Premium на год</span></span>
+    <a href="https://t.me/lumirphoto_bot" target="_blank" rel="noopener" class="sticky-premium-cta" data-claim>Забрать →</a>
+    <button class="sticky-premium-close" id="sticky-premium-close" type="button" aria-label="Свернуть">✕</button>
+  </div>
+</div>
+<div class="sticky-premium-mini" id="sticky-premium-mini" role="button" tabindex="0" aria-label="Открыть Lumir Premium">
+  <span class="sticky-premium-pulse"></span>
+  <span id="sticky-slots-mini">589</span> из 1000
+</div>
+<script>
+(function(){
+  var bar = document.getElementById('sticky-premium');
+  var mini = document.getElementById('sticky-premium-mini');
+  var closeBtn = document.getElementById('sticky-premium-close');
+  var stored = null;
+  try { stored = localStorage.getItem('sticky-premium-collapsed'); } catch(e){}
+
+  function showBar() {
+    bar.classList.add('visible');
+    bar.classList.remove('collapsed');
+    mini.classList.remove('visible');
+    try { localStorage.removeItem('sticky-premium-collapsed'); } catch(e){}
+  }
+  function hideBar() {
+    bar.classList.remove('visible');
+    bar.classList.add('collapsed');
+    mini.classList.add('visible');
+    try { localStorage.setItem('sticky-premium-collapsed', '1'); } catch(e){}
+  }
+
+  closeBtn.addEventListener('click', hideBar);
+  mini.addEventListener('click', showBar);
+  mini.addEventListener('keydown', function(e){ if(e.key==='Enter') showBar(); });
+
+  var slotsEls = document.querySelectorAll('[data-slots-remaining], #sticky-slots, #sticky-slots-mini, #sticky-slots-bar');
+  slotsEls.forEach(function(el){ el.textContent = SLOTS_LEFT; });
+
+  var triggered = false;
+  window.addEventListener('scroll', function(){
+    if(triggered) return;
+    if(window.scrollY > 600){
+      triggered = true;
+      if(stored === '1') { hideBar(); }
+      else { showBar(); }
+    }
+  }, {passive:true});
+})();
+</script>
+
 
 <!-- ============================================ STICKY CTA (mobile) ============================================ -->
 <a href="https://fotoklass.lumir.photo/" class="sticky-cta" id="sticky-cta">Попробовать</a>
