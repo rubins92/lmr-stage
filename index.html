@@ -3220,6 +3220,87 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 .student-text h2 { margin-bottom: 20px; }
 .student-text p { font-size: 17px; line-height: 1.6; color: var(--text-2); margin-bottom: 16px; }
 .student-text p strong { color: var(--text-1); font-weight: 600; }
+/* ── Два видео-телефона: организатор → ученик ── */
+.student-phones {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  align-items: center;
+  padding: 16px 8px;
+}
+.student-phone { margin: 0; flex: 0 1 240px; min-width: 0; }
+.student-phone-frame {
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.28);
+}
+.student-phone-frame video {
+  width: 100%;
+  display: block;
+  aspect-ratio: 9 / 16;
+  object-fit: cover;
+  cursor: pointer;
+}
+.student-phone-play {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%,-50%);
+  width: 64px; height: 64px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2BB673, #188E58);
+  color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 12px 32px rgba(43,182,115,0.4);
+  transition: transform 0.2s var(--ease-fizz), box-shadow 0.2s;
+}
+.student-phone-play svg { width: 26px; height: 26px; margin-left: 3px; }
+.student-phone-play:hover { transform: translate(-50%,-50%) scale(1.08); box-shadow: 0 16px 40px rgba(43,182,115,0.5); }
+.student-phone.is-playing .student-phone-play { display: none; }
+.student-phone-play--violet {
+  background: linear-gradient(135deg, #7C6FE8, #9B8FE8);
+  box-shadow: 0 12px 32px rgba(124,111,232,0.45);
+}
+.student-phone-play--violet:hover { box-shadow: 0 16px 40px rgba(124,111,232,0.55); }
+.student-phone-cap {
+  font-family: var(--hand);
+  font-weight: 600;
+  font-size: 24px;
+  color: var(--green);
+  text-align: center;
+  margin-top: 12px;
+}
+.student-phones-divider {
+  align-self: stretch;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 24px 0;
+}
+.student-phones-divider .sp-line {
+  flex: 1 1 0;
+  width: 1px;
+  background: linear-gradient(180deg, transparent, rgba(43,182,115,0.35), transparent);
+}
+.student-phones-divider .sp-arrow {
+  width: 40px; height: 40px;
+  border-radius: 999px;
+  border: 1.5px solid rgba(43,182,115,0.45);
+  color: var(--green);
+  background: var(--bg-white);
+  display: flex; align-items: center; justify-content: center;
+}
+.student-phones-divider .sp-arrow svg { width: 18px; height: 18px; }
+@media (max-width: 640px) {
+  .student-phones { flex-direction: column; gap: 20px; }
+  .student-phone { flex-basis: auto; width: min(72vw, 260px); }
+  .student-phones-divider { flex-direction: row; padding: 0 24px; align-self: auto; width: 100%; }
+  .student-phones-divider .sp-line { width: auto; height: 1px; flex: 1 1 0; background: linear-gradient(90deg, transparent, rgba(43,182,115,0.35), transparent); }
+  .student-phones-divider .sp-arrow { transform: rotate(90deg); }
+}
+
 .student-captions {
   list-style: none;
   padding: 0;
@@ -4370,8 +4451,16 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 
     <div class="tpl-grid">
       <!-- Placeholder: book spreads / PSD template mockup -->
-      <div class="tpl-spread reveal" data-comment-anchor="eda2c7e620-div" style="aspect-ratio: auto; padding: 0; background: transparent; box-shadow: none; display: block;">
-        <img src="assets/banners/psd-design-v2.png" alt="Ваш дизайн → Lumir — загрузка PSD-макетов" loading="lazy" style="width: 100%; height: auto; object-fit: contain; border-radius: 16px;">
+      <div class="tpl-spread reveal" data-comment-anchor="eda2c7e620-div" style="aspect-ratio: auto; padding: 0; background: transparent; box-shadow: none; display: flex; justify-content: center;">
+        <figure class="student-phone" style="flex: 0 1 320px; margin: 0;">
+          <div class="student-phone-frame">
+            <video src="assets/dizain-9x16.mp4" playsinline preload="metadata" aria-label="Как завести свой дизайн в Lumir"></video>
+            <button class="student-phone-play student-phone-play--violet" type="button" aria-label="Смотреть: как завести свой дизайн в Lumir">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+          <figcaption class="student-phone-cap" style="color: var(--accent);">свой дизайн — за пару минут</figcaption>
+        </figure>
       </div>
 
       <!-- Text + privacy + labs -->
@@ -4494,16 +4583,56 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
         </ul>
       </div>
 
-      <div class="student-mock reveal" style="display: flex; gap: 20px; justify-content: center; align-items: flex-start; padding: 0; background: transparent;">
-        <figure style="margin: 0; flex: 1 1 0; max-width: 270px; min-width: 0;">
-          <video src="assets/organizator-9x16.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Роль организатора: заполнить имена класса за 10 минут" style="width: 100%; display: block; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.3);"></video>
-          <figcaption style="font-family: var(--body); font-size: 13.5px; color: var(--text-3); text-align: center; margin-top: 10px;">Организатор</figcaption>
+      <div class="student-phones reveal">
+        <figure class="student-phone">
+          <div class="student-phone-frame">
+            <video src="assets/organizator-9x16.mp4" playsinline preload="metadata" aria-label="Роль организатора: заполнить имена класса за 10 минут"></video>
+            <button class="student-phone-play" type="button" aria-label="Смотреть ролик организатора">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+          <figcaption class="student-phone-cap">организатор</figcaption>
         </figure>
-        <figure style="margin: 0; flex: 1 1 0; max-width: 270px; min-width: 0;">
-          <video src="assets/uchenik-guide-9x16.mp4" autoplay muted loop playsinline preload="metadata" aria-label="Ученик выбирает себя и утверждает альбом с телефона" style="width: 100%; display: block; aspect-ratio: 9 / 16; object-fit: cover; border-radius: 20px; box-shadow: 0 24px 60px rgba(0,0,0,0.3);"></video>
-          <figcaption style="font-family: var(--body); font-size: 13.5px; color: var(--text-3); text-align: center; margin-top: 10px;">Ученик</figcaption>
+        <div class="student-phones-divider" aria-hidden="true">
+          <span class="sp-line"></span>
+          <span class="sp-arrow"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+          <span class="sp-line"></span>
+        </div>
+        <figure class="student-phone">
+          <div class="student-phone-frame">
+            <video src="assets/uchenik-guide-9x16.mp4" playsinline preload="metadata" aria-label="Ученик выбирает себя и утверждает альбом с телефона"></video>
+            <button class="student-phone-play" type="button" aria-label="Смотреть ролик ученика">
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+            </button>
+          </div>
+          <figcaption class="student-phone-cap">ученик</figcaption>
         </figure>
       </div>
+      <script>
+      (function(){
+        var phones = document.querySelectorAll('.student-phone');
+        var videos = [];
+        phones.forEach(function(ph){
+          var v = ph.querySelector('video');
+          var btn = ph.querySelector('.student-phone-play');
+          videos.push(v);
+          btn.addEventListener('click', function(){
+            videos.forEach(function(o){ if(o!==v) o.pause(); });
+            v.play();
+          });
+          v.addEventListener('click', function(){ if(!v.paused) v.pause(); });
+          v.addEventListener('play',  function(){ ph.classList.add('is-playing'); });
+          v.addEventListener('pause', function(){ ph.classList.remove('is-playing'); });
+          v.addEventListener('ended', function(){
+            ph.classList.remove('is-playing');
+            v.currentTime = 0;
+            var i = videos.indexOf(v);
+            var next = videos[i+1];
+            if (next) next.play();
+          });
+        });
+      })();
+      </script>
     </div>
   </div>
 </section>
