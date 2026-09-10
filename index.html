@@ -1127,6 +1127,8 @@ body::before{
   background: var(--bg-dark);
   aspect-ratio: 4 / 3;
 }
+/* Ролик 16:9 — на время воспроизведения контейнер меняет пропорцию, чтобы не резать кадр */
+.hero-video-wrap.playing { aspect-ratio: 16 / 9; }
 .hero-video {
   position: absolute;
   inset: 0;
