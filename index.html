@@ -365,6 +365,10 @@ if (window.ANALYTICS_ENABLED) {
   --display: 'Montserrat', system-ui, -apple-system, sans-serif;
   --body: 'Golos Text', system-ui, -apple-system, sans-serif;
   --hand: 'Caveat', cursive;
+  --violet-grad: linear-gradient(120deg, #7C6FE8 0%, #9B8FE8 100%);
+  --gold-grad: linear-gradient(120deg, #F0C878 0%, #D89A3E 100%);
+  --gold: #C08A2E;
+  --green: #188E58;
 
   --ease-fizz: cubic-bezier(0.37, 1, 0.74, 1);
 }
@@ -404,6 +408,8 @@ if (window.ANALYTICS_ENABLED) {
 
   --headline-grad: linear-gradient(135deg, #8B7CF6 0%, #A874BF 50%, #C86898 100%);
   --cta-grad: linear-gradient(135deg, #8B7CF6 0%, #C86898 100%);
+  --gold: #E8B45C;
+  --green: #4EC98F;
 }
 [data-theme="dark"] body {
   background-color: #0F0E15;
@@ -429,10 +435,6 @@ if (window.ANALYTICS_ENABLED) {
 [data-theme="dark"] .nav-link:hover { color: var(--text-1); }
 [data-theme="dark"] .nav-overlay {
   background: rgba(22,19,35,0.97);
-}
-[data-theme="dark"] .hero-offer {
-  background: rgba(155,143,232,0.1);
-  border-color: rgba(155,143,232,0.2);
 }
 [data-theme="dark"] .hero-video-placeholder-tag {
   background: rgba(255,255,255,0.12);
@@ -771,6 +773,24 @@ body::before{
 .pricing-eyebrow::before,
 .pv-v2-eyebrow::before { content: '\2726\00a0'; }
 
+/* ── Pill-бейджи (айдентика v1) ── */
+.id-pill {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--display); font-weight: 800; font-size: 12px;
+  letter-spacing: 0.16em; text-transform: uppercase;
+  padding: 8px 20px; border-radius: 999px;
+  background: var(--violet-grad); color: #fff;
+  box-shadow: 0 0 24px rgba(124,111,232,0.35);
+  margin-bottom: 18px;
+}
+.id-pill--gold { background: var(--gold-grad); color: #241A05; box-shadow: 0 0 24px rgba(232,180,92,0.3); }
+.id-pill--green {
+  background: var(--bg-white); border: 1.5px solid rgba(24,142,88,0.45); color: var(--green);
+  text-transform: none; letter-spacing: 0.02em; font-family: var(--body); font-weight: 600; font-size: 13.5px;
+  box-shadow: none;
+}
+[data-theme="dark"] .id-pill--green { border-color: rgba(78,201,143,0.4); }
+
 /* ── Рукописная приписка (Caveat, айдентика v1) ── */
 .hand-note {
   font-family: var(--hand);
@@ -1050,20 +1070,21 @@ body::before{
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(124,111,232,0.08);
-  border: 1px solid rgba(124,111,232,0.18);
+  background: var(--gold-grad);
+  border: none;
   border-radius: 100px;
-  padding: 10px 24px;
+  padding: 11px 26px;
   font-size: 15px;
-  color: var(--text-1);
+  color: #241A05;
   margin-bottom: 28px;
+  box-shadow: 0 0 28px rgba(232,180,92,0.35);
   animation: hero-offer-pulse 3s ease-in-out infinite;
 }
-.hero-offer-icon { font-size: 18px; }
-.hero-offer strong { color: var(--accent); }
+.hero-offer-icon { font-size: 15px; }
+.hero-offer strong { color: #241A05; font-weight: 700; }
 @keyframes hero-offer-pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(124,111,232,0.15); }
-  50% { box-shadow: 0 0 0 8px rgba(124,111,232,0); }
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232,180,92,0.3); }
+  50% { box-shadow: 0 0 0 8px rgba(232,180,92,0); }
 }
 .hero-ctas {
   display: flex;
@@ -2328,13 +2349,17 @@ body::before{
 }
 .pricing-eyebrow {
   font-family: var(--display);
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.025em;
+  font-size: 13px;
+  font-weight: 800;
+  background: var(--violet-grad);
+  color: #fff;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   margin-bottom: 24px;
   display: inline-block;
+  padding: 8px 22px;
+  border-radius: 999px;
+  box-shadow: 0 0 24px rgba(124,111,232,0.35);
   animation: pricing-float 4s ease-in-out infinite;
 }
 @keyframes pricing-float {
@@ -2405,13 +2430,17 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 }
 .pv-v2-eyebrow {
   font-family: var(--display);
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--accent);
-  letter-spacing: 0.14em;
+  font-size: 13px;
+  font-weight: 800;
+  background: var(--violet-grad);
+  color: #fff;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   margin: 0;
   display: inline-block;
+  padding: 8px 22px;
+  border-radius: 999px;
+  box-shadow: 0 0 24px rgba(124,111,232,0.35);
   animation: pricing-float 4s ease-in-out infinite;
 }
 .pv-v2-card {
@@ -2682,7 +2711,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   align-items: center;
   gap: 12px;
   background: rgba(255,255,255,0.7);
-  border: 1px solid rgba(124,111,232,0.15);
+  border: 1px solid rgba(216,154,62,0.35);
   border-radius: 999px;
   padding: 12px 20px;
   font-family: var(--display);
@@ -2712,37 +2741,37 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 }
 .premium-card {
   background: rgba(255,255,255,0.5);
-  border: 1px solid rgba(124,111,232,0.1);
+  border: 1px solid rgba(232,180,92,0.18);
   border-radius: 24px;
   padding: 32px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  box-shadow: 0 4px 24px rgba(124,111,232,0.08);
+  box-shadow: 0 4px 24px rgba(232,180,92,0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 .premium-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 32px rgba(124,111,232,0.18);
-  border-color: rgba(124,111,232,0.3);
+  box-shadow: 0 8px 32px rgba(232,180,92,0.22);
+  border-color: rgba(216,154,62,0.4);
 }
 .premium-card:first-child {
-  background: rgba(124,111,232,0.07);
-  border: 2px solid rgba(124,111,232,0.25);
-  box-shadow: 0 4px 24px rgba(124,111,232,0.12), inset 0 1px 0 rgba(255,255,255,0.5);
+  background: rgba(232,180,92,0.1);
+  border: 2px solid rgba(216,154,62,0.4);
+  box-shadow: 0 4px 24px rgba(232,180,92,0.16), inset 0 1px 0 rgba(255,255,255,0.5);
 }
 .premium-card:first-child .premium-card-ic {
-  background: var(--accent);
+  background: var(--gold-grad);
 }
-.premium-card:first-child .premium-card-ic svg { stroke: #fff; }
+.premium-card:first-child .premium-card-ic svg { stroke: #241A05; }
 .premium-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 8px 32px rgba(124,111,232,0.14);
+  box-shadow: 0 8px 32px rgba(232,180,92,0.18);
 }
 .premium-card-ic {
   width: 48px; height: 48px;
   border-radius: 14px;
-  background: rgba(124,111,232,0.08);
+  background: rgba(232,180,92,0.14);
   display: flex; align-items: center; justify-content: center;
   margin-bottom: 4px;
 }
@@ -2752,14 +2781,14 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   font-weight: 800;
   font-size: 28px;
   letter-spacing: -0.02em;
-  color: var(--accent);
+  color: var(--gold);
 }
 .premium-card-badge {
   font-family: var(--display);
   font-weight: 800;
   font-size: 28px;
   letter-spacing: -0.02em;
-  color: var(--accent);
+  color: var(--gold);
 }
 .premium-card h4 {
   font-family: var(--display);
@@ -2781,13 +2810,13 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   .premium-grid { grid-template-columns: 1fr; }
 }
 [data-theme="dark"] .premium-card {
-  background: rgba(124,111,232,0.07);
-  border-color: rgba(124,111,232,0.2);
+  background: rgba(232,180,92,0.06);
+  border-color: rgba(232,180,92,0.2);
   box-shadow: 0 4px 24px rgba(0,0,0,0.2);
 }
 [data-theme="dark"] .premium-card:hover {
-  box-shadow: 0 8px 32px rgba(124,111,232,0.18);
-  border-color: rgba(124,111,232,0.35);
+  box-shadow: 0 8px 32px rgba(232,180,92,0.16);
+  border-color: rgba(232,180,92,0.35);
 }
 [data-theme="dark"] .premium-card:first-child {
   background: linear-gradient(135deg, rgba(255,107,53,0.12), rgba(255,62,108,0.10));
@@ -2801,7 +2830,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   color: #E8B45C;
 }
 [data-theme="dark"] .premium-card-ic {
-  background: rgba(155,143,232,0.15);
+  background: rgba(232,180,92,0.12);
 }
 [data-theme="dark"] .premium-counter {
   background: rgba(255,255,255,0.06);
@@ -3438,7 +3467,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   width: 8px;
   height: 8px;
   border-radius: 999px;
-  background: var(--accent);
+  background: var(--green);
 }
 .student-captions li.step-reveal {
   opacity: 0;
@@ -3987,6 +4016,22 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 .footer-brand {
   text-align: left;
 }
+.domain-chip {
+  display: inline-flex;
+  align-items: center;
+  margin-top: 12px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: #9B8FE8;
+  border: 1.5px solid rgba(155,143,232,0.4);
+  border-radius: 999px;
+  padding: 6px 16px;
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.domain-chip:hover { background: rgba(155,143,232,0.12); box-shadow: 0 0 20px rgba(155,143,232,0.25); }
+
 .footer-brand .footer-logo {
   display: inline-block;
   margin-bottom: 18px;
@@ -4340,9 +4385,9 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 
 <!-- ============================================ S1 — HERO ============================================ -->
 <header class="hero container" data-screen-label="01 Hero">
-  <h1 style="font-size: clamp(40px, 7vw, 72px); line-height: 1.1"><span class="grad">Автовёрстка индивидуальных школьных альбомов</span></h1>
+  <h1 style="font-size: clamp(40px, 7vw, 72px); line-height: 1.1"><span class="grad">Автовёрстка</span> индивидуальных школьных альбомов</h1>
   <a href="#pricing" class="hero-offer" style="text-decoration: none; color: inherit;">
-    <span class="hero-offer-icon">🎁</span>
+    <span class="hero-offer-icon">✦</span>
     <span>Первым 500 фотографам — <strong>10 000 ₽ на баланс</strong></span>
   </a>
 
@@ -4519,7 +4564,8 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 
     <div class="student-grid">
       <div class="student-text reveal">
-        <h2 class="h2">Класс собирает себя сам 🙌</h2>
+        <div class="id-pill id-pill--green">✓ для учеников и родителей</div>
+        <h2 class="h2">Класс собирает себя сам</h2>
         <p class="lede" style="margin-top: 18px;">Ссылка организатору → имена заполнены → ученики утверждают альбомы с телефона</p>
         <ul class="student-captions">
           <li class="step-reveal">Организатор заполняет имена за 10 минут</li>
@@ -4655,6 +4701,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 <section class="section premium-section" id="premium" data-screen-label="05 Premium">
   <div class="container">
     <div class="premium-head reveal">
+      <div class="id-pill id-pill--gold">✦ Первым 500 фотографам</div>
       <h2 class="h2">Lumir Premium на год</h2>
       <p class="lede" style="margin-top: 18px; max-width: 56ch; margin-left: auto; margin-right: auto;">Первым 500 фотографам — особый пакет на год после регистрации</p>
       <div class="premium-counter">
@@ -4666,7 +4713,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
     <div class="premium-grid reveal">
       <div class="premium-card">
         <div class="premium-card-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 6v2m0 8v2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8M12 6v2m0 8v2"/></svg>
         </div>
         <div class="premium-card-amount">10 000 ₽</div>
         <h4>На баланс</h4>
@@ -4675,7 +4722,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 
       <div class="premium-card">
         <div class="premium-card-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
         </div>
         <div class="premium-card-badge">−50%</div>
         <h4>На печать первого класса</h4>
@@ -4684,7 +4731,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 
       <div class="premium-card">
         <div class="premium-card-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/><path d="M14 14l3 3M14 17l3-3"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 3v18"/><path d="M14 14l3 3M14 17l3-3"/></svg>
         </div>
         <h4>Адаптация PSD бесплатно</h4>
         <p>Заведём ваши дизайны в кабинет Lumir. Обычная цена — 2 900 ₽ за папку</p>
@@ -4692,7 +4739,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 
       <div class="premium-card">
         <div class="premium-card-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2"/></svg>
         </div>
         <h4>Онбординг-созвон</h4>
         <p>Покажем весь процесс за 30 минут</p>
@@ -4700,7 +4747,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 
       <div class="premium-card">
         <div class="premium-card-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
         </div>
         <h4>Все новые фичи</h4>
         <p>Доступ к новым возможностям по мере выхода. На год</p>
@@ -4708,7 +4755,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 
       <div class="premium-card">
         <div class="premium-card-ic" aria-hidden="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-brand)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 7l-3 5h4l-3 5"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M13 7l-3 5h4l-3 5"/></svg>
         </div>
         <h4>Прямой канал в продукт</h4>
         <p>Приоритизируем ваши предложения в разработке</p>
@@ -4996,6 +5043,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
       <div class="footer-brand">
         <a href="/" class="footer-logo" aria-label="Lumir Photo"><img src="assets/logo-lumir-photo.png" alt="Lumir Photo" width="585" height="72" loading="lazy" decoding="async" /></a>
         <p>Автоверстка школьных альбомов<br>Больше съёмок, меньше рутины ✨</p>
+        <a href="https://lumir.photo" class="domain-chip">lumir.photo</a>
         <p class="footer-copy">© 2026 Lumir Photo</p>
       </div>
       <div class="footer-col">
