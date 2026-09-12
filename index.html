@@ -633,11 +633,11 @@ body::before{
 /* ── Cookie card (in the corner promo stack, top) ─── */
 .cookie-banner{
   position:fixed;
-  bottom:140px;                 /* above the -50% mini (80px) */
-  right:20px;
-  left:auto;
-  z-index:101;                  /* same stacking layer as the promo minis/popups */
-  width:250px;
+  bottom:20px;                  /* лежит внизу и перекрывает нижнюю плашку Premium */
+  left:20px;                    /* слева — баннер скидки живёт справа, они не пересекаются */
+  right:auto;
+  z-index:102;                  /* выше полосы Premium (100) и баннера скидки (101) */
+  width:320px;                  /* текст в две строки, а не в три */
   background:#1C1927;           /* dark card — matches the promo dark theme */
   border:1px solid rgba(255,255,255,0.10);
   border-radius:16px;
@@ -683,7 +683,7 @@ body::before{
   .cookie-banner{
     left:10px;
     right:10px;
-    bottom:120px;               /* above the -50% mini (60px) on mobile */
+    bottom:76px;                /* над мобильной кнопкой «Попробовать» и над полосой Premium */
     width:auto;
     flex-direction:column;
     align-items:flex-start;
@@ -5453,24 +5453,19 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
   var promoPopup = document.getElementById('promo-popup');
   var promoMini = document.getElementById('promo-mini');
   var promoClose = document.getElementById('promo-popup-close');
-  var cookieBanner = document.getElementById('cookie-banner');
 
   var dismissed = false;
   try { dismissed = localStorage.getItem('promo-popup-dismissed') === '1'; } catch(e){}
 
-  function hideCookie() { if (cookieBanner) cookieBanner.style.display = 'none'; }
-  function restoreCookie() { if (cookieBanner && !cookieBanner.hidden) cookieBanner.style.display = ''; }
-
+  // Баннер куки живёт слева, баннер скидки — справа. Прятать куки больше не нужно.
   function showMini() {
     promoPopup.classList.remove('visible');
-    restoreCookie();
     setTimeout(function(){ promoMini.classList.add('visible'); }, 350);
   }
 
   function openPopup() {
     promoMini.classList.remove('visible');
     promoPopup.classList.add('visible');
-    hideCookie();
   }
 
   promoClose.addEventListener('click', function(){
