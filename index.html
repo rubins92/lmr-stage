@@ -3301,6 +3301,60 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   .student-phones-divider .sp-arrow { transform: rotate(90deg); }
 }
 
+/* Вертикальные ролики открываются поверх страницы во всю высоту:
+   в рамке телефона текст на экране слишком мелкий, чтобы его прочитать. */
+.video-lightbox {
+  position: fixed;
+  inset: 0;
+  margin: auto;
+  width: fit-content;
+  height: fit-content;
+  max-width: 100vw;
+  max-height: 100vh;
+  border: 0;
+  padding: 0;
+  background: transparent;
+  overflow: visible;
+}
+.video-lightbox:focus,
+.video-lightbox:focus-visible { outline: none; }
+.video-lightbox::backdrop {
+  background: rgba(10, 8, 18, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+.video-lightbox video {
+  display: block;
+  height: 92vh;
+  max-width: 94vw;
+  border-radius: 20px;
+  background: #000;
+  box-shadow: 0 30px 90px rgba(0,0,0,0.55);
+}
+.video-lightbox video:focus:not(:focus-visible) { outline: none; }
+.video-lightbox-close {
+  position: absolute;
+  top: -18px;
+  right: -18px;
+  width: 40px;
+  height: 40px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255,255,255,0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: #fff;
+  font-size: 18px;
+  transition: background 0.15s;
+}
+.video-lightbox-close:hover { background: rgba(255,255,255,0.26); }
+@media (max-width: 640px) {
+  .video-lightbox video { height: auto; width: 94vw; max-height: 86vh; }
+  .video-lightbox-close { top: -52px; right: 0; }
+}
+
 .student-captions {
   list-style: none;
   padding: 0;
@@ -4197,7 +4251,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
    ============================================ */
 .promo-popup {
   position: fixed;
-  bottom: 80px;
+  bottom: 20px;
   right: 20px;
   z-index: 101;
   width: 360px;
@@ -4208,8 +4262,12 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   transform: translateY(20px) scale(0.95);
   opacity: 0;
   pointer-events: none;
-  transition: transform 0.4s var(--ease-fizz), opacity 0.3s ease;
+  transition: transform 0.4s var(--ease-fizz), opacity 0.3s ease, bottom 0.4s var(--ease-fizz);
 }
+/* Полоса Premium выезжает снизу — баннер и мини-пилюля поднимаются над ней.
+   Пока полосы нет, они лежат внизу, а не висят над пустым местом. */
+body:has(.sticky-premium.visible) :is(.promo-popup, .promo-mini) { bottom: 92px; }
+body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 76px; }
 .promo-popup.visible {
   transform: translateY(0) scale(1);
   opacity: 1;
@@ -4294,7 +4352,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 /* Mini pill (collapsed state) */
 .promo-mini {
   position: fixed;
-  bottom: 80px;
+  bottom: 20px;
   right: 20px;
   z-index: 101;
   background: linear-gradient(120deg, #F0C878, #D89A3E);
@@ -4309,7 +4367,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
   align-items: center;
   gap: 8px;
   box-shadow: 0 6px 24px rgba(232,180,92,0.35);
-  transition: transform 0.2s var(--ease-fizz), box-shadow 0.2s;
+  transition: transform 0.2s var(--ease-fizz), box-shadow 0.2s, bottom 0.4s var(--ease-fizz);
   white-space: nowrap;
 }
 .promo-mini:hover {
@@ -4609,29 +4667,40 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
         </figure>
       </div>
       <script>
-      (function(){
-        var phones = document.querySelectorAll('.student-phone');
-        var videos = [];
-        phones.forEach(function(ph){
+      // Оверлей лежит ниже по документу — ждём разбора страницы.
+      document.addEventListener('DOMContentLoaded', function(){
+        // Ролики 9:16 играют не в рамке телефона, а в оверлее во всю высоту экрана:
+        // инлайном текст на экране телефона не прочитать.
+        var box = document.getElementById('video-lightbox');
+        var player = document.getElementById('video-lightbox-player');
+        var closeBtn = document.getElementById('video-lightbox-close');
+        if (!box || !player) return;
+
+        function open(src){
+          player.src = src;
+          box.showModal();
+          var p = player.play();
+          if (p && typeof p.catch === 'function') p.catch(function(){});
+        }
+        function close(){
+          player.pause();
+          player.removeAttribute('src');
+          player.load();
+          if (box.open) box.close();
+        }
+
+        closeBtn.addEventListener('click', close);
+        box.addEventListener('close', close);
+        // Клик по затемнению (не по самому видео) закрывает оверлей.
+        box.addEventListener('click', function(e){ if (e.target === box) box.close(); });
+
+        document.querySelectorAll('.student-phone').forEach(function(ph){
           var v = ph.querySelector('video');
-          var btn = ph.querySelector('.student-phone-play');
-          videos.push(v);
-          btn.addEventListener('click', function(){
-            videos.forEach(function(o){ if(o!==v) o.pause(); });
-            v.play();
-          });
-          v.addEventListener('click', function(){ if(!v.paused) v.pause(); });
-          v.addEventListener('play',  function(){ ph.classList.add('is-playing'); });
-          v.addEventListener('pause', function(){ ph.classList.remove('is-playing'); });
-          v.addEventListener('ended', function(){
-            ph.classList.remove('is-playing');
-            v.currentTime = 0;
-            var i = videos.indexOf(v);
-            var next = videos[i+1];
-            if (next) next.play();
-          });
+          if (!v) return;
+          var src = v.getAttribute('src');
+          ph.addEventListener('click', function(){ open(src); });
         });
-      })();
+      });
       </script>
     </div>
   </div>
@@ -5082,7 +5151,7 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 </section>
 
 <!-- ============================================ S14 — DEMO + FOOTER ============================================ -->
-<section class="demo-section" data-screen-label="14 Demo">
+<section class="demo-section" data-screen-label="14 Demo" hidden>
   <div class="container">
     <div class="demo-banner reveal">
       <div class="demo-banner-text">Хотите увидеть Lumir в деле? 🎯<br/><span style="font-weight: 500; font-size: 0.78em; color: var(--text-2); display: inline-block; margin-top: 6px;">Покажем всё на экране за 30 минут</span></div>
@@ -5361,6 +5430,11 @@ body[data-pricing="v2"] .pricing-variant--v2 { display: block; }
 </div>
 
 <!-- ============================================ PROMO POPUP — -50% НА ПЕЧАТЬ ============================================ -->
+<dialog class="video-lightbox" id="video-lightbox">
+  <video id="video-lightbox-player" controls playsinline preload="none"></video>
+  <button class="video-lightbox-close" id="video-lightbox-close" type="button" aria-label="Закрыть" autofocus>✕</button>
+</dialog>
+
 <div class="promo-popup" id="promo-popup">
   <button class="promo-popup-close" id="promo-popup-close" type="button" aria-label="Закрыть">✕</button>
   <div class="promo-sticker">−50%</div>
