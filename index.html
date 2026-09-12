@@ -4408,6 +4408,9 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
     font-size: 13px;
     padding: 10px 16px;
   }
+  /* На узком экране баннер куки и баннер скидки оба во всю ширину.
+     Пока куки видны, скидка поднимается над ними, а не ложится сверху. */
+  body:has(#cookie-banner:not([hidden])) :is(.promo-popup, .promo-mini) { bottom: 208px; }
 }
 </style>
 <script>
@@ -5622,12 +5625,10 @@ document.addEventListener('click', function(e) {
   // Sticky CTA появляется при достижении секции «Ваши дизайны / Ваша типография» (#features).
   var trigger = document.getElementById('features');
   if (!trigger) return;
-  var cookieBanner = document.getElementById('cookie-banner');
   function check(){
     // Появляемся, когда верх секции «Ваши дизайны / Ваша типография» упирается в верх экрана.
     var past = trigger.getBoundingClientRect().top < window.innerHeight * 0.05;
     stickyCta.classList.toggle('hidden', !past);
-    if (cookieBanner) cookieBanner.classList.toggle('lifted', past);
   }
   stickyCta.classList.add('hidden');
   window.addEventListener('scroll', check, {passive:true});
