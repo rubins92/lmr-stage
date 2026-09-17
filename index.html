@@ -4515,7 +4515,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
       <div class="tpl-spread reveal" data-comment-anchor="eda2c7e620-div" style="aspect-ratio: auto; padding: 0; background: transparent; box-shadow: none; display: flex; justify-content: center;">
         <figure class="student-phone" style="flex: 0 1 320px; margin: 0;">
           <div class="student-phone-frame">
-            <video src="assets/dizain-9x16.mp4" playsinline preload="metadata" aria-label="Как завести свой дизайн в Lumir"></video>
+            <video src="assets/dizain-9x16.mp4" data-src-169="assets/dizain-16x9.mp4" playsinline preload="metadata" aria-label="Как завести свой дизайн в Lumir"></video>
             <button class="student-phone-play student-phone-play--violet" type="button" aria-label="Смотреть: как завести свой дизайн в Lumir">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
             </button>
@@ -4647,7 +4647,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
       <div class="student-phones reveal">
         <figure class="student-phone">
           <div class="student-phone-frame">
-            <video src="assets/organizator-9x16.mp4" poster="assets/organizator-9x16-poster.jpg" playsinline preload="metadata" aria-label="Роль организатора: заполнить имена класса за 10 минут"></video>
+            <video src="assets/organizator-9x16.mp4" data-src-169="assets/organizator-16x9.mp4" poster="assets/organizator-9x16-poster.jpg" playsinline preload="metadata" aria-label="Роль организатора: заполнить имена класса за 10 минут"></video>
             <button class="student-phone-play" type="button" aria-label="Смотреть ролик организатора">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
             </button>
@@ -4661,7 +4661,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
         </div>
         <figure class="student-phone">
           <div class="student-phone-frame">
-            <video src="assets/uchenik-guide-9x16.mp4" playsinline preload="metadata" aria-label="Ученик выбирает себя и утверждает альбом с телефона"></video>
+            <video src="assets/uchenik-guide-9x16.mp4" data-src-169="assets/uchenik-16x9.mp4" playsinline preload="metadata" aria-label="Ученик выбирает себя и утверждает альбом с телефона"></video>
             <button class="student-phone-play" type="button" aria-label="Смотреть ролик ученика">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
             </button>
@@ -4701,7 +4701,13 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
           var v = ph.querySelector('video');
           if (!v) return;
           var src = v.getAttribute('src');
-          ph.addEventListener('click', function(){ open(src); });
+          // На десктопе в оверлее играет горизонтальная версия ролика (16:9),
+          // на мобильном остаётся вертикальная — она снята под телефон.
+          var wide = v.getAttribute('data-src-169');
+          ph.addEventListener('click', function(){
+            var useWide = wide && window.matchMedia('(min-width: 641px)').matches;
+            open(useWide ? wide : src);
+          });
         });
       });
       </script>
