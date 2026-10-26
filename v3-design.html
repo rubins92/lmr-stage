@@ -5207,6 +5207,11 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
           <p class="tpl-perk-h">Файлы, которые примет типография</p>
           <p class="tpl-perk-sub">JPEG в sRGB, архив разложен по папкам «N разворотов». Продукт печати меняется в одном окне, все альбомы обновятся сами</p>
         </div>
+        <div class="tpl-perk reveal">
+          <div class="tpl-perk-flag" style="background: linear-gradient(120deg, #F0C878, #D89A3E); color: #241A05;">−50%</div>
+          <p class="tpl-perk-h">Печать первого класса за полцены</p>
+          <p class="tpl-perk-sub">Скидка 50% на печать в партнёрских типографиях для первой 1000 фотографов. Печатать можно и в своей</p>
+        </div>
 
         <div class="tpl-labs">
           <h3>Уже работают с Lumir</h3>
@@ -5323,7 +5328,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
       <p class="lede" style="margin-top: 18px; max-width: 56ch; margin-left: auto; margin-right: auto;">Особый пакет на год после регистрации для первой 1000 фотографов</p>
       <div class="premium-counter">
         <span class="premium-pulse"></span>
-        <span>Осталось <span data-slots-remaining>589</span> мест из 1000</span>
+        <span>Осталось <span data-slots-remaining>678</span> мест из 1000</span>
       </div>
     </div>
 
@@ -6074,13 +6079,13 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
 
 <!-- ============================================ STICKY BAR — LUMIR PREMIUM ============================================ -->
 <script>
-var SLOTS_DEFAULT = 589;
+var SLOTS_DEFAULT = 678;
 var SLOTS_LEFT = SLOTS_DEFAULT;
-try { var s = parseInt(localStorage.getItem('slots-left-1k'), 10); if (s > 0 && s <= SLOTS_DEFAULT) SLOTS_LEFT = s; } catch(e){}
+try { var s = parseInt(localStorage.getItem('slots-left-1k-v678'), 10); if (s > 0 && s <= SLOTS_DEFAULT) SLOTS_LEFT = s; } catch(e){}
 
 function updateSlots(n) {
   SLOTS_LEFT = n;
-  try { localStorage.setItem('slots-left-1k', n); } catch(e){}
+  try { localStorage.setItem('slots-left-1k-v678', n); } catch(e){}
   document.querySelectorAll('[data-slots-remaining], #sticky-slots, #sticky-slots-mini, #sticky-slots-bar').forEach(function(el){ el.textContent = n; });
 }
 
@@ -6092,14 +6097,14 @@ document.addEventListener('click', function(e) {
 <div class="sticky-premium" id="sticky-premium">
   <div class="sticky-premium-inner">
     <span class="sticky-premium-pulse"></span>
-    <span class="sticky-premium-text"><span class="sticky-premium-text-full">Осталось <strong><span id="sticky-slots">589</span> мест из 1000</strong> · Lumir Premium на год для первой 1000 фотографов</span><span class="sticky-premium-text-short"><strong><span id="sticky-slots-bar">589</span> из 1000</strong> мест · Premium на год</span></span>
+    <span class="sticky-premium-text"><span class="sticky-premium-text-full">Осталось <strong><span id="sticky-slots">678</span> мест из 1000</strong> · Lumir Premium на год для первой 1000 фотографов</span><span class="sticky-premium-text-short"><strong><span id="sticky-slots-bar">678</span> из 1000</strong> мест · Premium на год</span></span>
     <a href="https://t.me/lumirphoto_bot" target="_blank" rel="noopener" class="sticky-premium-cta" data-claim>Забрать →</a>
     <button class="sticky-premium-close" id="sticky-premium-close" type="button" aria-label="Свернуть">✕</button>
   </div>
 </div>
 <div class="sticky-premium-mini" id="sticky-premium-mini" role="button" tabindex="0" aria-label="Открыть Lumir Premium">
   <span class="sticky-premium-pulse"></span>
-  <span id="sticky-slots-mini">589</span> из 1000
+  <span id="sticky-slots-mini">678</span> из 1000
 </div>
 <script>
 (function(){
