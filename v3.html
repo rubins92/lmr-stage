@@ -11,6 +11,7 @@
   Click-tracking handlers below already no-op when window.op is undefined.
 -->
 <script>window.ANALYTICS_ENABLED = false;</script>
+<!-- ЧЕРНОВИК: noindex только для v3-файлов. При переносе в index.html эту строку УДАЛИТЬ — ниже стоит index, follow из SEO-патча -->
 <meta name="robots" content="noindex, nofollow" />
 
 <!-- Yandex.Metrika counter -->
@@ -29,8 +30,8 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
 <!-- /Yandex.Metrika counter -->
 
 <title>Lumir Photo — автовёрстка индивидуальных школьных альбомов и фотокниг</title>
-<meta name="description" content="Lumir Photo (Люмир Фото) — сервис автовёрстки индивидуальных школьных альбомов и фотокниг. Распознавание лиц, автоматическая сборка макетов, экспорт в типографию. Люмир Фотокласс — больше съёмок, меньше рутины." />
-<meta name="keywords" content="Lumir, Lumir Photo, Люмир, Люмир фото, Люмир фотокласс, автоверстка индивидуальных альбомов, автоверстка фотокниг, школьные альбомы, выпускные альбомы, индивидуальные фотокниги, автоматическая верстка альбомов, школьный фотограф, фотокласс, распознавание лиц" />
+<meta name="description" content="Lumir Photo (Люмир Фото) — сервис автовёрстки индивидуальных школьных альбомов и фотокниг. Распознавание лиц, автоматическая сборка макетов, согласование с учениками онлайн, допродажи, ретушь и экспорт в любую типографию. Люмир Фотокласс — весь выпускной сезон фотографа в одном сервисе." />
+<meta name="keywords" content="Lumir, Lumir Photo, Люмир, Люмир фото, Люмир фотокласс, автоверстка индивидуальных альбомов, автоверстка фотокниг, школьные альбомы, выпускные альбомы, индивидуальные фотокниги, автоматическая верстка альбомов, школьный фотограф, фотокласс, распознавание лиц, допродажи выпускных альбомов, ретушь школьных фото, галерея для клиентов фотографа, дизайны выпускных альбомов PSD" />
 <meta name="author" content="Lumir" />
 <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
 <meta name="theme-color" content="#7C6FE8" />
@@ -45,7 +46,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://lumir.photo/" />
 <meta property="og:title" content="Lumir Photo — автовёрстка индивидуальных школьных альбомов и фотокниг" />
-<meta property="og:description" content="Lumir Photo (Люмир Фото) — сервис автовёрстки индивидуальных школьных альбомов и фотокниг. Распознавание лиц, автоматическая сборка макетов, экспорт в типографию." />
+<meta property="og:description" content="Lumir Photo (Люмир Фото) — сервис автовёрстки индивидуальных школьных альбомов и фотокниг. Распознавание лиц, автоматическая сборка макетов, согласование с учениками, допродажи и экспорт в любую типографию." />
 <meta property="og:image" content="https://lumir.photo/og-image.jpg" />
 <meta property="og:locale" content="ru_RU" />
 <meta property="og:site_name" content="Lumir" />
@@ -53,7 +54,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Lumir Photo — автовёрстка индивидуальных школьных альбомов и фотокниг" />
-<meta name="twitter:description" content="Lumir Photo (Люмир Фото) — сервис автовёрстки индивидуальных школьных альбомов и фотокниг. Распознавание лиц, автоматическая сборка макетов, экспорт в типографию." />
+<meta name="twitter:description" content="Lumir Photo (Люмир Фото) — сервис автовёрстки индивидуальных школьных альбомов и фотокниг. Распознавание лиц, автоматическая сборка макетов, согласование с учениками, допродажи и экспорт в любую типографию." />
 <meta name="twitter:image" content="https://lumir.photo/og-image.jpg" />
 
 <!-- JSON-LD: SoftwareApplication -->
@@ -86,7 +87,13 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
     "Загрузка PSD-дизайнов",
     "Проверка качества макетов перед печатью",
     "Персональное утверждение альбомов учениками",
-    "Водяные знаки для защиты фотографий"
+    "Водяные знаки для защиты фотографий",
+    "Страница-презентация фотографа с QR-кодом и текстом для чата класса",
+    "Библиотека дизайнов выпускных альбомов и магазин дизайнов от студий",
+    "Раздел ретуши: оригиналы из утверждённых альбомов",
+    "Допродажи учениками прямо в альбоме: развороты, портреты, файлы, ретушь",
+    "Печать в любой типографии, своя типография в каталоге",
+    "Клиентские галереи с избранным и водяным знаком"
   ]
 }
 </script>
@@ -99,10 +106,66 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
   "mainEntity": [
     {
       "@type": "Question",
+      "name": "Что такое Lumir Photo (Люмир)?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Lumir Photo (Люмир Фото, Люмир Фотокласс) — онлайн-сервис для школьных фотографов. Он распознаёт лица на съёмке, автоматически собирает индивидуальный выпускной альбом каждому ученику по вашему дизайну, отправляет альбомы ученикам на утверждение с телефона, принимает допродажи, отдаёт оригиналы на ретушь и готовит файлы для печати в любой типографии. Один класс стоит 980 ₽, сборка и согласование — бесплатно."
+      }
+    },
+    {
+      "@type": "Question",
       "name": "Сколько стоит?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Один класс — 980 ₽, и не важно, сколько там альбомов, учеников и разворотов. Зарегистрироваться, собрать альбомы и согласовать с заказчиком — бесплатно. Платите только когда всё нравится и нужно скачать файлы на печать. Первым 1000 фотографов — особые условия на старте: 10 000 ₽ на баланс — хватит на десять классов; скидка 50% на первый заказ печати в партнёрских типографиях (уточните в поддержке); адаптация ваших PSD/InDesign — бесплатно (обычно 2 900 ₽ за папку), загрузите дизайны — перенесём их в Lumir, и вы продолжите работать с привычными макетами через сервис; онбординг-созвон с командой — 30 минут и первый класс готов к печати."
+        "text": "Один класс стоит 980 ₽, и неважно, сколько в нём альбомов, учеников и разворотов. Регистрация, сборка альбомов и согласование с заказчиком бесплатны. Платите, только когда всё нравится и нужно скачать файлы на печать. Для первой 1000 фотографов особые условия на старте: 10 000 ₽ на баланс, этого хватит на десять классов Скидка 50% на первый заказ печати в партнёрских типографиях (уточните в поддержке) Бесплатная адаптация трёх дизайн-паков из ваших PSD и InDesign: стандартные паки до 25 разворотов (обычно 2 900 ₽ за пак). Загрузите дизайны, мы перенесём их в Lumir, и вы продолжите работать с привычными макетами Онбординг-созвон с командой. 30 минут, и первый класс готов к печати"
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "У меня нет своего дизайна. С чего начать?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Возьмите дизайн из библиотеки Lumir, она входит в сервис. Если нужен авторский, купите пак у дизайн-студии навсегда или возьмите его в аренду на один проект."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Что такое галереи?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Это способ отдать клиентам фото по ссылке вместо папки с файлами. Клиент смотрит, скачивает, отмечает избранное и подтверждает отбор. Можно включить водяной знак «ОБРАЗЕЦ». Сейчас галереи работают в бета-режиме."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Как работают допродажи?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Вы задаёте прайс по категориям: дополнительные развороты, второй портрет на виньетке, печать, файлы, ретушь, смена дизайна. Ученик видит цены прямо в альбоме и добавляет нужное. Счёт собирается автоматически, купленные фото скачиваются без водяного знака."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Можно сделать один общий альбом на класс?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да. В настройках проекта выберите режим «общий альбом на класс», и Lumir соберёт одну книгу вместо индивидуальных."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Какие файлы можно загрузить?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Фото весом до 50 МБ, дизайны PSD и InDesign до 800 МБ. Слои, рамки, маски и градиенты переносятся как в Photoshop. Альбомы бывают прямоугольные и квадратные."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Ученик может сам поправить свой портрет?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Да, если вы разрешите. Ученик кадрирует портрет, выбирает фото и меняет развороты с телефона. Вы решаете, какие развороты закрепить для всех и сколько разворотов должно быть минимум."
       }
     },
     {
@@ -110,7 +173,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
       "name": "С какими типографиями работает Lumir Photo?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Работаем со всеми. Подключаем по мере того, как вы их просите. Уже работают Фотодом и Фабрика фотокниги. Напишите свою — быстро добавим."
+        "text": "С любыми. Свою типографию вы можете завести сами прямо в каталоге. С Lumir уже работают Фотодом, Фабрика фотокниги и Фотосфера."
       }
     },
     {
@@ -118,7 +181,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
       "name": "Можно ли загрузить свои дизайны?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Да, загружайте PSD (или другой формат) — Lumir соберёт макеты в ваших дизайнах. Ваш дизайн виден только вам и в общую библиотеку не попадает — никаких «стоков из ваших файлов». Если с файлом что-то не так — поможем. Первым пользователям три папки дизайнов адаптируем бесплатно (обычно 2 900 ₽ за папку)."
+        "text": "Да, загружайте PSD или InDesign, и Lumir соберёт макеты в ваших дизайнах. Ваш дизайн виден только вам и не попадает в общую библиотеку. Если с файлом что-то не так, поможем. Первой 1000 фотографов адаптируем три дизайн-пака бесплатно: стандартные паки до 25 разворотов (обычно 2 900 ₽ за пак)."
       }
     },
     {
@@ -126,7 +189,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
       "name": "Сколько и как долго хранятся файлы?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "До 20 ГБ фото на один класс — обычно съёмка это 500–2500 jpeg-кадров, как раз под такие объёмы рассчитано. Файлы храним без пересжатия, в исходном качестве. Оригиналы фото — полгода, макеты утверждённых альбомов — год. Если вдруг места не хватит — пишите, обсудим."
+        "text": "На один класс можно загрузить до 20 ГБ фото. Обычно съёмка — это 500–2500 JPEG-кадров, сервис рассчитан как раз на такие объёмы. Файлы храним без пересжатия, в исходном качестве. Оригиналы фото хранятся полгода, макеты утверждённых альбомов — год. Если места не хватит, напишите, и мы обсудим."
       }
     },
     {
@@ -134,7 +197,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
       "name": "Где и как хранятся данные?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "В дата-центре в Москве. Резервное питание, запасные каналы, репликация данных. С законом о ПДн всё в порядке — зарегистрированы в Роскомнадзоре как оператор персональных данных."
+        "text": "В дата-центре в Москве. Резервное питание, запасные каналы, репликация данных. Требования закона о персональных данных соблюдены: мы зарегистрированы в Роскомнадзоре как оператор персональных данных."
       }
     },
     {
@@ -150,7 +213,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
       "name": "Можно ли что-то поменять после того, как макеты собрались?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Да. Движок собирает черновой макет автоматически — дальше вы правите точечно: фото, порядок разворотов, раскладки, тексты. Любое фото меняется в один клик прямо в редакторе. Финальное слово всегда за человеком."
+        "text": "Да. Lumir собирает черновой макет автоматически, а дальше вы правите точечно: фото, порядок разворотов, раскладки, тексты. Любое фото меняется в один клик прямо в редакторе. Финальное слово всегда за человеком."
       }
     },
     {
@@ -158,15 +221,15 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
       "name": "Можно ли защитить фото от скачивания?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Да. На все фото идут водяные знаки, ученики видят только превью и скачать оригинал не могут. По умолчанию скачивание им закрыто. Если хотите — в настройках разрешите скачивание: например, только тех фото, что вошли в утверждённый альбом."
+        "text": "Да. На все фото идут водяные знаки, ученики видят только превью и скачать оригинал не могут. По умолчанию скачивание им закрыто. Если хотите, разрешите скачивание в настройках, например только для фото из утверждённого альбома."
       }
     },
     {
       "@type": "Question",
-      "name": "Можно ли запретить ученикам менять определенные развороты при утверждении?",
+      "name": "Можно ли запретить ученикам менять определённые развороты при утверждении?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Да, любой разворот блокируется на уровне мастер-настроек — он становится одинаковым у всех 30 альбомов класса, и ученики не смогут его поменять при утверждении. Удобно для виньетки, обложки и общих кадров. Индивидуальные развороты с портретами при этом остаются редактируемыми у каждого своими."
+        "text": "Да. Любой разворот можно закрепить в мастер-альбоме: он станет одинаковым во всех альбомах класса, и ученики не смогут его поменять. Удобно для виньетки, обложки и общих кадров. Индивидуальные развороты с портретами при этом остаются редактируемыми у каждого своими."
       }
     },
     {
@@ -174,7 +237,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
       "name": "Работает ли сервис с садом/младшими (через родителей) и с 9–11 классами (через учеников)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Да, к возрасту не привязаны. Вы сами решаете, кто заходит в редактор и утверждает альбом: родители (обычно сад и 4 класс) или ученики напрямую (9–11). У организатора (мама-активистка, староста класса или ваш менеджер) — отдельная роль: своя ссылка, статусы всех альбомов, возможность торопить отстающих и утверждать за молчунов. Так фотографу не приходится разруливать чат с 30 родителями — этим занимается организатор."
+        "text": "Да, сервис не привязан к возрасту. Вы сами решаете, кто заходит в редактор и утверждает альбом: родители (обычно сад и 4 класс) или ученики напрямую (9–11). Для организатора (мамы-активистки, старосты класса или вашего менеджера) есть отдельная роль: своя ссылка, статусы всех альбомов, возможность торопить отстающих и утверждать за тех, кто молчит. Так фотографу не приходится разруливать чат с 30 родителями: этим занимается организатор."
       }
     },
     {
@@ -182,7 +245,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
       "name": "Кто заполняет имена в виньетке?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Отдаёте отдельную ссылку организатору — она подписывает учеников прямо в интерфейсе, без таблиц и Excel. Либо ученики при входе указывают своё имя сами, если организатор ещё не подписал."
+        "text": "Вы отправляете организатору отдельную ссылку, и он подписывает учеников прямо в интерфейсе, без таблиц. Если организатор ещё не успел, ученики указывают имя сами при входе."
       }
     },
     {
@@ -190,7 +253,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
       "name": "Поддерживаете RAW (CR3/NEF/ARW)?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Пока нет. Грузите JPG после первичной отбраковки — со светокоррекцией или без. Это формат, в котором фотографы обычно отдают съёмку заказчику на отбор. Если у вас другой воркфлоу — напишите, обсудим."
+        "text": "Пока нет. Загружайте JPG после первичной отбраковки, со светокоррекцией или без. Это формат, в котором фотографы обычно отдают съёмку заказчику на отбор. Если вы работаете иначе, напишите, обсудим."
       }
     },
     {
@@ -198,7 +261,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
       "name": "Распознавание лиц — это биометрия? Безопасно для родителей?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Распознавание работает только внутри вашего проекта — чтобы сгруппировать фото по ученикам и собрать индивидуальный альбом каждому. Третьим лицам биометрию не передаём, во внешние сервисы не отправляем, за пределами вашей съёмки не используем. Серверы — в Москве, зарегистрированы в Роскомнадзоре как оператор ПДн."
+        "text": "Распознавание работает только внутри вашего проекта, чтобы сгруппировать фото по ученикам и собрать индивидуальный альбом каждому. Третьим лицам биометрию не передаём, во внешние сервисы не отправляем, за пределами вашей съёмки не используем. Серверы находятся в Москве, мы зарегистрированы в Роскомнадзоре как оператор ПДн."
       }
     },
     {
@@ -206,7 +269,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
       "name": "Как быстро отвечает поддержка?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Пишите в телеграм — обычно отвечаем в течение пары часов, а в рабочее время чаще всего сразу."
+        "text": "Пишите в Telegram: обычно отвечаем в течение пары часов, а в рабочее время чаще всего сразу."
       }
     }
   ]
@@ -4562,7 +4625,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
 /* ============================================
    V3 — «Весь выпускной сезон фотографа»
    ============================================ */
-.v3-eyebrow { font-family: var(--display); font-weight: 800; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 18px; text-align: center; }
+.v3-eyebrow { display: block; line-height: 1.4; font-family: var(--display); font-weight: 800; font-size: 13px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0 0 18px; text-align: center; }
 .v3-stage { display: inline-flex; align-items: center; gap: 10px; font-family: var(--display); font-weight: 800; font-size: 12px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3); margin-bottom: 14px; }
 .v3-stage b { display: inline-grid; place-items: center; min-width: 34px; height: 34px; padding: 0 8px; border-radius: 999px; background: var(--violet-grad); color: #fff; letter-spacing: 0; font-size: 13px; }
 .v3-stage--gold b { background: var(--gold-grad); color: #241A05; }
@@ -4714,8 +4777,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
 
 <!-- ============================================ S1 — HERO ============================================ -->
 <header class="hero container" data-screen-label="01 Hero">
-  <p class="v3-eyebrow">✦ Автовёрстка школьных альбомов</p>
-  <h1 style="font-size: clamp(34px, 6.2vw, 70px); line-height: 1.08">Весь выпускной сезон фотографа — <span class="grad">в&nbsp;Lumir</span></h1>
+  <h1 style="font-size: clamp(34px, 6.2vw, 70px); line-height: 1.08"><span class="v3-eyebrow">✦ Автовёрстка индивидуальных школьных альбомов</span>Весь выпускной сезон фотографа — <span class="grad">в&nbsp;Lumir</span></h1>
   <a href="#pricing" class="hero-offer" style="text-decoration: none; color: inherit;">
     <span class="hero-offer-icon">🎁</span>
     <span><strong>10 000 ₽ на баланс</strong> для первой 1000 фотографов</span>
@@ -4727,7 +4789,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
       <source src="assets/lumir-promo-v2.mp4" type="video/mp4" />
     </video>
     <div class="hero-video-placeholder" aria-hidden="true">
-      <img src="assets/banners/hero-cover-dark.png" alt="LUMIR — от папки фотографий до готового альбома" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+      <img src="assets/banners/hero-cover-dark.png" alt="Lumir: весь выпускной сезон фотографа от чата класса до готовых альбомов и галереи" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
     </div>
     <button class="hero-video-play" type="button" id="hero-video-play" aria-label="Воспроизвести демо">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#fff"/></svg>
@@ -4852,7 +4914,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
     </div>
     <div class="v3-cards">
       <div class="v3-card reveal">
-        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(124,111,232,0.25), transparent 70%), var(--bg-warm);"><div class="v3-cover img "><img src="assets/sm/cover20-r-520.jpg" alt="" loading="lazy"></div><div class="v3-cover img "><img src="assets/sm/cover27-r-520.jpg" alt="" loading="lazy"></div><div class="v3-cover img "><img src="assets/sm/cover22-r-520.jpg" alt="" loading="lazy"></div>
+        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(124,111,232,0.25), transparent 70%), var(--bg-warm);"><div class="v3-cover img "><img src="assets/sm/cover20-r-520.jpg" alt="Обложка выпускного альбома из библиотеки Lumir" loading="lazy"></div><div class="v3-cover img "><img src="assets/sm/cover27-r-520.jpg" alt="Тёмная обложка выпускного альбома из библиотеки Lumir" loading="lazy"></div><div class="v3-cover img "><img src="assets/sm/cover22-r-520.jpg" alt="Обложка альбома 11 класса из библиотеки Lumir" loading="lazy"></div>
         </div>
         <div class="v3-card-body">
           <h3>Библиотека Lumir</h3>
@@ -4861,7 +4923,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
         </div>
       </div>
       <div class="v3-card reveal">
-        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(232,180,92,0.28), transparent 70%), var(--bg-warm);"><div class="v3-cover img "><img src="assets/mironova/shkolny.jpg" alt="" loading="lazy"></div><div class="v3-cover img "><img src="assets/mironova/planeta.jpg" alt="" loading="lazy"></div><div class="v3-cover img "><img src="assets/mironova/kosmos.jpg" alt="" loading="lazy"></div>
+        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(232,180,92,0.28), transparent 70%), var(--bg-warm);"><div class="v3-cover img "><img src="assets/mironova/shkolny.jpg" alt="Дизайн школьного альбома от дизайн-студии" loading="lazy"></div><div class="v3-cover img "><img src="assets/mironova/planeta.jpg" alt="Дизайн альбома «Планета детства» от дизайн-студии" loading="lazy"></div><div class="v3-cover img "><img src="assets/mironova/kosmos.jpg" alt="Дизайн альбома «Космос» от дизайн-студии" loading="lazy"></div>
         </div>
         <div class="v3-card-body">
           <h3>Дизайны от студий <span class="v3-tag">магазин</span></h3>
@@ -4870,7 +4932,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
         </div>
       </div>
       <div class="v3-card reveal">
-        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(24,142,88,0.22), transparent 70%), var(--bg-warm);"><div style="display:flex;flex-direction:column;gap:8px"><div class="v3-file" style="background:linear-gradient(160deg,#31A8FF,#001E36)">PSD</div><div class="v3-file" style="background:linear-gradient(160deg,#FF3366,#49021F)">INDD</div></div><span class="v3-psd-arrow">→</span><div class="v3-cover img "><img src="assets/ui/cover-alina.jpg" alt="" loading="lazy"></div>
+        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(24,142,88,0.22), transparent 70%), var(--bg-warm);"><div style="display:flex;flex-direction:column;gap:8px"><div class="v3-file" style="background:linear-gradient(160deg,#31A8FF,#001E36)">PSD</div><div class="v3-file" style="background:linear-gradient(160deg,#FF3366,#49021F)">INDD</div></div><span class="v3-psd-arrow">→</span><div class="v3-cover img "><img src="assets/ui/cover-alina.jpg" alt="Готовая обложка выпускного альбома из PSD-дизайна" loading="lazy"></div>
         </div>
         <div class="v3-card-body">
           <h3>Ваши дизайны</h3>
@@ -5359,6 +5421,20 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
     <div class="faq-list reveal collapsed">
       <div class="faq-item">
         <button class="faq-q" type="button" aria-expanded="false">
+          Что такое Lumir Photo (Люмир)?
+          <span class="faq-toggle" aria-hidden="true">+</span>
+        </button>
+        <div class="faq-a">
+          <div>
+            <div class="faq-a-content">
+              <p>Lumir Photo (Люмир Фото, Люмир Фотокласс) — онлайн-сервис для школьных фотографов. Он распознаёт лица на съёмке, автоматически собирает индивидуальный выпускной альбом каждому ученику по вашему дизайну, отправляет альбомы ученикам на утверждение с телефона, принимает допродажи, отдаёт оригиналы на ретушь и готовит файлы для печати в любой типографии. Один класс стоит 980 ₽, сборка и согласование — бесплатно.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" type="button" aria-expanded="false">
           Сколько стоит?
           <span class="faq-toggle" aria-hidden="true">+</span>
         </button>
@@ -5693,7 +5769,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="/" class="footer-logo" aria-label="Lumir Photo"><img src="assets/logo-lumir-photo.png" alt="Lumir Photo" width="585" height="72" loading="lazy" decoding="async" /></a>
-        <p>Автовёрстка школьных альбомов<br>Больше съёмок, меньше рутины ✨</p>
+        <p>Lumir Photo · Люмир Фотокласс<br>Автовёрстка индивидуальных школьных альбомов<br>Больше съёмок, меньше рутины ✨</p>
         <a href="https://lumir.photo" class="domain-chip">lumir.photo</a>
         <p class="footer-copy">© 2026 Lumir Photo</p>
       </div>
