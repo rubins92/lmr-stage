@@ -4499,6 +4499,21 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
 }
 .v2-mk-chat small { display: block; opacity: .8; font-size: 11px; margin-bottom: 4px; }
 
+
+/* ── v3: реальный контент в мокапах ── */
+.v3-cover.img { padding: 0; background: #1C1927; }
+.v3-cover.img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.v3-cover.wide { width: 120px; }
+.v3-psd-arrow { color: var(--accent); font-size: 22px; font-weight: 700; }
+.v3-file { width: 64px; height: 78px; border-radius: 8px; display: flex; align-items: flex-end; padding: 8px; font: 800 11px var(--display); letter-spacing: .08em; color: #fff; box-shadow: 0 10px 24px rgba(0,0,0,.25); }
+.v2-mk-cover { background-size: cover; }
+.v2-mk-cover::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(15,14,21,.35)); }
+.v2-mk-ava { display: grid; place-items: center; font: 800 22px var(--display); color: #241A05; z-index: 1; }
+.v2-mk-albums div { background-size: cover !important; background-position: center !important; box-shadow: 0 6px 14px rgba(0,0,0,.18); }
+.v3-rt-ph, .v3-gal-ph { background-size: cover !important; background-position: 50% 25% !important; }
+[data-theme="dark"] .v3-gal-ph { filter: none; }
+.v3-rt-ph em { box-shadow: 0 4px 10px rgba(0,0,0,.25); }
+
 /* Иллюстрация шага «Допродажи» */
 .v2-step-ill { position: absolute; inset: 0; display: grid; place-items: center; background: radial-gradient(600px 300px at 30% 20%, rgba(232,180,92,0.22), transparent 60%), var(--bg-warm); }
 .v2-step-ill .rows { display: flex; flex-direction: column; gap: 10px; width: min(78%, 360px); }
@@ -4780,7 +4795,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
       <div class="v2-split-visual reveal">
         <div class="v2-mk">
           <div class="v2-mk-page">
-            <div class="v2-mk-cover"><div class="v2-mk-ava"></div></div>
+            <div class="v2-mk-cover" style="background-image:url(assets/screens/screen-01.jpg);background-position:50% 12%"><div class="v2-mk-ava">АС</div></div>
             <div class="v2-mk-body">
               <b>Анна Смирнова</b><span>Выпускные альбомы · Казань</span>
               <div class="v2-mk-stats">
@@ -4788,7 +4803,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
                 <div><strong>9 лет</strong><small>снимаю</small></div>
                 <div><strong>4,9</strong><small>оценка</small></div>
               </div>
-              <div class="v2-mk-albums"><div></div><div></div><div></div></div>
+              <div class="v2-mk-albums"><div style="background:url(assets/ui/cover-alina.jpg)"></div><div style="background:url(assets/sm/cover27-r-520.jpg)"></div><div style="background:url(assets/sm/cover20-r-520.jpg)"></div></div>
             </div>
           </div>
           <div class="v2-mk-qr"><svg viewBox="0 0 96 96" fill="#1C1927" aria-hidden="true"><rect x="0" y="0" width="4" height="4"/><rect x="4" y="0" width="4" height="4"/><rect x="8" y="0" width="4" height="4"/><rect x="12" y="0" width="4" height="4"/><rect x="16" y="0" width="4" height="4"/><rect x="20" y="0" width="4" height="4"/><rect x="24" y="0" width="4" height="4"/><rect x="32" y="0" width="4" height="4"/><rect x="40" y="0" width="4" height="4"/><rect x="52" y="0" width="4" height="4"/><rect x="60" y="0" width="4" height="4"/><rect x="68" y="0" width="4" height="4"/><rect x="72" y="0" width="4" height="4"/><rect x="76" y="0" width="4" height="4"/><rect x="80" y="0" width="4" height="4"/><rect x="84" y="0" width="4" height="4"/><rect x="88" y="0" width="4" height="4"/><rect x="92" y="0" width="4" height="4"/><rect x="0" y="4" width="4" height="4"/><rect x="24" y="4" width="4" height="4"/><rect x="36" y="4" width="4" height="4"/><rect x="44" y="4" width="4" height="4"/><rect x="56" y="4" width="4" height="4"/><rect x="64" y="4" width="4" height="4"/><rect x="68" y="4" width="4" height="4"/><rect x="92" y="4" width="4" height="4"/><rect x="0" y="8" width="4" height="4"/><rect x="8" y="8" width="4" height="4"/><rect x="12" y="8" width="4" height="4"/><rect x="16" y="8" width="4" height="4"/><rect x="24" y="8" width="4" height="4"/><rect x="40" y="8" width="4" height="4"/><rect x="44" y="8" width="4" height="4"/><rect x="60" y="8" width="4" height="4"/><rect x="64" y="8" width="4" height="4"/><rect x="68" y="8" width="4" height="4"/><rect x="76" y="8" width="4" height="4"/><rect x="80" y="8" width="4" height="4"/><rect x="84" y="8" width="4" height="4"/><rect x="92" y="8" width="4" height="4"/><rect x="0" y="12" width="4" height="4"/><rect x="8" y="12" width="4" height="4"/><rect x="12" y="12" width="4" height="4"/><rect x="16" y="12" width="4" height="4"/><rect x="24" y="12" width="4" height="4"/><rect x="68" y="12" width="4" height="4"/><rect x="76" y="12" width="4" height="4"/><rect x="80" y="12" width="4" height="4"/><rect x="84" y="12" width="4" height="4"/><rect x="92" y="12" width="4" height="4"/><rect x="0" y="16" width="4" height="4"/><rect x="8" y="16" width="4" height="4"/><rect x="12" y="16" width="4" height="4"/><rect x="16" y="16" width="4" height="4"/><rect x="24" y="16" width="4" height="4"/><rect x="32" y="16" width="4" height="4"/><rect x="36" y="16" width="4" height="4"/><rect x="52" y="16" width="4" height="4"/><rect x="56" y="16" width="4" height="4"/><rect x="68" y="16" width="4" height="4"/><rect x="76" y="16" width="4" height="4"/><rect x="80" y="16" width="4" height="4"/><rect x="84" y="16" width="4" height="4"/><rect x="92" y="16" width="4" height="4"/><rect x="0" y="20" width="4" height="4"/><rect x="24" y="20" width="4" height="4"/><rect x="32" y="20" width="4" height="4"/><rect x="40" y="20" width="4" height="4"/><rect x="52" y="20" width="4" height="4"/><rect x="60" y="20" width="4" height="4"/><rect x="68" y="20" width="4" height="4"/><rect x="92" y="20" width="4" height="4"/><rect x="0" y="24" width="4" height="4"/><rect x="4" y="24" width="4" height="4"/><rect x="8" y="24" width="4" height="4"/><rect x="12" y="24" width="4" height="4"/><rect x="16" y="24" width="4" height="4"/><rect x="20" y="24" width="4" height="4"/><rect x="24" y="24" width="4" height="4"/><rect x="36" y="24" width="4" height="4"/><rect x="44" y="24" width="4" height="4"/><rect x="56" y="24" width="4" height="4"/><rect x="64" y="24" width="4" height="4"/><rect x="68" y="24" width="4" height="4"/><rect x="72" y="24" width="4" height="4"/><rect x="76" y="24" width="4" height="4"/><rect x="80" y="24" width="4" height="4"/><rect x="84" y="24" width="4" height="4"/><rect x="88" y="24" width="4" height="4"/><rect x="92" y="24" width="4" height="4"/><rect x="0" y="28" width="4" height="4"/><rect x="4" y="28" width="4" height="4"/><rect x="20" y="28" width="4" height="4"/><rect x="24" y="28" width="4" height="4"/><rect x="40" y="28" width="4" height="4"/><rect x="44" y="28" width="4" height="4"/><rect x="60" y="28" width="4" height="4"/><rect x="64" y="28" width="4" height="4"/><rect x="80" y="28" width="4" height="4"/><rect x="84" y="28" width="4" height="4"/><rect x="12" y="36" width="4" height="4"/><rect x="16" y="36" width="4" height="4"/><rect x="32" y="36" width="4" height="4"/><rect x="36" y="36" width="4" height="4"/><rect x="52" y="36" width="4" height="4"/><rect x="56" y="36" width="4" height="4"/><rect x="72" y="36" width="4" height="4"/><rect x="76" y="36" width="4" height="4"/><rect x="92" y="36" width="4" height="4"/><rect x="0" y="40" width="4" height="4"/><rect x="12" y="40" width="4" height="4"/><rect x="20" y="40" width="4" height="4"/><rect x="32" y="40" width="4" height="4"/><rect x="40" y="40" width="4" height="4"/><rect x="52" y="40" width="4" height="4"/><rect x="60" y="40" width="4" height="4"/><rect x="72" y="40" width="4" height="4"/><rect x="80" y="40" width="4" height="4"/><rect x="92" y="40" width="4" height="4"/><rect x="4" y="44" width="4" height="4"/><rect x="16" y="44" width="4" height="4"/><rect x="24" y="44" width="4" height="4"/><rect x="36" y="44" width="4" height="4"/><rect x="44" y="44" width="4" height="4"/><rect x="56" y="44" width="4" height="4"/><rect x="64" y="44" width="4" height="4"/><rect x="76" y="44" width="4" height="4"/><rect x="84" y="44" width="4" height="4"/><rect x="0" y="48" width="4" height="4"/><rect x="4" y="48" width="4" height="4"/><rect x="20" y="48" width="4" height="4"/><rect x="24" y="48" width="4" height="4"/><rect x="40" y="48" width="4" height="4"/><rect x="44" y="48" width="4" height="4"/><rect x="60" y="48" width="4" height="4"/><rect x="64" y="48" width="4" height="4"/><rect x="80" y="48" width="4" height="4"/><rect x="84" y="48" width="4" height="4"/><rect x="12" y="56" width="4" height="4"/><rect x="16" y="56" width="4" height="4"/><rect x="32" y="56" width="4" height="4"/><rect x="36" y="56" width="4" height="4"/><rect x="52" y="56" width="4" height="4"/><rect x="56" y="56" width="4" height="4"/><rect x="72" y="56" width="4" height="4"/><rect x="76" y="56" width="4" height="4"/><rect x="92" y="56" width="4" height="4"/><rect x="0" y="60" width="4" height="4"/><rect x="12" y="60" width="4" height="4"/><rect x="20" y="60" width="4" height="4"/><rect x="32" y="60" width="4" height="4"/><rect x="40" y="60" width="4" height="4"/><rect x="52" y="60" width="4" height="4"/><rect x="60" y="60" width="4" height="4"/><rect x="72" y="60" width="4" height="4"/><rect x="80" y="60" width="4" height="4"/><rect x="92" y="60" width="4" height="4"/><rect x="4" y="64" width="4" height="4"/><rect x="16" y="64" width="4" height="4"/><rect x="24" y="64" width="4" height="4"/><rect x="36" y="64" width="4" height="4"/><rect x="44" y="64" width="4" height="4"/><rect x="56" y="64" width="4" height="4"/><rect x="64" y="64" width="4" height="4"/><rect x="76" y="64" width="4" height="4"/><rect x="84" y="64" width="4" height="4"/><rect x="0" y="68" width="4" height="4"/><rect x="4" y="68" width="4" height="4"/><rect x="8" y="68" width="4" height="4"/><rect x="12" y="68" width="4" height="4"/><rect x="16" y="68" width="4" height="4"/><rect x="20" y="68" width="4" height="4"/><rect x="24" y="68" width="4" height="4"/><rect x="40" y="68" width="4" height="4"/><rect x="44" y="68" width="4" height="4"/><rect x="60" y="68" width="4" height="4"/><rect x="64" y="68" width="4" height="4"/><rect x="0" y="72" width="4" height="4"/><rect x="24" y="72" width="4" height="4"/><rect x="0" y="76" width="4" height="4"/><rect x="8" y="76" width="4" height="4"/><rect x="12" y="76" width="4" height="4"/><rect x="16" y="76" width="4" height="4"/><rect x="24" y="76" width="4" height="4"/><rect x="32" y="76" width="4" height="4"/><rect x="36" y="76" width="4" height="4"/><rect x="52" y="76" width="4" height="4"/><rect x="56" y="76" width="4" height="4"/><rect x="0" y="80" width="4" height="4"/><rect x="8" y="80" width="4" height="4"/><rect x="12" y="80" width="4" height="4"/><rect x="16" y="80" width="4" height="4"/><rect x="24" y="80" width="4" height="4"/><rect x="32" y="80" width="4" height="4"/><rect x="40" y="80" width="4" height="4"/><rect x="52" y="80" width="4" height="4"/><rect x="60" y="80" width="4" height="4"/><rect x="0" y="84" width="4" height="4"/><rect x="8" y="84" width="4" height="4"/><rect x="12" y="84" width="4" height="4"/><rect x="16" y="84" width="4" height="4"/><rect x="24" y="84" width="4" height="4"/><rect x="36" y="84" width="4" height="4"/><rect x="44" y="84" width="4" height="4"/><rect x="56" y="84" width="4" height="4"/><rect x="64" y="84" width="4" height="4"/><rect x="0" y="88" width="4" height="4"/><rect x="24" y="88" width="4" height="4"/><rect x="40" y="88" width="4" height="4"/><rect x="44" y="88" width="4" height="4"/><rect x="60" y="88" width="4" height="4"/><rect x="64" y="88" width="4" height="4"/><rect x="0" y="92" width="4" height="4"/><rect x="4" y="92" width="4" height="4"/><rect x="8" y="92" width="4" height="4"/><rect x="12" y="92" width="4" height="4"/><rect x="16" y="92" width="4" height="4"/><rect x="20" y="92" width="4" height="4"/><rect x="24" y="92" width="4" height="4"/></svg><span>Наведите камеру</span></div>
@@ -4810,10 +4825,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
     </div>
     <div class="v3-cards">
       <div class="v3-card reveal">
-        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(124,111,232,0.25), transparent 70%), var(--bg-warm);">
-          <div class="v3-cover" style="background: linear-gradient(160deg,#7C6FE8,#3E3494);">ВЫПУСК</div>
-          <div class="v3-cover" style="background: linear-gradient(160deg,#F4F1EA,#C9C1B4); color:#2C2825;">2026</div>
-          <div class="v3-cover" style="background: linear-gradient(160deg,#1C1927,#4A4560);">КЛАСС</div>
+        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(124,111,232,0.25), transparent 70%), var(--bg-warm);"><div class="v3-cover img "><img src="assets/sm/cover20-r-520.jpg" alt="" loading="lazy"></div><div class="v3-cover img "><img src="assets/sm/cover27-r-520.jpg" alt="" loading="lazy"></div><div class="v3-cover img "><img src="assets/sm/cover22-r-520.jpg" alt="" loading="lazy"></div>
         </div>
         <div class="v3-card-body">
           <h3>Библиотека Lumir</h3>
@@ -4822,21 +4834,16 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
         </div>
       </div>
       <div class="v3-card reveal">
-        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(232,180,92,0.28), transparent 70%), var(--bg-warm);">
-          <div class="v3-cover" style="background: linear-gradient(160deg,#2F8F7A,#14453B);">ИЗУМРУД</div>
-          <div class="v3-cover" style="background: linear-gradient(160deg,#E8C88C,#9A6A2A);">ЗОЛОТО</div>
-          <div class="v3-cover" style="background: linear-gradient(160deg,#E8A0B4,#8E3E5C);">РОЗА</div>
+        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(232,180,92,0.28), transparent 70%), var(--bg-warm);"><div class="v3-cover img "><img src="assets/mironova/shkolny.jpg" alt="" loading="lazy"></div><div class="v3-cover img "><img src="assets/mironova/planeta.jpg" alt="" loading="lazy"></div><div class="v3-cover img "><img src="assets/mironova/kosmos.jpg" alt="" loading="lazy"></div>
         </div>
         <div class="v3-card-body">
           <h3>Дизайны от студий <span class="v3-tag">магазин</span></h3>
           <p>Авторские паки дизайн-студий. Студия сама выпускает обновления, а вы видите их по метке «Обновление»</p>
-          <div class="v3-card-price"><span class="hl">Навсегда: от … ₽</span><span>Аренда на проект: … ₽</span></div>
+          <div class="v3-card-price"><span class="hl">Навсегда: от 700 ₽</span><span>Аренда на проект: 390 ₽</span></div>
         </div>
       </div>
       <div class="v3-card reveal">
-        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(24,142,88,0.22), transparent 70%), var(--bg-warm);">
-          <div class="v3-cover" style="background: linear-gradient(160deg,#31A8FF,#001E36);">PSD</div>
-          <div class="v3-cover" style="background: linear-gradient(160deg,#FF3366,#49021F);">INDD</div>
+        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(24,142,88,0.22), transparent 70%), var(--bg-warm);"><div style="display:flex;flex-direction:column;gap:8px"><div class="v3-file" style="background:linear-gradient(160deg,#31A8FF,#001E36)">PSD</div><div class="v3-file" style="background:linear-gradient(160deg,#FF3366,#49021F)">INDD</div></div><span class="v3-psd-arrow">→</span><div class="v3-cover img "><img src="assets/ui/cover-alina.jpg" alt="" loading="lazy"></div>
         </div>
         <div class="v3-card-body">
           <h3>Ваши дизайны</h3>
@@ -4959,12 +4966,12 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
         <div class="v3-rt" aria-label="Пример раздела «Ретушь»">
           <div class="v3-rt-top"><b>Ретушь · 11 «Б»</b><span>24 фото из утверждённых альбомов</span></div>
           <div class="v3-rt-grid">
-            <div class="v3-rt-ph"><em class="done">Готово</em></div>
-            <div class="v3-rt-ph"><em class="done">Готово</em></div>
-            <div class="v3-rt-ph"><em class="wip">В работе</em></div>
-            <div class="v3-rt-ph"><em class="todo">Ждёт ретуши</em></div>
-            <div class="v3-rt-ph"><em class="todo">Ждёт ретуши</em></div>
-            <div class="v3-rt-ph"><em class="wip">В работе</em></div>
+            <div class="v3-rt-ph" style="background:url(assets/students/01_01.jpg)"><em class="done">Готово</em></div>
+            <div class="v3-rt-ph" style="background:url(assets/students/01_07.jpg)"><em class="done">Готово</em></div>
+            <div class="v3-rt-ph" style="background:url(assets/students/01_32.jpg)"><em class="wip">В работе</em></div>
+            <div class="v3-rt-ph" style="background:url(assets/students/01_18.jpg)"><em class="todo">Ждёт ретуши</em></div>
+            <div class="v3-rt-ph" style="background:url(assets/students/01_68.jpg)"><em class="todo">Ждёт ретуши</em></div>
+            <div class="v3-rt-ph" style="background:url(assets/students/01_44.jpg)"><em class="wip">В работе</em></div>
           </div>
           <div class="v3-rt-bar"><a href="#retouch">Скачать оригиналы</a><a href="#retouch" class="pri">Загрузить ретушь</a></div>
         </div>
@@ -5145,7 +5152,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
       <div class="v2-split-visual reveal">
         <div class="v3-gal" aria-label="Пример клиентской галереи">
           <div class="v3-gal-top"><b>Выпускной · 11 «Б»</b><span>186 фото · 4 в избранном</span></div>
-          <div class="v3-gal-grid"><div class="v3-gal-ph"></div><div class="v3-gal-ph"><i>♥</i></div><div class="v3-gal-ph"></div><div class="v3-gal-ph"></div><div class="v3-gal-ph"><i>♥</i></div><div class="v3-gal-ph"></div><div class="v3-gal-ph"><i>♥</i></div><div class="v3-gal-ph"></div><div class="v3-gal-ph"></div><div class="v3-gal-ph"><i>♥</i></div><div class="v3-gal-ph"></div><div class="v3-gal-ph"></div></div>
+          <div class="v3-gal-grid"><div class="v3-gal-ph" style="background:url(assets/screens/screen-01.jpg)"></div><div class="v3-gal-ph" style="background:url(assets/students/01_17.jpg)"><i>♥</i></div><div class="v3-gal-ph" style="background:url(assets/students/01_27.jpg)"></div><div class="v3-gal-ph" style="background:url(assets/students/01_56.jpg)"></div><div class="v3-gal-ph" style="background:url(assets/screens/screen-03.jpg)"><i>♥</i></div><div class="v3-gal-ph" style="background:url(assets/students/01_60.jpg)"></div><div class="v3-gal-ph" style="background:url(assets/students/01_23.jpg)"><i>♥</i></div><div class="v3-gal-ph" style="background:url(assets/screens/screen-04.jpg)"></div><div class="v3-gal-ph" style="background:url(assets/students/01_68.jpg)"></div><div class="v3-gal-ph" style="background:url(assets/screens/screen-07.jpg)"><i>♥</i></div><div class="v3-gal-ph" style="background:url(assets/students/01_32.jpg)"></div><div class="v3-gal-ph" style="background:url(assets/students/01_07.jpg)"></div></div>
           <div class="v3-gal-bar"><span>♥ Избранное · 4</span><a href="#galleries">Подтвердить отбор</a></div>
         </div>
       </div>
