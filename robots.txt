@@ -3,7 +3,33 @@ User-agent: *
 Allow: /
 Disallow: /assets/screens/
 
-# AI training crawlers — закрыто
+# ИИ-поиск — открыто: эти боты ищут и цитируют страницы в ответах
+# (ChatGPT Search, Perplexity, Claude). На обучение моделей не идут.
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /assets/screens/
+
+User-agent: ChatGPT-User
+Allow: /
+Disallow: /assets/screens/
+
+User-agent: PerplexityBot
+Allow: /
+Disallow: /assets/screens/
+
+User-agent: Perplexity-User
+Allow: /
+Disallow: /assets/screens/
+
+User-agent: Claude-SearchBot
+Allow: /
+Disallow: /assets/screens/
+
+User-agent: Claude-User
+Allow: /
+Disallow: /assets/screens/
+
+# AI training crawlers — закрыто (обучение моделей)
 User-agent: CCBot
 Disallow: /
 
@@ -13,16 +39,10 @@ Disallow: /
 User-agent: Google-Extended
 Disallow: /
 
-User-agent: ChatGPT-User
-Disallow: /
-
 User-agent: ClaudeBot
 Disallow: /
 
 User-agent: anthropic-ai
-Disallow: /
-
-User-agent: PerplexityBot
 Disallow: /
 
 User-agent: Bytespider
