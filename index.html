@@ -45,7 +45,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
 <meta property="og:url" content="https://lumir.photo/" />
 <meta property="og:title" content="Lumir Photo — автовёрстка индивидуальных школьных альбомов и фотокниг" />
 <meta property="og:description" content="Lumir Photo (Люмир Фото) — сервис автовёрстки индивидуальных школьных альбомов и фотокниг. Распознавание лиц, автоматическая сборка макетов, согласование с учениками, допродажи и экспорт в любую типографию." />
-<meta property="og:image" content="https://lumir.photo/og-image.jpg" />
+<meta property="og:image" content="https://lumir.photo/v3-og-dark.png" />
 <meta property="og:locale" content="ru_RU" />
 <meta property="og:site_name" content="Lumir" />
 
@@ -53,7 +53,7 @@ ym(108151104, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLa
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Lumir Photo — автовёрстка индивидуальных школьных альбомов и фотокниг" />
 <meta name="twitter:description" content="Lumir Photo (Люмир Фото) — сервис автовёрстки индивидуальных школьных альбомов и фотокниг. Распознавание лиц, автоматическая сборка макетов, согласование с учениками, допродажи и экспорт в любую типографию." />
-<meta name="twitter:image" content="https://lumir.photo/og-image.jpg" />
+<meta name="twitter:image" content="https://lumir.photo/v3-og-dark.png" />
 
 <!-- JSON-LD: SoftwareApplication -->
 <script type="application/ld+json">
@@ -4733,6 +4733,32 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
   .v3-gal-grid { grid-template-columns: repeat(3, 1fr); }
   .v3-gal-ph:nth-child(n+10) { display: none; }
 }
+
+/* Баннеры дизайнера v3 */
+.v3b--dark { display: none; }
+[data-theme="dark"] .v3b--dark { display: block; }
+[data-theme="dark"] .v3b--light { display: none; }
+.v3-loop { display: block; width: 100%; height: auto; border-radius: 24px; }
+.v3-loop--tools { aspect-ratio: 2320 / 720; margin-top: 40px; }
+.v3-loop--upsell { aspect-ratio: 680 / 1080; max-width: 460px; margin: 0 auto; }
+@media (max-width: 640px) {
+  .v3-loop--tools { aspect-ratio: 670 / 1040; }
+  .v3-loop--upsell { aspect-ratio: 670 / 1080; }
+}
+.v3-st-ic { font-size: 0; top: 20px; right: 20px; opacity: 1; color: var(--accent); }
+.v3-st--green .v3-st-ic { color: var(--green); }
+.v3-st--gold .v3-st-ic { color: var(--gold); }
+.v3-st-ic svg, .v3-help span svg { display: block; }
+.v3-help span { display: inline-block; font-size: 0; color: var(--accent); }
+.v3-st:hover .v3-st-ic { animation: v3hop .5s ease; }
+.v3-st:hover .v3-st-ic.ic-classes { animation: v3ring .6s ease; }
+.v3-st:hover .v3-st-ic.ic-upsell { animation: v3flip .6s ease; }
+.v3-st:hover .v3-st-ic.ic-retouch { animation: v3wand .6s ease; }
+.v3-help div:hover span { animation: v3hop .5s ease; }
+@keyframes v3ring { 0%,100% { transform: rotate(0); } 20% { transform: rotate(-10deg) scale(1.06); } 45% { transform: rotate(8deg) scale(1.06); } 70% { transform: rotate(-4deg); } }
+@keyframes v3wand { 40% { transform: rotate(-12deg); } 100% { transform: rotate(0); } }
+@keyframes v3flip { to { transform: rotateY(360deg); } }
+@keyframes v3hop { 40% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
 </style>
 <script>
 (function(){
@@ -4787,7 +4813,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
       <source src="assets/lumir-promo-v2.mp4" type="video/mp4" />
     </video>
     <div class="hero-video-placeholder" aria-hidden="true">
-      <img src="assets/banners/hero-cover-dark.png" alt="Lumir: весь выпускной сезон фотографа от чата класса до готовых альбомов и галереи" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
+      <img class="v3b--dark" src="assets/banners/v3-cover-dark.jpg" alt="Lumir: весь выпускной сезон фотографа от чата класса до готовых альбомов и галереи" fetchpriority="high" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit;"><img class="v3b--light" src="assets/banners/v3-cover-light.jpg" alt="Lumir: весь выпускной сезон фотографа от чата класса до готовых альбомов и галереи" loading="lazy" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: inherit;">
     </div>
     <button class="hero-video-play" type="button" id="hero-video-play" aria-label="Воспроизвести демо">
       <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z" fill="#fff"/></svg>
@@ -4810,15 +4836,15 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
       <p class="lede" style="margin-top: 16px;">Не нужно собирать работу из Photoshop, таблиц, мессенджеров и облака. Каждый этап проходит в Lumir</p>
     </div>
     <div class="v3-season">
-      <a class="v3-st reveal" href="#marketing"><span class="v3-st-ic" aria-hidden="true">📣</span><span class="v3-st-n">ЭТАП 01</span><h3>Новые классы</h3><p>Страница-презентация фотографа с QR-кодом и готовым текстом для чата класса</p><span class="v3-st-more">Подробнее →</span></a>
-      <a class="v3-st reveal" href="#designs"><span class="v3-st-ic" aria-hidden="true">🎨</span><span class="v3-st-n">ЭТАП 02</span><h3>Дизайны</h3><p>Библиотека Lumir, дизайны студий на покупку или в аренду, перенос ваших PSD и InDesign</p><span class="v3-st-more">Подробнее →</span></a>
-      <a class="v3-st reveal" href="#individual"><span class="v3-st-ic" aria-hidden="true">🙂</span><span class="v3-st-n">ЭТАП 03</span><h3>Распознавание лиц</h3><p>Lumir находит каждого ученика на съёмке, даже на групповых кадрах и когда он склонился над партой</p><span class="v3-st-more">Подробнее →</span></a>
-      <a class="v3-st reveal" href="#ai"><span class="v3-st-ic" aria-hidden="true">✨</span><span class="v3-st-n">ЭТАП 04</span><h3>Автовёрстка</h3><p>Лучшие кадры без повторов, сборка по вашему мастер-альбому, виньетка на 3–40 учеников</p><span class="v3-st-more">Подробнее →</span></a>
-      <a class="v3-st reveal" href="#retouch"><span class="v3-st-ic" aria-hidden="true">🪄</span><span class="v3-st-n">ЭТАП 05</span><h3>Ретушь</h3><p>Оригиналы из утверждённых альбомов одной папкой. Загрузите ретушь, и фото обновится во всех альбомах</p><span class="v3-st-more">Подробнее →</span></a>
-      <a class="v3-st v3-st--green reveal" href="#class"><span class="v3-st-ic" aria-hidden="true">📱</span><span class="v3-st-n">ЭТАП 06</span><h3>Согласование</h3><p>Организатор заполняет имена, ученики утверждают альбом с телефона, вы задаёте правила</p><span class="v3-st-more">Подробнее →</span></a>
-      <a class="v3-st v3-st--gold reveal" href="#upsell"><span class="v3-st-ic" aria-hidden="true">💰</span><span class="v3-st-n">ЭТАП 07</span><h3>Допродажи</h3><p>Ученики докупают развороты, портреты, ретушь и файлы прямо в альбоме. Счёт собирается сам</p><span class="v3-st-more">Подробнее →</span></a>
-      <a class="v3-st reveal" href="#print"><span class="v3-st-ic" aria-hidden="true">🖨️</span><span class="v3-st-n">ЭТАП 08</span><h3>Печать</h3><p>Файлы под требования типографии. Печатайте в любой, свою можно завести самостоятельно</p><span class="v3-st-more">Подробнее →</span></a>
-      <a class="v3-st reveal" href="#galleries"><span class="v3-st-ic" aria-hidden="true">🖼️</span><span class="v3-st-n">ЭТАП 09</span><h3>Галереи <span class="v3-tag v3-tag--soon">бета</span></h3><p>Отдайте клиентам цифру красиво: галерея по ссылке, избранное, водяной знак</p><span class="v3-st-more">Подробнее →</span></a>
+      <a class="v3-st reveal" href="#marketing"><span class="v3-st-ic ic-classes" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg></span><span class="v3-st-n">ЭТАП 01</span><h3>Новые классы</h3><p>Страница-презентация фотографа с QR-кодом и готовым текстом для чата класса</p><span class="v3-st-more">Подробнее →</span></a>
+      <a class="v3-st reveal" href="#designs"><span class="v3-st-ic ic-designs" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></svg></span><span class="v3-st-n">ЭТАП 02</span><h3>Дизайны</h3><p>Библиотека Lumir, дизайны студий на покупку или в аренду, перенос ваших PSD и InDesign</p><span class="v3-st-more">Подробнее →</span></a>
+      <a class="v3-st reveal" href="#individual"><span class="v3-st-ic ic-faces" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg></span><span class="v3-st-n">ЭТАП 03</span><h3>Распознавание лиц</h3><p>Lumir находит каждого ученика на съёмке, даже на групповых кадрах и когда он склонился над партой</p><span class="v3-st-more">Подробнее →</span></a>
+      <a class="v3-st reveal" href="#ai"><span class="v3-st-ic ic-layout" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></span><span class="v3-st-n">ЭТАП 04</span><h3>Автовёрстка</h3><p>Лучшие кадры без повторов, сборка по вашему мастер-альбому, виньетка на 3–40 учеников</p><span class="v3-st-more">Подробнее →</span></a>
+      <a class="v3-st reveal" href="#retouch"><span class="v3-st-ic ic-retouch" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><path d="m21.64 3.64-1.28-1.28a1.21 1.21 0 0 0-1.72 0L2.36 18.64a1.21 1.21 0 0 0 0 1.72l1.28 1.28a1.2 1.2 0 0 0 1.72 0L21.64 5.36a1.2 1.2 0 0 0 0-1.72"/><path d="m14 7 3 3"/><path d="M5 6v4"/><path d="M19 14v4"/><path d="M10 2v2"/><path d="M7 8H3"/><path d="M21 16h-4"/><path d="M11 3H9"/></svg></span><span class="v3-st-n">ЭТАП 05</span><h3>Ретушь</h3><p>Оригиналы из утверждённых альбомов одной папкой. Загрузите ретушь, и фото обновится во всех альбомах</p><span class="v3-st-more">Подробнее →</span></a>
+      <a class="v3-st v3-st--green reveal" href="#class"><span class="v3-st-ic ic-approval" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><circle cx="12" cy="12" r="10"/><path d="m9 12 2 2 4-4"/></svg></span><span class="v3-st-n">ЭТАП 06</span><h3>Согласование</h3><p>Организатор заполняет имена, ученики утверждают альбом с телефона, вы задаёте правила</p><span class="v3-st-more">Подробнее →</span></a>
+      <a class="v3-st v3-st--gold reveal" href="#upsell"><span class="v3-st-ic ic-upsell" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg></span><span class="v3-st-n">ЭТАП 07</span><h3>Допродажи</h3><p>Ученики докупают развороты, портреты, ретушь и файлы прямо в альбоме. Счёт собирается сам</p><span class="v3-st-more">Подробнее →</span></a>
+      <a class="v3-st reveal" href="#print"><span class="v3-st-ic ic-print" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><path d="M6 9V3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v6"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg></span><span class="v3-st-n">ЭТАП 08</span><h3>Печать</h3><p>Файлы под требования типографии. Печатайте в любой, свою можно завести самостоятельно</p><span class="v3-st-more">Подробнее →</span></a>
+      <a class="v3-st reveal" href="#galleries"><span class="v3-st-ic ic-galleries" aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><path d="M18 22H4a2 2 0 0 1-2-2V6"/><path d="m22 13-1.296-1.296a2.41 2.41 0 0 0-3.408 0L11 18"/><circle cx="12" cy="8" r="2"/><rect width="16" height="16" x="6" y="2" rx="2"/></svg></span><span class="v3-st-n">ЭТАП 09</span><h3>Галереи <span class="v3-tag v3-tag--soon">бета</span></h3><p>Отдайте клиентам цифру красиво: галерея по ссылке, избранное, водяной знак</p><span class="v3-st-more">Подробнее →</span></a>
     </div>
     <div class="v3-season-foot reveal">
       <p class="hand-note">а на каждом этапе помогут видеоуроки и живая поддержка</p>
@@ -4832,31 +4858,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
     <div class="reveal" style="text-align: center;">
       <h2 class="h2">Шесть инструментов → один Lumir</h2>
     </div>
-    <div class="v3-ba reveal">
-      <div class="v3-ba-col v3-ba-old">
-        <h3>Было</h3>
-        <ul>
-          <li><span>PDF-портфолио</span>чтобы получить класс</li>
-          <li><span>Photoshop</span>неделя вёрстки на каждый класс</li>
-          <li><span>Excel</span>списки учеников и заказов</li>
-          <li><span>Мессенджеры</span>сотни сообщений на согласование</li>
-          <li><span>Облако</span>отдать фото и ретушь</li>
-          <li><span>Калькулятор</span>посчитать допродажи вручную</li>
-        </ul>
-      </div>
-      <div class="v3-ba-arrow" aria-hidden="true">→</div>
-      <div class="v3-ba-col v3-ba-new">
-        <h3>В Lumir</h3>
-        <ul>
-          <li><span>Маркетинг</span>страница фотографа по ссылке и QR</li>
-          <li><span>Автовёрстка</span>альбомы класса собираются сами</li>
-          <li><span>Класс</span>имена заполняет организатор</li>
-          <li><span>Утверждение</span>ученики утверждают с телефона по одной ссылке</li>
-          <li><span>Галереи</span>фото по ссылке с избранным</li>
-          <li><span>Допродажи</span>счёт собирается сам</li>
-        </ul>
-      </div>
-    </div>
+    <video class="v3-loop v3-loop--tools reveal" data-v3v="v3-tools" muted autoplay loop playsinline preload="auto" aria-label="Чат, Photoshop, таблицы, облако, калькулятор и портфолио собираются в одно окно Lumir"></video>
   </div>
 </section>
 
@@ -5175,19 +5177,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
         </div>
       </div>
       <div class="v2-split-visual reveal">
-        <div class="v2-phone" aria-label="Пример: ученик выбирает допродажи в альбоме">
-          <div class="v2-phone-screen">
-            <div class="v2-phone-top"><b>Мой альбом · 11 «Б»</b><span>Разворот 6 из 10 · можно добавить ещё</span></div>
-            <div class="v2-spread"><div></div><div></div><em>+ разворот</em></div>
-            <ul class="v2-price">
-              <li><span class="chk on">✓</span><span class="nm">Дополнительный разворот</span><span class="pr">700 ₽</span></li>
-              <li><span class="chk on">✓</span><span class="nm">Второй портрет на виньетке</span><span class="pr">350 ₽</span></li>
-              <li><span class="chk"></span><span class="nm">Ретушь портрета</span><span class="pr">300 ₽</span></li>
-              <li><span class="chk on">✓</span><span class="nm">Все мои фото в цифре</span><span class="pr">1 500 ₽</span></li>
-            </ul>
-            <div class="v2-phone-total"><div><span>Итого к альбому</span><b>2 550 ₽</b></div><a href="#upsell">Добавить</a></div>
-          </div>
-        </div>
+        <video class="v3-loop v3-loop--upsell" data-v3v="v3-upsell" muted autoplay loop playsinline preload="auto" aria-label="Пример: ученик добавляет допродажи в альбоме, фотографу приходит +2 550 ₽"></video>
         <p class="body-sm" style="text-align: center; margin-top: 14px;">Цены указаны для примера. Прайс задаёт фотограф</p>
       </div>
     </div>
@@ -5277,10 +5267,10 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
       <h2 class="h2">Рядом на каждом этапе</h2>
     </div>
     <div class="v3-help reveal">
-      <div><span>🎬</span><b>Видеоуроки</b><p>Короткие ролики по каждому шагу прямо в кабинете</p></div>
-      <div><span>📞</span><b>Онбординг-созвон</b><p>30 минут с командой, и первый класс готов к печати</p></div>
-      <div><span>💬</span><b>Чат поддержки</b><p>В кабинете, Telegram и ВК. Можно отправить видео экрана</p></div>
-      <div><span>🛠️</span><b>Ваши идеи идут в работу</b><p>Новые возможности выходят каждую неделю</p></div>
+      <div><span aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><circle cx="12" cy="12" r="10"/><path d="M10 8l6 4-6 4z"/></svg></span><b>Видеоуроки</b><p>Короткие ролики по каждому шагу прямо в кабинете</p></div>
+      <div><span aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><path d="m16 13 5.223 3.482a.5.5 0 0 0 .777-.416V7.87a.5.5 0 0 0-.752-.432L16 10.5"/><rect x="2" y="6" width="14" height="12" rx="2"/></svg></span><b>Онбординг-созвон</b><p>30 минут с командой, и первый класс готов к печати</p></div>
+      <div><span aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span><b>Чат поддержки</b><p>В кабинете, Telegram и ВК. Можно отправить видео экрана</p></div>
+      <div><span aria-hidden="true"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="overflow:visible"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg></span><b>Ваши идеи идут в работу</b><p>Новые возможности выходят каждую неделю</p></div>
     </div>
   </div>
 </section>
@@ -5407,14 +5397,14 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
 <!-- ============================================ S12 — CTA BANNER ============================================ -->
 <section class="cta-section" data-screen-label="12 CTA">
   <div class="container">
-    <a href="https://fotoklass.lumir.photo/" class="cta-banner-link reveal" aria-label="Соберите первый класс уже сегодня — попробовать Lumir">
+    <a href="https://fotoklass.lumir.photo/" class="cta-banner-link reveal" aria-label="Начните сезон в Lumir уже сегодня — попробовать">
       <picture class="cta-banner-pic cta-banner-pic--dark">
-        <source media="(max-width: 640px)" srcset="assets/banners/cta-first-class-dark-mobile.png">
-        <img src="assets/banners/cta-first-class-dark.png" alt="Дарим 10 000 ₽ на счёт — соберите первый класс уже сегодня" loading="lazy">
+        <source media="(max-width: 640px)" srcset="assets/banners/v3-cta-dark-mobile.jpg">
+        <img src="assets/banners/v3-cta-dark.jpg" alt="Дарим 10 000 ₽ на счёт — начните сезон в Lumir уже сегодня" loading="lazy">
       </picture>
       <picture class="cta-banner-pic cta-banner-pic--light">
-        <source media="(max-width: 640px)" srcset="assets/banners/cta-first-class-light-mobile.png">
-        <img src="assets/banners/cta-first-class-light.png" alt="Дарим 10 000 ₽ на счёт — соберите первый класс уже сегодня" loading="lazy">
+        <source media="(max-width: 640px)" srcset="assets/banners/v3-cta-light-mobile.jpg">
+        <img src="assets/banners/v3-cta-light.jpg" alt="Дарим 10 000 ₽ на счёт — начните сезон в Lumir уже сегодня" loading="lazy">
       </picture>
     </a>
   </div>
@@ -6325,5 +6315,25 @@ document.addEventListener('click', function(e) {
 </script>
 
 
+<script>
+// Ролики дизайнера: версия по теме и ширине экрана
+(function(){
+  var mq = window.matchMedia('(max-width: 640px)');
+  function pick(){
+    var th = document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    var suf = '-' + th + (mq.matches ? '-mobile' : '');
+    document.querySelectorAll('video[data-v3v]').forEach(function(v){
+      var s = 'assets/banners/' + v.getAttribute('data-v3v') + suf + '.mp4';
+      if (v.getAttribute('src') === s) return;
+      v.poster = s.replace(/\.mp4$/, '-poster') + '.jpg';
+      v.src = s;
+      v.play().catch(function(){});
+    });
+  }
+  pick();
+  mq.addEventListener('change', pick);
+  new MutationObserver(pick).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+})();
+</script>
 </body>
 </html>
