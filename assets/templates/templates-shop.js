@@ -5,7 +5,12 @@
   // ── фильтры: аудитория × тип (бесплатные / студия)
   var state = { aud: 'all', kind: 'all' };
   var buttons = document.querySelectorAll('.filters button[data-f]');
+  var freeSec = document.getElementById('free');
+  var freeMore = document.getElementById('free-more');
+  if (freeMore) freeMore.addEventListener('click', function () { freeSec.classList.remove('is-collapsed'); freeMore.setAttribute('aria-expanded', 'true'); });
   function apply() {
+    // при фильтре показываем все подходящие шаблоны без сворачивания
+    if (state.aud !== 'all' || state.kind !== 'all') freeSec.classList.remove('is-collapsed');
     document.querySelectorAll('.tcard').forEach(function (c) {
       var okA = state.aud === 'all' || c.dataset.aud === state.aud;
       var okK = state.kind === 'all' || c.dataset.kind === state.kind;
@@ -48,14 +53,14 @@
   }
   function open(t) {
     cur = t;
-    document.getElementById('lb-crumb').textContent = 'Шаблоны / ' + (t.kind === 'free' ? 'Библиотека Lumir' : 'Студия Мироновой') + ' / ' + t.title;
+    document.getElementById('lb-crumb').textContent = 'Шаблоны / ' + (t.kind === 'free' ? 'Библиотека Lumir · бесплатно' : 'Студия Мироновой · платно') + ' / ' + t.title;
     document.getElementById('lb-title').textContent = t.title;
     document.getElementById('lb-desc').textContent = t.desc;
     document.getElementById('lb-aud').textContent = t.aud;
     document.getElementById('lb-inside').textContent = t.inside;
     var tag = document.getElementById('lb-tag');
     tag.className = t.kind === 'free' ? 'badge-green' : 'badge-gold';
-    tag.textContent = t.kind === 'free' ? 'БЕСПЛАТНО' : 'СТУДИЯ МИРОНОВОЙ';
+    tag.textContent = t.kind === 'free' ? 'БЕСПЛАТНО · LUMIR' : 'ПЛАТНО · СТУДИЯ МИРОНОВОЙ';
     var cta = document.getElementById('lb-cta');
     cta.innerHTML = t.kind === 'free'
       ? '<a class="btn-main" href="' + REG + '" data-loc="lightbox_free">ИСПОЛЬЗОВАТЬ БЕСПЛАТНО</a><small>Регистрация бесплатная. Lumir соберёт альбом каждому ученику в этом дизайне</small>'

@@ -79,7 +79,7 @@ h1,h2,h3{margin:0}
 .tcard{display:flex;flex-direction:column;gap:10px}
 .tcard[hidden]{display:none}
 .tcard-shot{display:block;padding:0;border:0;border-radius:12px;overflow:hidden;background:var(--panel);cursor:zoom-in}
-.tcard-shot img{display:block;width:100%;aspect-ratio:3/4.2;object-fit:cover;transition:transform .25s ease}
+.tcard-shot img{display:block;width:100%;height:auto;aspect-ratio:3/4.2;object-fit:cover;transition:transform .25s ease}
 .tcard:hover .tcard-shot img{transform:scale(1.03)}
 .tcard-shot:focus-visible{outline:3px solid var(--violet);outline-offset:3px}
 .tcard-row{display:flex;align-items:center;gap:8px}
@@ -97,6 +97,13 @@ h1,h2,h3{margin:0}
 .btn-buy:hover{color:#F7D58E;background:rgba(232,180,92,.08)}
 .btn-rent b,.btn-buy b{font-family:var(--mont);font-weight:800;white-space:nowrap}
 .more{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;min-height:300px;border-radius:12px;border:1.5px dashed rgba(232,180,92,.5);color:var(--gold);text-decoration:none;text-align:center;padding:20px}
+.grid-sec.is-collapsed .tcard.is-extra{display:none}
+.grid-sec:not(.is-collapsed) .more-free{display:none}
+.more-free{border-color:rgba(155,143,232,.55);color:#C3BAF2;background:rgba(124,111,232,.06);cursor:pointer;font:inherit}
+.more-free:hover{background:rgba(124,111,232,.14)}
+.tag-paid{margin-left:auto;font-size:12px;font-weight:700;color:var(--gold)}
+.studio-box{margin-top:48px;padding:40px 32px 32px;border-radius:28px;background:linear-gradient(180deg,rgba(232,180,92,.10),rgba(232,180,92,.03));border:1px solid rgba(232,180,92,.35)}
+.studio-note{margin:14px 0 0;color:#E9D3A8;font-size:15px}
 .more b{font-family:var(--mont);font-weight:900;font-size:44px}
 .more span{font-weight:600;font-size:15px}
 
@@ -169,6 +176,7 @@ h1,h2,h3{margin:0}
   .ban h2,.ban p{max-width:100%}
   .ban .b1{right:96px;width:100px;bottom:-50px}.ban .b2{width:110px;bottom:16px}
   .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px 12px}
+  .studio-box{padding:28px 16px 20px;border-radius:20px;margin-left:16px;margin-right:16px}
   .btn-rent,.btn-buy{padding:0 10px;font-size:13px}
   .lede{font-size:17px}
 }
