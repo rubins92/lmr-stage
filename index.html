@@ -4759,6 +4759,28 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
 @keyframes v3wand { 40% { transform: rotate(-12deg); } 100% { transform: rotate(0); } }
 @keyframes v3flip { to { transform: rotateY(360deg); } }
 @keyframes v3hop { 40% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
+
+/* ── V3: превью витрины шаблонов ── */
+.tshop-head{display:flex;flex-wrap:wrap;align-items:flex-end;gap:20px}
+.tshop-head .h2{flex:1 1 560px}
+.tshop-grad{background-image:var(--headline-grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tshop-all{flex:none;padding:16px 24px;border-radius:14px;border:1.5px solid rgba(124,111,232,.6);color:var(--text-1);text-decoration:none;font-weight:600}
+.tshop-all:hover{border-color:var(--accent);color:var(--accent)}
+.tshop-covers{margin-top:36px;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:18px;align-items:end}
+.tshop-cover{display:block}
+.tshop-cover img{display:block;width:100%;aspect-ratio:3/4.2;object-fit:cover;border-radius:10px;box-shadow:0 20px 40px rgba(0,0,0,.35);transition:transform .25s ease}
+.tshop-cover:hover img{transform:translateY(-6px)}
+.tshop-cover.is-mid{transform:translateY(-18px)}
+.tshop-plaques{margin-top:32px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.tshop-plq{display:flex;align-items:center;gap:18px;padding:22px 26px;border-radius:20px;text-decoration:none}
+.tshop-plq b{font-family:var(--display);font-weight:900;font-size:34px;white-space:nowrap}
+.tshop-plq span{font-size:16px;line-height:1.35}
+.tshop-plq strong{display:block}
+.tshop-plq em{margin-left:auto;font-style:normal;font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.1em;white-space:nowrap}
+.tshop-plq--violet{background:linear-gradient(120deg,#6A5DE0,#9B8FE8);color:#fff}
+.tshop-plq--gold{background:linear-gradient(120deg,#F0C878,#D89A3E);color:#241A05}
+@media (max-width:900px){.tshop-covers{grid-template-columns:repeat(4,minmax(0,1fr))}.tshop-cover:nth-child(n+5){display:none}.tshop-plaques{grid-template-columns:1fr}}
+@media (max-width:640px){.tshop-covers{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.tshop-cover:nth-child(n+4){display:none}.tshop-cover.is-mid{transform:none}.tshop-plq{flex-wrap:wrap}.tshop-plq em{margin-left:0}}
 </style>
 <script>
 (function(){
@@ -4777,7 +4799,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
   <div class="nav-right">
     <div class="nav-links">
       <a href="#season" class="nav-link">Весь сезон</a>
-      <a href="#designs" class="nav-link">Дизайны</a>
+      <a href="shablony.html" class="nav-link">Шаблоны</a>
       <a href="#upsell" class="nav-link">Допродажи</a>
       <a href="#pricing" class="nav-link">Стоимость</a>
       <a href="#faq" class="nav-link">FAQ</a>
@@ -4792,7 +4814,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
 
 <div class="nav-overlay" id="nav-overlay" aria-hidden="true">
   <a href="#season" class="nav-overlay-link">Весь сезон</a>
-      <a href="#designs" class="nav-overlay-link">Дизайны</a>
+      <a href="shablony.html" class="nav-overlay-link">Шаблоны</a>
       <a href="#upsell" class="nav-overlay-link">Допродажи</a>
       <a href="#pricing" class="nav-overlay-link">Стоимость</a>
       <a href="#faq" class="nav-overlay-link">FAQ</a>
@@ -4943,6 +4965,30 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
     </div>
   </div>
 </section>
+
+<!-- ============================================ V3 — TEMPLATES SHOP PREVIEW ============================================ -->
+<section class="section tshop" id="templates" data-screen-label="03b Templates shop">
+  <div class="container">
+    <div class="tshop-head reveal">
+      <h2 class="h2">Шаблоны выпускных альбомов — <span class="tshop-grad">бесплатные и&nbsp;от&nbsp;студий</span></h2>
+      <a class="tshop-all" href="shablony.html">Все шаблоны →</a>
+    </div>
+    <div class="tshop-covers reveal">
+      <a href="shablony.html" class="tshop-cover"><img src="assets/templates/tpl-magazine-front.jpg" alt="Шаблон выпускного альбома «Журнал»" loading="lazy"></a>
+      <a href="shablony.html" class="tshop-cover"><img src="assets/templates/tpl-crayons-front.jpg" alt="Шаблон выпускного альбома «Мелки»" loading="lazy"></a>
+      <a href="shablony.html" class="tshop-cover"><img src="assets/mironova/planeta.jpg" alt="Шаблон выпускного альбома «Планета детства, студия Мироновой»" loading="lazy"></a>
+      <a href="shablony.html" class="tshop-cover is-mid"><img src="assets/templates/tpl-cream-front.jpg" alt="Шаблон выпускного альбома «Крем»" loading="lazy"></a>
+      <a href="shablony.html" class="tshop-cover"><img src="assets/mironova/shkolny.jpg" alt="Шаблон выпускного альбома «Первоклашка, студия Мироновой»" loading="lazy"></a>
+      <a href="shablony.html" class="tshop-cover"><img src="assets/templates/tpl-neon-front.jpg" alt="Шаблон выпускного альбома «Неон»" loading="lazy"></a>
+      <a href="shablony.html" class="tshop-cover"><img src="assets/templates/tpl-city-front.jpg" alt="Шаблон выпускного альбома «Город знаний»" loading="lazy"></a>
+    </div>
+    <div class="tshop-plaques reveal">
+      <a class="tshop-plq tshop-plq--violet" href="https://fotoklass.lumir.photo/"><b>22</b><span><strong>дизайна Lumir — бесплатно</strong>обложка, виньетка и 11 разворотов</span><em>НАЧАТЬ →</em></a>
+      <a class="tshop-plq tshop-plq--gold" href="https://fotoklass.lumir.photo/"><b>390 ₽</b><span><strong>аренда дизайна на класс</strong>студия Мироновой — партнёр Lumir</span><em>ВЗЯТЬ →</em></a>
+    </div>
+  </div>
+</section>
+
 
 <!-- ============================================ S3 — INDIVIDUAL ALBUMS METRIC ============================================ -->
 <section class="section metric-section" id="individual" style="padding-top: 40px;" data-screen-label="03 Individual">
