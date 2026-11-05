@@ -1,44 +1,121 @@
-// Витрина шаблонов: фильтры, просмотр разворотов, аналитика кликов в регистрацию
+// Витрина шаблонов: слайдеры, фильтр, просмотр разворотов, шапка/тема/cookie как на главной, аналитика
 (function () {
   var REG = 'https://fotoklass.lumir.photo/';
+  function track(name, props) { try { if (window.op) window.op('track', name, props); } catch (e) {} }
 
-  // ── фильтры: аудитория × тип (бесплатные / студия)
-  var state = { aud: 'all', kind: 'all' };
-  var buttons = document.querySelectorAll('.filters button[data-f]');
-  var freeSec = document.getElementById('free');
-  var freeMore = document.getElementById('free-more');
-  if (freeMore) freeMore.addEventListener('click', function () { freeSec.classList.remove('is-collapsed'); freeMore.setAttribute('aria-expanded', 'true'); });
-  function apply() {
-    // при фильтре показываем все подходящие шаблоны без сворачивания
-    if (state.aud !== 'all' || state.kind !== 'all') freeSec.classList.remove('is-collapsed');
-    document.querySelectorAll('.tcard').forEach(function (c) {
-      var okA = state.aud === 'all' || c.dataset.aud === state.aud;
-      var okK = state.kind === 'all' || c.dataset.kind === state.kind;
-      c.hidden = !(okA && okK);
-    });
-    ['free', 'studio'].forEach(function (id) {
-      var sec = document.getElementById(id);
-      if (!sec) return;
-      sec.hidden = !sec.querySelector('.tcard:not([hidden])');
-    });
-    buttons.forEach(function (b) {
-      var p = b.dataset.f.split(':');
-      b.setAttribute('aria-pressed', String(state[p[0]] === p[1]));
+  // ── мобильное меню (как на главной)
+  var burger = document.getElementById('nav-burger'), overlay = document.getElementById('nav-overlay'), navWrap = document.getElementById('nav');
+  if (burger && overlay && navWrap) {
+    var setMenu = function (open) {
+      overlay.classList.toggle('open', open); navWrap.classList.toggle('menu-open', open);
+      document.body.classList.toggle('menu-open', open); document.body.style.overflow = open ? 'hidden' : '';
+      burger.setAttribute('aria-expanded', String(open)); overlay.setAttribute('aria-hidden', String(!open));
+    };
+    burger.addEventListener('click', function () { setMenu(!overlay.classList.contains('open')); });
+    overlay.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', function () { setMenu(false); }); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && overlay.classList.contains('open')) setMenu(false); });
+  }
+  // шапка становится плотной при прокрутке
+  if (navWrap) {
+    var onScroll = function () { navWrap.classList.toggle('scrolled', window.scrollY > 8); };
+    window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+  }
+
+  // ── тема (ключ тот же, что на главной)
+  var tBtn = document.getElementById('theme-toggle'), tIcon = document.getElementById('theme-toggle-icon');
+  if (tBtn && tIcon) {
+    var cur = function () { return document.documentElement.getAttribute('data-theme') || 'dark'; };
+    var setIcon = function () { tIcon.textContent = cur() === 'dark' ? '☀️' : '🌙'; };
+    setIcon();
+    tBtn.addEventListener('click', function () {
+      var next = cur() === 'dark' ? 'light' : 'dark';
+      document.documentElement.setAttribute('data-theme', next);
+      try { localStorage.setItem('lumir-theme', next); } catch (e) {}
+      setIcon();
     });
   }
-  buttons.forEach(function (b) {
+
+  // ── cookie (общий ключ с главной)
+  (function () {
+    var KEY = 'lumir_consent_acknowledged', b = document.getElementById('cookie-banner');
+    if (!b) return;
+    var seen = null;
+    try { seen = localStorage.getItem(KEY); } catch (e) {}
+    if (seen || document.cookie.indexOf(KEY + '=') !== -1) return;
+    b.removeAttribute('hidden');
+    var ok = b.querySelector('.cookie-banner-btn');
+    if (ok) ok.addEventListener('click', function () {
+      try { localStorage.setItem(KEY, '1'); } catch (e) {}
+      document.cookie = KEY + '=1; Path=/; Max-Age=31536000; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '');
+      b.setAttribute('hidden', '');
+    });
+  })();
+
+  // ── FAQ: один открытый вопрос
+  var faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach(function (item) {
+    var q = item.querySelector('.faq-q');
+    q.addEventListener('click', function () {
+      var open = item.getAttribute('data-open') === 'true';
+      faqItems.forEach(function (o) { o.setAttribute('data-open', 'false'); o.querySelector('.faq-q').setAttribute('aria-expanded', 'false'); });
+      item.setAttribute('data-open', String(!open)); q.setAttribute('aria-expanded', String(!open));
+    });
+  });
+
+  // ── липкая кнопка на телефоне: после первого экрана
+  var sticky = document.getElementById('sticky-cta'), hero = document.querySelector('.ts-hero');
+  if (sticky && hero) {
+    var chk = function () { sticky.classList.toggle('hidden', hero.getBoundingClientRect().bottom > 0); };
+    window.addEventListener('scroll', chk, { passive: true }); chk();
+  }
+
+  // ── слайдеры
+  document.querySelectorAll('.ts-sec').forEach(function (sec) {
+    var track_ = sec.querySelector('[data-slider]');
+    var btns = sec.querySelectorAll('.slider-btn');
+    if (!track_) return;
+    var step = function () { var c = track_.querySelector('.tcard:not([hidden])'); return c ? (c.getBoundingClientRect().width + 22) * Math.max(1, Math.floor(track_.clientWidth / (c.getBoundingClientRect().width + 22)) - 1) : 300; };
+    var upd = function () {
+      var max = track_.scrollWidth - track_.clientWidth - 2;
+      if (btns[0]) btns[0].disabled = track_.scrollLeft <= 2;
+      if (btns[1]) btns[1].disabled = track_.scrollLeft >= max;
+    };
+    btns.forEach(function (b) { b.addEventListener('click', function () { track_.scrollBy({ left: step() * +b.dataset.dir, behavior: 'smooth' }); }); });
+    track_.addEventListener('scroll', upd, { passive: true });
+    window.addEventListener('resize', upd);
+    track_.addEventListener('keydown', function (e) {
+      if (e.target !== track_) return;
+      if (e.key === 'ArrowRight') { track_.scrollBy({ left: step(), behavior: 'smooth' }); e.preventDefault(); }
+      if (e.key === 'ArrowLeft') { track_.scrollBy({ left: -step(), behavior: 'smooth' }); e.preventDefault(); }
+    });
+    sec._upd = upd; upd();
+  });
+
+  // ── фильтр по аудитории
+  var fBtns = document.querySelectorAll('.ts-filters button');
+  fBtns.forEach(function (b) {
     b.addEventListener('click', function () {
-      var p = b.dataset.f.split(':');
-      // повторный клик по «Бесплатные» / «Студия» снимает фильтр
-      state[p[0]] = (p[0] === 'kind' && state.kind === p[1]) ? 'all' : p[1];
-      apply();
+      var aud = b.dataset.aud;
+      fBtns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      document.querySelectorAll('.ts-sec').forEach(function (sec) {
+        var shown = 0;
+        sec.querySelectorAll('.tcard').forEach(function (c) {
+          var ok = aud === 'all' || c.dataset.aud === aud || c.dataset.aud === 'all';
+          c.hidden = !ok;
+          if (ok && !c.classList.contains('tcard-more')) shown++;
+        });
+        var cnt = sec.querySelector('[data-count]'); if (cnt) cnt.textContent = shown;
+        var empty = sec.querySelector('.ts-empty'), sl = sec.querySelector('[data-slider]');
+        if (empty) empty.hidden = shown > 0;
+        if (sl) { sl.hidden = shown === 0; sl.scrollLeft = 0; }
+        if (sec._upd) sec._upd();
+      });
+      track('templates_filter', { aud: aud });
     });
   });
 
   // ── просмотр шаблона
-  var lb = document.getElementById('lb');
-  var img = document.getElementById('lb-img');
-  var thumbs = document.getElementById('lb-thumbs');
+  var lb = document.getElementById('lb'), img = document.getElementById('lb-img'), thumbs = document.getElementById('lb-thumbs');
   var cur = null, i = 0;
   function show(n) {
     i = (n + cur.imgs.length) % cur.imgs.length;
@@ -46,37 +123,39 @@
     img.src = p.src;
     img.alt = 'Шаблон «' + cur.title + '»: ' + p.cap.toLowerCase();
     document.getElementById('lb-count').textContent = (i + 1) + ' из ' + cur.imgs.length;
-    thumbs.querySelectorAll('button').forEach(function (b, j) { b.setAttribute('aria-current', String(j === i)); });
+    thumbs.querySelectorAll('button').forEach(function (b, j) { b.setAttribute('aria-current', String(j === i)); if (j === i) b.scrollIntoView({ block: 'nearest', inline: 'nearest' }); });
     var many = cur.imgs.length > 1;
-    document.getElementById('lb-prev').hidden = !many;
-    document.getElementById('lb-next').hidden = !many;
+    document.getElementById('lb-prev').style.visibility = many ? '' : 'hidden';
+    document.getElementById('lb-next').style.visibility = many ? '' : 'hidden';
+    thumbs.hidden = !many;
   }
   function open(t) {
     cur = t;
-    document.getElementById('lb-crumb').textContent = 'Шаблоны / ' + (t.kind === 'free' ? 'Библиотека Lumir · бесплатно' : 'Студия Мироновой · платно') + ' / ' + t.title;
+    var free = t.kind === 'free';
+    document.getElementById('lb-crumb').textContent = free ? 'Библиотека Lumir · бесплатно' : 'Студия Мироновой · платно';
     document.getElementById('lb-title').textContent = t.title;
     document.getElementById('lb-desc').textContent = t.desc;
     document.getElementById('lb-aud').textContent = t.aud;
     document.getElementById('lb-inside').textContent = t.inside;
     var tag = document.getElementById('lb-tag');
-    tag.className = t.kind === 'free' ? 'badge-green' : 'badge-gold';
-    tag.textContent = t.kind === 'free' ? 'БЕСПЛАТНО · LUMIR' : 'ПЛАТНО · СТУДИЯ МИРОНОВОЙ';
+    tag.className = 'badge ' + (free ? 'badge-free' : 'badge-paid');
+    tag.textContent = free ? 'Бесплатно · Lumir' : 'Платно · студия Мироновой';
     var cta = document.getElementById('lb-cta');
-    cta.innerHTML = t.kind === 'free'
-      ? '<a class="btn-main" href="' + REG + '" data-loc="lightbox_free">ИСПОЛЬЗОВАТЬ БЕСПЛАТНО</a><small>Регистрация бесплатная. Lumir соберёт альбом каждому ученику в этом дизайне</small>'
-      : '<a class="btn-rent" href="' + REG + '" data-loc="lightbox_rent"><span>Аренда на класс</span><b>390 ₽</b></a><a class="btn-buy" href="' + REG + '" data-loc="lightbox_buy"><span>Купить навсегда</span><b>' + t.buy + '</b></a><small>Шаблон откроется в вашем кабинете Lumir после регистрации</small>';
+    cta.innerHTML = free
+      ? '<a class="btn btn-primary" href="' + REG + '" data-loc="lightbox_free">ИСПОЛЬЗОВАТЬ БЕСПЛАТНО</a><small>Регистрация бесплатная. Lumir соберёт альбом каждому ученику в этом дизайне</small>'
+      : '<a class="tbtn tbtn-rent" href="' + REG + '" data-loc="lightbox_rent"><span>Аренда на класс</span><b>390 ₽</b></a><a class="tbtn tbtn-buy" href="' + REG + '" data-loc="lightbox_buy"><span>Купить навсегда</span><b>' + t.buy + '</b></a><small>Платный дизайн студии Мироновой. Откроется в вашем кабинете Lumir после регистрации</small>';
     bindTrack(cta);
     thumbs.innerHTML = '';
     t.imgs.forEach(function (p, j) {
       var b = document.createElement('button');
-      b.type = 'button';
-      b.setAttribute('role', 'listitem');
+      b.type = 'button'; b.setAttribute('role', 'listitem');
       b.innerHTML = '<img alt="" src="' + p.src + '">' + p.cap;
       b.addEventListener('click', function () { show(j); });
       thumbs.appendChild(b);
     });
     show(0);
     lb.showModal();
+    document.body.style.overflow = 'hidden';
     track('template_opened', { template: t.title, kind: t.kind });
   }
   document.querySelectorAll('.tcard-shot').forEach(function (b) {
@@ -85,18 +164,27 @@
   document.getElementById('lb-prev').addEventListener('click', function () { show(i - 1); });
   document.getElementById('lb-next').addEventListener('click', function () { show(i + 1); });
   document.getElementById('lb-close').addEventListener('click', function () { lb.close(); });
+  lb.addEventListener('close', function () { document.body.style.overflow = ''; });
   lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
   lb.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowLeft') show(i - 1);
     if (e.key === 'ArrowRight') show(i + 1);
   });
+  // свайп по развороту
+  var sx = null;
+  var stage = lb.querySelector('.lb-stage');
+  stage.addEventListener('touchstart', function (e) { sx = e.touches[0].clientX; }, { passive: true });
+  stage.addEventListener('touchend', function (e) {
+    if (sx === null) return;
+    var dx = e.changedTouches[0].clientX - sx; sx = null;
+    if (Math.abs(dx) > 40) show(i + (dx < 0 ? 1 : -1));
+  });
 
-  // ── аналитика: клики в регистрацию (ссылки остаются чистыми, как на главной)
-  function track(name, props) { try { if (window.op) window.op('track', name, props); } catch (e) {} }
+  // ── аналитика кликов в регистрацию (ссылки чистые, как на главной)
   function bindTrack(root) {
     root.querySelectorAll('a[href*="fotoklass.lumir.photo"]').forEach(function (a) {
       a.addEventListener('click', function () {
-        track('cta_to_app_clicked', { href: a.href, label: (a.textContent || '').trim().slice(0, 80), location: 'templates_shop_' + (a.dataset.loc || 'other'), template: cur && lb.open ? cur.title : null });
+        track('cta_to_app_clicked', { href: a.href, label: (a.textContent || '').trim().slice(0, 80), location: 'templates_shop_' + (a.dataset.loc || (a.closest('.nav-wrap, .nav-overlay') ? 'nav' : a.closest('footer') ? 'footer' : 'other')), template: cur && lb.open ? cur.title : null });
       });
     });
   }
