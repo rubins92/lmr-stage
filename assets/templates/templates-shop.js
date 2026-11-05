@@ -69,12 +69,11 @@
     window.addEventListener('scroll', chk, { passive: true }); chk();
   }
 
-  // ── слайдеры
-  document.querySelectorAll('.ts-sec').forEach(function (sec) {
-    var track_ = sec.querySelector('[data-slider]');
-    var btns = sec.querySelectorAll('.slider-btn');
-    if (!track_) return;
-    var step = function () { var c = track_.querySelector('.tcard:not([hidden])'); return c ? (c.getBoundingClientRect().width + 22) * Math.max(1, Math.floor(track_.clientWidth / (c.getBoundingClientRect().width + 22)) - 1) : 300; };
+  // ── слайдеры: у каждого свои стрелки (в ближайшем блоке автора или секции)
+  document.querySelectorAll('[data-slider]').forEach(function (track_) {
+    var box = track_.closest('.ts-author') || track_.closest('.ts-sec');
+    var btns = box.querySelectorAll('.slider-btn');
+    var step = function () { var c = track_.querySelector('.tcard:not([hidden])'); if (!c) return 300; var w = c.getBoundingClientRect().width + 22; return w * Math.max(1, Math.floor(track_.clientWidth / w) - 1); };
     var upd = function () {
       var max = track_.scrollWidth - track_.clientWidth - 2;
       if (btns[0]) btns[0].disabled = track_.scrollLeft <= 2;
@@ -88,7 +87,7 @@
       if (e.key === 'ArrowRight') { track_.scrollBy({ left: step(), behavior: 'smooth' }); e.preventDefault(); }
       if (e.key === 'ArrowLeft') { track_.scrollBy({ left: -step(), behavior: 'smooth' }); e.preventDefault(); }
     });
-    sec._upd = upd; upd();
+    track_._upd = upd; upd();
   });
 
   // ── фильтр по аудитории
@@ -97,19 +96,21 @@
     b.addEventListener('click', function () {
       var aud = b.dataset.aud;
       fBtns.forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-      document.querySelectorAll('.ts-sec').forEach(function (sec) {
+      var paidShown = 0;
+      document.querySelectorAll('[data-slider]').forEach(function (sl) {
+        var box = sl.closest('.ts-author') || sl.closest('.ts-sec');
         var shown = 0;
-        sec.querySelectorAll('.tcard').forEach(function (c) {
+        sl.querySelectorAll('.tcard').forEach(function (c) {
           var ok = aud === 'all' || c.dataset.aud === aud || c.dataset.aud === 'all';
           c.hidden = !ok;
           if (ok && !c.classList.contains('tcard-more')) shown++;
         });
-        var cnt = sec.querySelector('[data-count]'); if (cnt) cnt.textContent = shown;
-        var empty = sec.querySelector('.ts-empty'), sl = sec.querySelector('[data-slider]');
-        if (empty) empty.hidden = shown > 0;
-        if (sl) { sl.hidden = shown === 0; sl.scrollLeft = 0; }
-        if (sec._upd) sec._upd();
+        var cnt = box.querySelector('[data-count]'); if (cnt) cnt.textContent = shown;
+        if (box.classList.contains('ts-author')) { box.hidden = shown === 0; paidShown += shown; }
+        else { var e = box.querySelector('.ts-empty'); if (e) e.hidden = shown > 0; sl.hidden = shown === 0; }
+        sl.scrollLeft = 0; if (sl._upd) sl._upd();
       });
+      var pe = document.querySelector('#studio .ts-empty'); if (pe) pe.hidden = paidShown > 0;
       track('templates_filter', { aud: aud });
     });
   });
@@ -132,18 +133,19 @@
   function open(t) {
     cur = t;
     var free = t.kind === 'free';
-    document.getElementById('lb-crumb').textContent = free ? 'Библиотека Lumir · бесплатно' : 'Студия Мироновой · платно';
+    document.getElementById('lb-crumb').textContent = free ? 'Библиотека Lumir · бесплатно' : t.author + ' · платно';
     document.getElementById('lb-title').textContent = t.title;
     document.getElementById('lb-desc').textContent = t.desc;
     document.getElementById('lb-aud').textContent = t.aud;
     document.getElementById('lb-inside').textContent = t.inside;
+    document.getElementById('lb-fmt').textContent = t.fmt || '21×30';
     var tag = document.getElementById('lb-tag');
     tag.className = 'badge ' + (free ? 'badge-free' : 'badge-paid');
-    tag.textContent = free ? 'Бесплатно · Lumir' : 'Платно · студия Мироновой';
+    tag.textContent = free ? 'Бесплатно · Lumir' : 'Платно · ' + t.author;
     var cta = document.getElementById('lb-cta');
     cta.innerHTML = free
-      ? '<a class="btn btn-primary" href="' + REG + '" data-loc="lightbox_free">ИСПОЛЬЗОВАТЬ БЕСПЛАТНО</a><small>Регистрация бесплатная. Lumir соберёт альбом каждому ученику в этом дизайне</small>'
-      : '<a class="tbtn tbtn-rent" href="' + REG + '" data-loc="lightbox_rent"><span>Аренда на класс</span><b>390 ₽</b></a><a class="tbtn tbtn-buy" href="' + REG + '" data-loc="lightbox_buy"><span>Купить навсегда</span><b>' + t.buy + '</b></a><small>Платный дизайн студии Мироновой. Откроется в вашем кабинете Lumir после регистрации</small>';
+      ? '<a class="btn btn-primary" href="' + REG + '" data-loc="lightbox_free">ИСПОЛЬЗОВАТЬ БЕСПЛАТНО</a><small>Работаете в редакторе Lumir, файлы дизайна скачать нельзя. Lumir соберёт альбом каждому ученику в этом дизайне</small>'
+      : '<a class="tbtn tbtn-rent" href="' + REG + '" data-loc="lightbox_rent"><span>Аренда на класс</span><b>' + t.rent + '</b></a><a class="tbtn tbtn-buy" href="' + REG + '" data-loc="lightbox_buy"><span>Купить навсегда</span><b>' + t.buy + '</b></a><small>Платный дизайн автора. Откроется в вашем кабинете Lumir после регистрации</small>';
     bindTrack(cta);
     thumbs.innerHTML = '';
     t.imgs.forEach(function (p, j) {
