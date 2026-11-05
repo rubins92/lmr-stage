@@ -4786,6 +4786,10 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
 .v3-designs-more{margin-top:36px;text-align:center}
 .v3-designs-more .hand-note{margin:12px auto 0}
 @media (max-width:640px){.v3-designs-more .btn{width:100%}}
+
+.anchor-alias{position:relative;top:-90px;display:block}
+.tshop .tshop-covers{margin:40px 0 0}
+.tshop .v3-cards{margin-top:40px}
 </style>
 <script>
 (function(){
@@ -4804,7 +4808,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
   <div class="nav-right">
     <div class="nav-links">
       <a href="#season" class="nav-link">Весь сезон</a>
-      <a href="shablony.html" class="nav-link">Шаблоны</a>
+      <a href="#templates" class="nav-link">Шаблоны</a>
       <a href="#upsell" class="nav-link">Допродажи</a>
       <a href="#pricing" class="nav-link">Стоимость</a>
       <a href="#faq" class="nav-link">FAQ</a>
@@ -4819,7 +4823,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
 
 <div class="nav-overlay" id="nav-overlay" aria-hidden="true">
   <a href="#season" class="nav-overlay-link">Весь сезон</a>
-      <a href="shablony.html" class="nav-overlay-link">Шаблоны</a>
+      <a href="#templates" class="nav-overlay-link">Шаблоны</a>
       <a href="#upsell" class="nav-overlay-link">Допродажи</a>
       <a href="#pricing" class="nav-overlay-link">Стоимость</a>
       <a href="#faq" class="nav-overlay-link">FAQ</a>
@@ -4931,13 +4935,23 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
   </div>
 </section>
 
-<!-- ============================================ V3 — DESIGNS ============================================ -->
-<section class="section" id="designs" data-screen-label="03 Designs">
+<!-- ============================================ V3 — TEMPLATES (дизайны + витрина) ============================================ -->
+<section class="section tshop" id="templates" data-screen-label="03 Templates">
+  <span id="designs" class="anchor-alias" aria-hidden="true"></span>
   <div class="container">
-    <div class="reveal" style="text-align: center; max-width: 760px; margin: 0 auto;">
-      <div class="v3-stage"><b>02</b>Дизайны</div>
-      <h2 class="h2">Дизайн найдётся, даже если своего нет</h2>
-      <p class="lede" style="margin-top: 16px;">Начните с библиотеки Lumir, купите дизайн у студии или перенесите свой</p>
+    <div class="reveal" style="text-align: center; max-width: 820px; margin: 0 auto;">
+      <div class="v3-stage"><b>02</b>Шаблоны</div>
+      <h2 class="h2">Шаблоны выпускных альбомов: <span class="tshop-grad">22 бесплатно</span> и&nbsp;авторские от&nbsp;студий</h2>
+      <p class="lede" style="margin-top: 16px;">Начните с бесплатной библиотеки Lumir, возьмите авторский дизайн студии в аренду на класс или перенесите свой</p>
+    </div>
+    <div class="tshop-covers reveal">
+      <a href="shablony.html" class="tshop-cover"><img src="assets/templates/tpl-magazine-front.jpg" alt="Шаблон выпускного альбома «Журнал»" loading="lazy"></a>
+      <a href="shablony.html" class="tshop-cover"><img src="assets/templates/tpl-crayons-front.jpg" alt="Шаблон выпускного альбома «Мелки»" loading="lazy"></a>
+      <a href="shablony.html" class="tshop-cover"><img src="assets/mironova/mir-planeta-detstva-front.jpg" alt="Шаблон выпускного альбома «Планета детства», студия Мироновой" loading="lazy"></a>
+      <a href="shablony.html" class="tshop-cover is-mid"><img src="assets/templates/tpl-cream-front.jpg" alt="Шаблон выпускного альбома «Крем»" loading="lazy"></a>
+      <a href="shablony.html" class="tshop-cover"><img src="assets/mironova/mir-gorodok-front.jpg" alt="Шаблон выпускного альбома «Городок», студия Мироновой" loading="lazy"></a>
+      <a href="shablony.html" class="tshop-cover"><img src="assets/templates/tpl-neon-front.jpg" alt="Шаблон выпускного альбома «Неон»" loading="lazy"></a>
+      <a href="shablony.html" class="tshop-cover"><img src="assets/templates/tpl-city-front.jpg" alt="Шаблон выпускного альбома «Город знаний»" loading="lazy"></a>
     </div>
     <div class="v3-cards">
       <div class="v3-card reveal">
@@ -4945,12 +4959,12 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
         </div>
         <div class="v3-card-body">
           <h3>Библиотека Lumir</h3>
-          <p>Готовые дизайны альбомов, обложек и виньеток. Выберите и сразу собирайте первый класс</p>
-          <div class="v3-card-price"><span>Входит в Lumir</span><span>S · M · L</span><span>Квадратный формат</span></div>
+          <p>22 готовых дизайна альбомов, обложек и виньеток — бесплатно. Работаете прямо в редакторе Lumir</p>
+          <div class="v3-card-price"><span>Бесплатно</span><span>S · M · L</span><span>Квадратный формат</span></div>
         </div>
       </div>
       <div class="v3-card reveal">
-        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(232,180,92,0.28), transparent 70%), var(--bg-warm);"><div class="v3-cover img "><img src="assets/mironova/shkolny.jpg" alt="Дизайн школьного альбома от дизайн-студии" loading="lazy"></div><div class="v3-cover img "><img src="assets/mironova/planeta.jpg" alt="Дизайн альбома «Планета детства» от дизайн-студии" loading="lazy"></div><div class="v3-cover img "><img src="assets/mironova/kosmos.jpg" alt="Дизайн альбома «Космос» от дизайн-студии" loading="lazy"></div>
+        <div class="v3-card-vis" style="background: radial-gradient(400px 200px at 50% 0%, rgba(232,180,92,0.28), transparent 70%), var(--bg-warm);"><div class="v3-cover img "><img src="assets/mironova/mir-knigi-front.jpg" alt="Дизайн школьного альбома «Книги» от дизайн-студии" loading="lazy"></div><div class="v3-cover img "><img src="assets/mironova/mir-planeta-detstva-front.jpg" alt="Дизайн альбома «Планета детства» от дизайн-студии" loading="lazy"></div><div class="v3-cover img "><img src="assets/mironova/mir-kosmos-front.jpg" alt="Дизайн альбома «Космос» от дизайн-студии" loading="lazy"></div>
         </div>
         <div class="v3-card-body">
           <h3>Дизайны от студий <span class="v3-tag">магазин</span></h3>
@@ -4970,30 +4984,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
     </div>
     <div class="v3-designs-more reveal">
       <a class="btn btn-primary" href="shablony.html">БОЛЬШЕ ДИЗАЙНОВ →</a>
-      <p class="hand-note">22 бесплатных шаблона Lumir и авторские дизайны студий</p>
-    </div>
-  </div>
-</section>
-
-<!-- ============================================ V3 — TEMPLATES SHOP PREVIEW ============================================ -->
-<section class="section tshop" id="templates" data-screen-label="03b Templates shop">
-  <div class="container">
-    <div class="tshop-head reveal">
-      <h2 class="h2">Шаблоны выпускных альбомов: <span class="tshop-grad">22 бесплатно</span> и&nbsp;платные от&nbsp;студий</h2>
-      <a class="tshop-all" href="shablony.html">Все шаблоны →</a>
-    </div>
-    <div class="tshop-covers reveal">
-      <a href="shablony.html" class="tshop-cover"><img src="assets/templates/tpl-magazine-front.jpg" alt="Шаблон выпускного альбома «Журнал»" loading="lazy"></a>
-      <a href="shablony.html" class="tshop-cover"><img src="assets/templates/tpl-crayons-front.jpg" alt="Шаблон выпускного альбома «Мелки»" loading="lazy"></a>
-      <a href="shablony.html" class="tshop-cover"><img src="assets/mironova/planeta.jpg" alt="Шаблон выпускного альбома «Планета детства, студия Мироновой»" loading="lazy"></a>
-      <a href="shablony.html" class="tshop-cover is-mid"><img src="assets/templates/tpl-cream-front.jpg" alt="Шаблон выпускного альбома «Крем»" loading="lazy"></a>
-      <a href="shablony.html" class="tshop-cover"><img src="assets/mironova/shkolny.jpg" alt="Шаблон выпускного альбома «Первоклашка, студия Мироновой»" loading="lazy"></a>
-      <a href="shablony.html" class="tshop-cover"><img src="assets/templates/tpl-neon-front.jpg" alt="Шаблон выпускного альбома «Неон»" loading="lazy"></a>
-      <a href="shablony.html" class="tshop-cover"><img src="assets/templates/tpl-city-front.jpg" alt="Шаблон выпускного альбома «Город знаний»" loading="lazy"></a>
-    </div>
-    <div class="tshop-plaques reveal">
-      <a class="tshop-plq tshop-plq--violet" href="https://fotoklass.lumir.photo/"><b>22</b><span><strong>дизайна Lumir — бесплатно</strong>обложка, виньетка и 11 разворотов</span><em>НАЧАТЬ →</em></a>
-      <a class="tshop-plq tshop-plq--gold" href="https://fotoklass.lumir.photo/"><b>390 ₽</b><span><strong>платные дизайны студии Мироновой</strong>аренда на класс, покупка от 700 ₽</span><em>ВЗЯТЬ →</em></a>
+      <p class="hand-note">все шаблоны: фильтр по классам и просмотр разворотов</p>
     </div>
   </div>
 </section>
@@ -5831,6 +5822,7 @@ body:has(.sticky-premium-mini.visible) :is(.promo-popup, .promo-mini) { bottom: 
         <h4>Продукт</h4>
         <a href="#pricing">Стоимость</a>
         <a href="#season">Весь сезон</a>
+        <a href="shablony.html">Шаблоны выпускных альбомов</a>
         <a href="https://fotoklass.lumir.photo/">Попробовать</a>
       </div>
       <div class="footer-col">

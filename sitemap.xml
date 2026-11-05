@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://lumir.photo/</loc>
     <lastmod>2026-10-27</lastmod>
@@ -8,9 +8,74 @@
   </url>
   <url>
     <loc>https://lumir.photo/shablony.html</loc>
-    <lastmod>2026-11-04</lastmod>
+    <lastmod>2026-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-magazine-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-cream-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-vogue-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-player-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-sketch-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-spine-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-quote-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-staircase-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-torn-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-lettering-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-avant-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-column-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-digits-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-scrap-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-neon-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-theend-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-crayons-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-watercolor-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-city-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-oval-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-mir-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/templates/tpl-scribble-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-planeta-detstva-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-kosmos-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-gorodok-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-knigi-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-david-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-mechta-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-pervoklashka-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-lev-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-princ-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-solnyshko-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-zolotaya-pora-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-gold-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-school-bus-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-raduga-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-the-best-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-vozdushny-shar-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-abc-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-arrows-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-black-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-doodle-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-exact-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-freedom-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-green-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-like-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-lux-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-orange-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-white-grunge-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-bambi-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-vozduh-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-detstvo-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-domiki-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-klyaksy-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-kontur-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-korabliki-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-krugi-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-mramor-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-myshata-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-neposedy-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-radost-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-raduga-23-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-sketch-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-split-front.jpg</image:loc></image:image>
+    <image:image><image:loc>https://lumir.photo/assets/mironova/mir-shtrihi-front.jpg</image:loc></image:image>
   </url>
   <url>
     <loc>https://fotoklass.lumir.photo/</loc>

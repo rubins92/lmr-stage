@@ -29,6 +29,14 @@ User-agent: Claude-User
 Allow: /
 Disallow: /assets/screens/
 
+User-agent: DuckAssistBot
+Allow: /
+Disallow: /assets/screens/
+
+User-agent: MistralAI-User
+Allow: /
+Disallow: /assets/screens/
+
 # AI training crawlers — закрыто (обучение моделей)
 User-agent: CCBot
 Disallow: /
@@ -51,6 +59,12 @@ Disallow: /
 User-agent: Amazonbot
 Disallow: /
 
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: meta-externalagent
+Disallow: /
+
 # SEO-краулеры — закрыто
 User-agent: AhrefsBot
 Disallow: /
@@ -60,6 +74,12 @@ Disallow: /
 
 User-agent: MJ12bot
 Disallow: /
+
+# Яндекс: не плодить дубли страниц из-за меток
+User-agent: Yandex
+Allow: /
+Disallow: /assets/screens/
+Clean-param: utm_source&utm_medium&utm_campaign&utm_content&utm_term&yclid&gclid&from
 
 Sitemap: https://lumir.photo/sitemap.xml
 Host: https://lumir.photo
